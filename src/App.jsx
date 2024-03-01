@@ -11,6 +11,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "leaflet.heat";
 import axios from "axios";
+import { PropTypes } from "prop-types";
 
 function App() {
   const [data, setData] = useState(null);
@@ -33,7 +34,7 @@ function App() {
         key={index}
         center={[item.geometry.coordinates[1], item.geometry.coordinates[0]]}
         //circle markers set large enough to interact with but not visible
-        radius={4}
+        radius={9}
         weight={0}
         fillOpacity={0}
         //popup open on hover
@@ -85,6 +86,7 @@ function App() {
   );
 }
 
+
 //generate heatmaplayer
 function HeatmapLayer({ points }) {
   const map = useMap();
@@ -96,5 +98,7 @@ function HeatmapLayer({ points }) {
 
   return null;
 }
+
+HeatmapLayer.propTypes = {points: PropTypes.object,}
 
 export default App;
