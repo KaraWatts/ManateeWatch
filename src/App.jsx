@@ -6,6 +6,7 @@ import {
   CircleMarker,
   Popup,
   useMap,
+  Tooltip,
 } from "react-leaflet"; // Import useMap from react-leaflet
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -37,14 +38,14 @@ function App() {
         radius={9}
         weight={0}
         fillOpacity={0}
-        //popup open on hover
-        eventHandlers={{
-          mouseover: (event) => event.target.openPopup(),
-        }}
       >
+        <Tooltip>
+          <img className="manateeImg" src="https://i.insider.com/5db6fd7ddee019532146611b?width=700" />
+        </Tooltip>
         <Popup>
           <div>
             <h2>Manatee Sighted</h2>
+            <img className="manateeImg" src="https://i.insider.com/5db6fd7ddee019532146611b?width=700" />
             <h3>
               {item.properties.NUMBER_ADULT_MANATEES} Adults{" "}
               {item.properties.NUMBER_CALF_MANATEES} Calves
@@ -52,8 +53,6 @@ function App() {
             <p>Date Sighted: {item.properties.SIGHTINGDATE}</p>
             <p>Activity: {item.properties.ACTIVITY}</p>
             <p>Spotted By: {item.properties.NAME}</p>
-            <p>Latitude: {item.geometry.coordinates[1]}</p>
-            <p>Longitude: {item.geometry.coordinates[0]}</p>
           </div>
         </Popup>
       </CircleMarker>
