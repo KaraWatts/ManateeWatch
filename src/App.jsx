@@ -32,9 +32,11 @@ function App() {
       <CircleMarker
         key={index}
         center={[item.geometry.coordinates[1], item.geometry.coordinates[0]]}
+        //circle markers set large enough to interact with but not visible
         radius={4}
         weight={0}
         fillOpacity={0}
+        //popup open on hover
         eventHandlers={{
           mouseover: (event) => event.target.openPopup(),
         }}
@@ -74,7 +76,9 @@ function App() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        {/* render heatmap */}
         {heatmapPoints.length > 0 && <HeatmapLayer points={heatmapPoints} />}
+        {/* render sighting points */}
         {sightingPoints()}
       </MapContainer>
     </>
@@ -86,6 +90,7 @@ function HeatmapLayer({ points }) {
   const map = useMap();
 
   useEffect(() => {
+    //using leaflet.heat plugin with leaflet
     L.heatLayer(points, { radius: 20, maxZoom: 10 }).addTo(map);
   }, [points, map]);
 
