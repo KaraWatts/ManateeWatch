@@ -21,7 +21,14 @@ function App() {
     const sightingPoints = () => {
       if (!data) return null; // Return null if data is not available yet
       return data.map((item, index) => (
-        <Marker key={index} position={[item.geometry.coordinates[1], item.geometry.coordinates[0]]}>
+        <Marker 
+        key={index} 
+        position={[item.geometry.coordinates[1], item.geometry.coordinates[0]]}
+        //popup open on hover
+        eventHandlers={{
+          mouseover: (event) => event.target.openPopup(),
+        }}
+        >
           <Popup>
             <div>
               <h2>Manatee Sighted</h2>
