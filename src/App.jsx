@@ -25,9 +25,11 @@ function App() {
         key={index} 
         position={[item.geometry.coordinates[1], item.geometry.coordinates[0]]}
         //popup open on hover
-        eventHandlers={{
-          mouseover: (event) => event.target.openPopup(),
-        }}
+        // eventHandlers={{
+        //   mouseover: (event) => event.target.openPopup(),
+        //   mouseout: (event) => event.target.closePopup()
+
+        // }}
         >
           <Popup>
             <div>
