@@ -69,7 +69,7 @@ function App() {
       <MapContainer
         center={[26.534861, -81.008441]}
         zoom={8}
-        scrollWheelZoom={true}
+        scrollWheelZoom={false}
         className="leaflet-container"
       >
         <TileLayer
