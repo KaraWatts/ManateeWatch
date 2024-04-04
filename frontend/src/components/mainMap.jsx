@@ -14,7 +14,6 @@ function MainMap() {
     const fetchData = async () => {
       const response = await axios.get("http://127.0.0.1:8000/api/v1/home/");
       const allData = response.data;
-      console.log(allData)
       setData(allData);
     };
 
@@ -34,7 +33,7 @@ const sightingPoints = () => {
               <Tooltip>
                   <img
                       className="manateeImg"
-                      src="https://i.insider.com/5db6fd7ddee019532146611b?width=700"
+                      src={item.Image ? item.Image : "https://i.insider.com/5db6fd7ddee019532146611b?width=700"}
                   />
               </Tooltip>
               <Popup>
@@ -42,7 +41,7 @@ const sightingPoints = () => {
                       <h2>Manatee Sighted</h2>
                       <img
                           className="manateeImg"
-                          src="https://i.insider.com/5db6fd7ddee019532146611b?width=700"
+                          src={item.Image ? item.Image : "https://i.insider.com/5db6fd7ddee019532146611b?width=700"}
                       />
                       <h3>
                           {item.Num_Adults} Adults{" "}
@@ -85,15 +84,21 @@ const sightingPoints = () => {
         {sightingPoints()}
       </MapContainer>
       <div className="result-container">
-        {data.slice(0,20).map((sighting) => (
+        {data.slice(0, 20).map((sighting) => {
+            const image_url = sighting.Image ? sighting.Image : "https://i.insider.com/5db6fd7ddee019532146611b?width=700";
+            return (
             <ResultCards
-               key={sighting.id}
-               id={sighting.id}
-               user_ID={sighting.User_ID}
-               sighting_date={sighting.Sighting_date} 
+                key={sighting.id}
+                id={sighting.id}
+                user_ID={sighting.User_ID}
+                sighting_date={sighting.Sighting_date} 
+                image={image_url}
             />
-        ))}
-      </div>
+            );
+        })}
+        </div>
+
+
     </>
   );
 }
