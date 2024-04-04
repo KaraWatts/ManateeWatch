@@ -21,14 +21,14 @@ def import_sightings(file_path):
         reader = csv.DictReader(file)
         for row in reader:
              # Parse and format date strings
-            sighting_date = datetime.strptime(row['SIGHTINGDATE'], '%Y/%m/%d %H:%M:%S+00')
-            created_date = datetime.strptime(row['DATECREATED'], '%Y/%m/%d %H:%M:%S+00')
+            sighting_date = datetime.strptime(row['SIGHTINGDATE'], '%Y-%m-%dT%H:%M:%S%z')
+            created_date = datetime.strptime(row['DATECREATED'], '%Y-%m-%dT%H:%M:%S%z')
 
 
 
             Sighting_Data.objects.create(
-                lat=row['X'],
-                lon=row['Y'],
+                lat=row['lat'],
+                lon=row['lon'],
                 User_ID=row['User_ID'],
                 Num_Adults=row['NUMBER_ADULT_MANATEES'],
                 Num_Calf=row['NUMBER_CALF_MANATEES'],
@@ -40,5 +40,5 @@ def import_sightings(file_path):
             )
 
 if __name__ == '__main__':
-    csv_file_path = '/Users/kWatts/Repos/ManateeWatch/backend/fixtures/Manatee_Sightings.csv'  # Replace with your actual file path
+    csv_file_path = '/Users/kWatts/Repos/ManateeWatch/backend/map_app/fixtures/Manatee_Sightings.csv'  # Replace with your actual file path
     import_sightings(csv_file_path)
