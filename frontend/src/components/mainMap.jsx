@@ -84,7 +84,16 @@ const sightingPoints = () => {
         />
         {sightingPoints()}
       </MapContainer>
-      <ResultCards/>
+      <div className="result-container">
+        {data.slice(0,20).map((sighting) => (
+            <ResultCards
+               key={sighting.id}
+               id={sighting.id}
+               user_ID={sighting.User_ID}
+               sighting_date={sighting.Sighting_date} 
+            />
+        ))}
+      </div>
     </>
   );
 }

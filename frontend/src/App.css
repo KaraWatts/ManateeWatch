@@ -20,10 +20,11 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  box-shadow: -.1em 0 .4em rgb(73, 102, 102);
+  box-shadow: -.1em 0 .2em rgb(73, 102, 102);
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: scroll;
 }
 .marker-cluster span{
   color: black;
@@ -31,4 +32,10 @@
 
 .manateeImg {
   width: 200px;
+}
+
+.sighting_card{
+  display: flex;
+  justify-content: start;
+  font-size: 1vw;
 }
