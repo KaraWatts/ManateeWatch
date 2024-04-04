@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 // import L, { MarkerCluster } from 'leaflet';
 import MarkerClusterGroup from "react-leaflet-cluster";
 import axios from "axios";
-import ResultCards from "./components/ResultTiles"
+import ResultCards from "./components/resultTiles"
 
 function App() {
   const [data, setData] = useState(null);
