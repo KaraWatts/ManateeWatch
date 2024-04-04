@@ -21,17 +21,24 @@ def import_sightings(file_path):
         reader = csv.DictReader(file)
         for row in reader:
              # Parse and format date strings
-            sighting_date = datetime.strptime(row['SIGHTINGDATE'], '%Y-%m-%dT%H:%M:%S%z')
-            created_date = datetime.strptime(row['DATECREATED'], '%Y-%m-%dT%H:%M:%S%z')
+            try:
+                sighting_date = datetime.strptime(row['SIGHTINGDATE'], '%Y-%m-%dT%H:%M:%S%z')
+                created_date = datetime.strptime(row['DATECREATED'], '%Y-%m-%dT%H:%M:%S%z')
+            except:
+                sighting_date = datetime.strptime(row['SIGHTINGDATE'], '%Y-%m-%d %H:%M:%S %Z')
+                created_date = datetime.strptime(row['DATECREATED'], '%Y-%m-%d %H:%M:%S %Z')
 
+            # Convert "null" strings to None
+            num_adults = int(row['NUMBER_ADULT_MANATEES']) if row['NUMBER_ADULT_MANATEES'] != 'Null' else None
+            num_calf = int(row['NUMBER_CALF_MANATEES']) if row['NUMBER_CALF_MANATEES'] != 'Null' else None
 
 
             Sighting_Data.objects.create(
                 lat=row['lat'],
                 lon=row['lon'],
                 User_ID=row['User_ID'],
-                Num_Adults=row['NUMBER_ADULT_MANATEES'],
-                Num_Calf=row['NUMBER_CALF_MANATEES'],
+                Num_Adults=num_adults,
+                Num_Calf=num_calf,
                 Activity=row['ACTIVITY'],
                 Comments=row['COMMENTS'],
                 Sighting_date=sighting_date.strftime('%Y-%m-%d %H:%M:%S'),  # Format to Django's expected format
