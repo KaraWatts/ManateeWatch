@@ -11,7 +11,7 @@ from rest_framework.status import (
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
-from .models import User
+from .models import Client
 
 
 # Create your views here.
@@ -20,7 +20,7 @@ class Sign_Up(APIView):
     def post(self, request):
         data = request.data.copy()
         data['username'] = data['email']
-        new_user = User(**data)
+        new_user = Client(**data)
         try:
             new_user.full_clean()
             new_user.set_password(data.get('password'))
