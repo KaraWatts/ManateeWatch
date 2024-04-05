@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 // import L, { MarkerCluster } from 'leaflet';
 import MarkerClusterGroup from "react-leaflet-cluster";
+import {api} from "./utilities.jsx"
 import axios from "axios";
 import ResultCards from "./resultTiles.jsx"
 
@@ -12,8 +13,9 @@ function MainMap() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://127.0.0.1:8000/api/v1/home/");
+      const response = await api.get("/home/");
       const allData = response.data;
+      console.log(allData[0])
       setData(allData);
     };
 
