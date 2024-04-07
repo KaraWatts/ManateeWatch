@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'map_app',
     'user_app',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
 ]
 

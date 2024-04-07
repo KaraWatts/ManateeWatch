@@ -19,16 +19,18 @@ class Sign_Up(APIView):
 
     def post(self, request):
         data = request.data.copy()
-        data['username'] = data['email']
+        data['username'] = request.data.get("username", request.data.get("email"))
         new_user = Client(**data)
         try:
             new_user.full_clean()
-            new_user.set_password(data.get('password'))
+            new_user.save()
+            new_user.set_password(data.get("password"))
             new_user.save()
             login(request, new_user)
             token = Token.objects.create(user = new_user)
-            return Response({"user": new_user.email, "token": token.key}, status=HTTP_201_CREATED)
+            return Response({"user":new_user.display_name, "token":token.key}, status=HTTP_201_CREATED)
         except ValidationError as e:
+            print(e)
             return Response(e, status=HTTP_400_BAD_REQUEST)
 
 
@@ -36,13 +38,14 @@ class Log_in(APIView):
 
     def post(self, request):
         data = request.data.copy()
-        data['username'] = request.data.get('username', request.data.get('email'))
-        user = authenticate(username=data.get('username'), password=data.get('password'))
+        data['username'] = request.data.get("username", request.data.get("email"))
+        user = authenticate(username=data.get("username"), password=data.get("password"))
+        print(user)
         if user:
             login(request, user)
             token, created = Token.objects.get_or_create(user = user)
-            return Response({"token": token.key, "user": user.email})
-        return Response("No user info matching credentials", status=HTTP_400_BAD_REQUEST)
+            return Response({"user":user.email, "token":token.key}, status=HTTP_200_OK)
+        return Response("No user matching credentials", status=HTTP_400_BAD_REQUEST)
 
 class TokenReq(APIView):
     authentication_classes = [TokenAuthentication]
