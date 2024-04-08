@@ -60,7 +60,7 @@ return null;
 * @return {[none]}   none
 */
 export const userLogout = async() => { 
-    // POST /api/users/logout/
+
     const response = await api.post("user/logout/")
     if (response.status === 204) {
         // delete token from axios.common.heads 
@@ -85,7 +85,7 @@ export const userConfirmation = async() => {
     const token = localStorage.getItem("token");
     if(token) {
         api.defaults.headers.common["Authorization"] = `Token ${token}`
-        const response = await api.get("users/")
+        const response = await api.get("user/")
         if (response.status === 200) {
             console.log(response.data)
             return { user: response.data.user, email: response.data.email }
