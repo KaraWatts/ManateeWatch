@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import './App.css'
 import NavBar from './components/navBar'
 import { Outlet, useLoaderData, useNavigate, useLocation } from 'react-router-dom'
 

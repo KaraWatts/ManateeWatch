@@ -40,15 +40,15 @@ const sightingPoints = () => {
               </Tooltip>
               <Popup>
                   <div>
-                      <h2>Manatee Sighted</h2>
+                      <h4>Manatee Sighted</h4>
                       <img
                           className="manateeImg"
                           src={item.Image ? item.Image : "https://i.insider.com/5db6fd7ddee019532146611b?width=700"}
                       />
-                      <h3>
+                      <h5>
                           {item.Num_Adults} Adults{" "}
                           {item.Num_Calf} Calves
-                      </h3>
+                      </h5>
                       <p>Date Sighted: {item.Sighting_date}</p>
                       <p>Activity: {item.Activity}</p>
                       <p>Spotted By: {item.User_ID}</p>

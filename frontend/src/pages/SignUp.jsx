@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { api } from "./utilities";
+import { api } from "../components/utilities";
 
 const SignUp = () => {
   const [emailInput, setEmailInput] = useState("");
