@@ -85,7 +85,7 @@ export const userConfirmation = async() => {
     const token = localStorage.getItem("token");
     if(token) {
         api.defaults.headers.common["Authorization"] = `Token ${token}`
-        const response = await api.get("user/")
+        const response = await api.get("users/")
         if (response.status === 200) {
             console.log(response.data)
             return { user: response.data.user, email: response.data.email }

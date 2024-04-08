@@ -2,11 +2,20 @@ import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-// import L, { MarkerCluster } from 'leaflet';
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {api} from "./utilities.jsx"
-import axios from "axios";
 import ResultCards from "./resultTiles.jsx"
+import 'leaflet/dist/leaflet.css'
+import L from 'leaflet'
+// import {MapLibreTileLayer} from "./MapLibreTileLayer.tsx";
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
 
 function MainMap() {
     const [ data, setData ] = useState([]);
@@ -35,7 +44,7 @@ const sightingPoints = () => {
               <Tooltip>
                   <img
                       className="manateeImg"
-                      src={item.Image ? item.Image : "https://i.insider.com/5db6fd7ddee019532146611b?width=700"}
+                      src={item.Image ? item.Image : "https://i.insider.com/5db6fd7ddee019532146611b?width=700"} alt="Manatee"
                   />
               </Tooltip>
               <Popup>
@@ -43,7 +52,7 @@ const sightingPoints = () => {
                       <h4>Manatee Sighted</h4>
                       <img
                           className="manateeImg"
-                          src={item.Image ? item.Image : "https://i.insider.com/5db6fd7ddee019532146611b?width=700"}
+                          src={item.Image ? item.Image : "https://i.insider.com/5db6fd7ddee019532146611b?width=700"} alt="Manatee"
                       />
                       <h5>
                           {item.Num_Adults} Adults{" "}
