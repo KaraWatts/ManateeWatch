@@ -57,3 +57,12 @@ class Log_out(TokenReq):
         request.user.auth_token.delete()
         logout(request)
         return Response(status=HTTP_204_NO_CONTENT)
+    
+class Info(TokenReq):
+
+    def get(self, request):
+        try:
+            ruser = request.user
+            return Response({ "email": ruser.email }, status=HTTP_200_OK)
+        except:
+            return Response("No user matching credentials", status=HTTP_400_BAD_REQUEST)
