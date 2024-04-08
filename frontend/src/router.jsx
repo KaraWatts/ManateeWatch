@@ -1,21 +1,30 @@
-import { createBrowserRouter } from "react-router-dom";
-import App from "./App.jsx";
-import MainMap from "./components/mainMap.jsx";
-// import ErrorPage from "./components/ErrorPage.jsx";
-
+import {createBrowserRouter} from 'react-router-dom'
+import App from './App'
+import HomePage from './components/HomePage'
+import LogIn from './components/LogIn'
+import SignUp from './components/SignUp'
+import { userConfirmation } from './components/utilities'
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        index: true,
-        element: <MainMap />,
-      }
-    ],
-    // errorElement: <ErrorPage />,
-  },
-]);
+    {
+        path:"/",
+        element: <App/>,
+        loader: userConfirmation,
+        children:[
+            {
+                index:true,
+                element:<HomePage/>,
+            },
+            {
+                path:"/signup/",
+                element:<SignUp/>
+            },
+            {
+                path:"/login/",
+                element: <LogIn/>
+            }
+        ]
+    }
+])
 
 export default router;

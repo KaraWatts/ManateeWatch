@@ -9,7 +9,7 @@ import axios from "axios";
 import ResultCards from "./resultTiles.jsx"
 
 function MainMap() {
-    const { data, setData } = useOutletContext();
+    const [ data, setData ] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
