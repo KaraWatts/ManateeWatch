@@ -1,3 +1,41 @@
-.sightingReport {
-    text-align: center;
+.sightingReport{
+    min-height: 100vh;
+    position: relative;
+}
+
+.camera{
+    position: relative;
+}
+
+.result{
+    position: fixed;
+    top: 0;
+    left: 100%;
+    width:100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    transition: 0.4s;
+}
+
+.result.hasPhoto{
+    left: 0;
+}
+
+video{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+canvas {
+    width: 100%;
+    height: auto;
 }
