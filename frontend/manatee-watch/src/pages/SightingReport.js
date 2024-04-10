@@ -8,6 +8,7 @@ function SightingReport() {
   return (
     <div className="sightingReport">
       <h1>Capture Image here</h1>
+      <hr/>
       <ImageUpload />
     </div>
   );

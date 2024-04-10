@@ -1,3 +1,10 @@
 .sightingReport {
     text-align: center;
+    
+}
+
+.imageUpload {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
