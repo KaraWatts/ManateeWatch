@@ -1,7 +1,6 @@
-
-
-// import { useOutletContext } from "react-router-dom";
+import ImageUpload from '../components/imageUpload';
 import './stylesheets/SightingReport.css'
+
 
 function SightingReport() {
 //   const { user } = useOutletContext();
@@ -9,7 +8,8 @@ function SightingReport() {
   return (
     <div className="sightingReport">
       <h1>Capture Image here</h1>
-      
+      <hr/>
+      <ImageUpload />
     </div>
   );
 }
