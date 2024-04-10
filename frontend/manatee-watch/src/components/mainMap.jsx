@@ -22,7 +22,7 @@ function MainMap() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await api.get("/home/");
+      const response = await api.get("/sightings/");
       const allData = response.data;
       console.log(allData[0])
       setData(allData);
