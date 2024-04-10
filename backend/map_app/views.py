@@ -23,7 +23,7 @@ class AllSightings(APIView):
     def post(self, request):
         data = request.data.copy()
 
-        encoded_image = request.data.get("url")
+        encoded_image = data.get("url")
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
         key = env.get("MODERATOR_KEY")
         data = {"base64": "true",
@@ -36,7 +36,7 @@ class AllSightings(APIView):
         response = requests.post(endpoint, data=data, headers=headers)
         responseJSON = response.json()
         
-        if responseJSON and responseJSON["predictions"]["everyone"] > 90:
+        if responseJSON and responseJSON["predictions"]["everyone"] > 99:
             return Response("GOOD TO GO!", status=HTTP_200_OK)
         return Response("Innapropriate Content Warning!", status=HTTP_406_NOT_ACCEPTABLE)
     
