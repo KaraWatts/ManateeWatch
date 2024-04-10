@@ -11,7 +11,7 @@ class Sighting_Data(models.Model):
     Comments = models.TextField(null=True, blank=True)
     Sighting_date = models.DateTimeField()
     Created_date = models.DateTimeField()
-    Image = models.CharField(null=True)
+    Image = models.TextField(null=True)
     # Image = models.ImageField(null=True)
 
     
