@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import ReactImagePickerEditor from 'react-image-picker-editor'
 import 'react-image-picker-editor/dist/index.css'
+import Button from "react-bootstrap/Button";
+import { api } from "./utilities";
 
 function ImageUpload() {
 
@@ -19,14 +21,28 @@ function ImageUpload() {
       };
 
       const initialImage = '';
-      console.log(imageSrc)
+      
+    const submitImage = async(e) => {
+        e.preventDefault();
+        try{
+          const response = await api.post("/sightings/", { url: imageSrc})
+          console.log('successfuly uploaded image', response.content);
+        } catch (response){
+          console.log('successfuly uploaded image:', "Innapropriate content warning!")
+        }
+      }; 
+
   return (
-    <div className="imageUpload">
+    <>
+      <div className="imageUpload">
       <ReactImagePickerEditor
             config={config2}
             imageSrcProp={initialImage}
             imageChanged={(newDataUri) => { setImageSrc(newDataUri) }} />
     </div>
+      <Button onClick={submitImage}>Submit</Button>
+    </>
+    
   );
 }
 
