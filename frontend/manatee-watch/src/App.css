@@ -49,7 +49,7 @@
   text-align: start;
 } */
 
-.leaflet-container {
+.leaflet-home-container {
   width: 75%;
   height: 80vh;
   position: fixed;

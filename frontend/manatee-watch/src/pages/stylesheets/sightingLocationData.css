@@ -1,0 +1,28 @@
+.sightingDataForm {
+    text-align: center;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+.mapContainer{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+.leaflet-sighting-container{
+    margin-top: 1rem;
+    width: 80%;
+    height: 40%;
+    align-self: center;
+}
+
+button {
+    width: 80%;
+    align-self: center;
+    background-color: rgb(62, 62, 138);
+}

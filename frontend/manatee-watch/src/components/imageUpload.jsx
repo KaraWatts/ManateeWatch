@@ -3,10 +3,12 @@ import ReactImagePickerEditor from 'react-image-picker-editor'
 import 'react-image-picker-editor/dist/index.css'
 import Button from "react-bootstrap/Button";
 import { api } from "./utilities";
+import { useNavigate } from 'react-router-dom';
 
 function ImageUpload() {
 
     const [imageSrc, setImageSrc] = useState("");
+    const navigate = useNavigate();
 
 
     const config2 = {
@@ -27,6 +29,7 @@ function ImageUpload() {
         try{
           const response = await api.post("/sightings/", { url: imageSrc})
           console.log('successfuly uploaded image', response.content);
+          navigate('/sightingData/')
         } catch (response){
           console.log('successfuly uploaded image:', "Innapropriate content warning!")
         }
@@ -40,7 +43,7 @@ function ImageUpload() {
             imageSrcProp={initialImage}
             imageChanged={(newDataUri) => { setImageSrc(newDataUri) }} />
     </div>
-      <Button onClick={submitImage}>Submit</Button>
+      <Button onClick={submitImage}>Next</Button>
     </>
     
   );
