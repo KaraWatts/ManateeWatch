@@ -6,4 +6,3 @@ Florida is well known for being home to manatees. Being the adorable sea cows th
 
 Users will be able to upload manatee sighting information - photos, coordinates, manatee info. That info will be used to populate the manatee sighting map that all users can view. Sightings associated with and accessible in individual users accounts so that data can be edited or deleted by the creator.
 
-Authentication: Users can register and log in and out of the app to gain access to their sighting history and submit more sightings.
