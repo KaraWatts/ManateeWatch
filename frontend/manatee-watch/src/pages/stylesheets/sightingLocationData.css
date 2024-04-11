@@ -7,22 +7,31 @@
     height: 100vh;
 }
 
-.mapContainer{
+
+
+/* .mapContainer{
     position: absolute;
     width: 100%;
     height: 100%;
     align-items: center;
-}
+} */
 
 .leaflet-sighting-container{
     margin-top: 1rem;
     width: 80%;
-    height: 40%;
+    min-height: 300px;
+    height: 50vh;
     align-self: center;
 }
 
-button {
+.map-button {
     width: 80%;
     align-self: center;
-    background-color: rgb(62, 62, 138);
+    background-color: rgb(206, 206, 252);
 }
+.formbox {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom:2rem;
+    }
+

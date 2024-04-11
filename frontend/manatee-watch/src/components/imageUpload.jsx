@@ -29,7 +29,7 @@ function ImageUpload() {
         try{
           const response = await api.post("/sightings/", { url: imageSrc})
           console.log('successfuly uploaded image', response.content);
-          navigate('/sightingData/')
+          navigate('/sightingData/', {state: { imageSrc }})
         } catch (response){
           console.log('successfuly uploaded image:', "Innapropriate content warning!")
         }
