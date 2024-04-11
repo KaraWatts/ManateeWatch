@@ -11,7 +11,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useAsyncError } from "react-router-dom";
 
-// function SightingLocationMap() {
+
 
     const LocateControl = () => {
     const [position, setPosition] = useState(null);
@@ -57,7 +57,7 @@ import { useAsyncError } from "react-router-dom";
   return marker;
 };
 
-const MapWithLocationButton = () => {
+const SightingLocationMap = () => {
   const mapRef = useRef();
 
   const locateUser = () => {
@@ -85,68 +85,7 @@ const MapWithLocationButton = () => {
   );
 };
 
-export default MapWithLocationButton;
 
-//   const [findUser, setfindUser] = useState(false);
-//   const [mapPin, setMapPin] = useState(null);
 
-//   function LocationMarker() {
-//     const [position, setPosition] = useState([26.534861, -81.008441]);
-//     // create control and add to map
-//     var lc = L.control.locate();
 
-//     // request location update and set location
-//     lc.start();
-
-//     const markerRef = useRef(null);
-//     const eventHandlers = useMemo(
-//       () => ({
-//         dragend() {
-//           const marker = markerRef.current;
-//           if (marker != null) {
-//             setPosition(marker.getLatLng());
-//           }
-//         },
-//       }),
-//       []
-//     );
-
-//     return (
-//       <Marker
-//         draggable={true}
-//         eventHandlers={eventHandlers}
-//         position={position}
-//         ref={markerRef}
-//       ></Marker>
-//     );
-//   }
-
-//   useEffect(() => {
-//     setMapPin(<LocationMarker />);
-//   }, [findUser]);
-
-//   return (
-//     <>
-//       <MapContainer
-//         center={[26.534861, -81.008441]}
-//         zoom={8}
-//         scrollWheelZoom={true}
-//         maxZoom={18}
-//         className="leaflet-sighting-container"
-//       >
-//         <TileLayer
-//           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-//           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//         />
-//         <LocateControl />
-//       </MapContainer>
-//       <button
-//         onClick={() => (!findUser ? setfindUser(true) : setfindUser(false))}
-//       >
-//         Click for Current Location
-//       </button>
-//     </>
-//   );
-// }
-
-// export default SightingLocationMap;
+export default SightingLocationMap;
