@@ -5,6 +5,7 @@ import LogIn from './pages/LogIn'
 import SignUp from './pages/SignUp'
 import SightingReport from './pages/SightingReport'
 import { userConfirmation } from './components/utilities'
+import SightingData from './pages/SightingLocation'
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
             {
                 path:"/login/",
                 element: <LogIn/>
+            },
+            {
+                path:"/sightingData/",
+                element: <SightingData/>
             },
             {
               path:"/sighting/",

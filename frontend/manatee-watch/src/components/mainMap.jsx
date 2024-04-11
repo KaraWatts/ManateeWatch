@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import MarkerClusterGroup from "react-leaflet-cluster";
@@ -81,12 +80,13 @@ const sightingPoints = () => {
 
   return (
     <>
+    <div className="mapContainer">
       <MapContainer
         center={[26.534861, -81.008441]}
         zoom={8}
         scrollWheelZoom={true}
         maxZoom={18}
-        className="leaflet-container"
+        className="leaflet-home-container"
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -107,6 +107,7 @@ const sightingPoints = () => {
             />
             );
         })}
+        </div>
         </div>
 
 
