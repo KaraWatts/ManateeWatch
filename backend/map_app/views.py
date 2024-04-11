@@ -20,6 +20,9 @@ class AllSightings(APIView):
         ser_sightings = SightingSerializer(sightings, many=True)
         return Response(ser_sightings.data, status=HTTP_200_OK)
     
+
+class ModerateImage(APIView):
+    '''send request to ModerateContent API'''
     def post(self, request):
         data = request.data.copy()
 
