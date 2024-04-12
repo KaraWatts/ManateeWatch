@@ -4,7 +4,7 @@ import ObservationForm from '../components/observationForm';
 import SightingLocationMap from '../components/sightingLocationMap';
 import { useState } from 'react';
 import './stylesheets/sightingLocationData.css'
-
+import { api } from '../components/utilities';
 
 function SightingData() {
   const location = useLocation();
@@ -18,12 +18,18 @@ function SightingData() {
     };
     // console.log("Stored Position data", positionData.lat)
 
-  const handleFormSubmit = (formData) => {
+  const handleFormSubmit = async(formData) => {
     formData['url'] = imageSrc;
     formData['lat'] = positionData.lat;
     formData['lon'] = positionData.lon;
-    console.log('Form data submitted:', formData);
-    
+    console.log('Form data to be submitted:', formData);
+    try{
+      const response = await api.post("/sightings/new/", { formData })
+      console.log('successfuly uploaded data', response);
+
+    } catch (response){
+      console.log('successfuly uploaded image:', "Innapropriate content warning!")
+    }
   };
   
   return (
