@@ -19,7 +19,7 @@ from .serializers import NewSightingSerializer
 class AllSightings(APIView):
     '''Get all sighting data'''
     def get(self, request):
-        sightings = Sighting_Data.objects.all()
+        sightings = Sighting_Data.objects.order_by('-sighting_date')
         ser_sightings = SightingSerializer(sightings, many=True)
         return Response(ser_sightings.data, status=HTTP_200_OK)
     
