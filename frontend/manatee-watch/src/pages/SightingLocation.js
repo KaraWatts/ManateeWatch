@@ -18,24 +18,30 @@ function SightingData() {
       setPositionData(position);
     };
 
+    console.log(positionData)
+
   const handleDateChange = (dateTime) => {
     setTimeSighted(dateTime)
     console.log(dateTime)
   }
   const handleFormSubmit = async(formData) => {
-    formData['url'] = imageSrc;
-    formData['lat'] = positionData.lat;
-    formData['lon'] = positionData.lon;
-    formData['sighting_date'] = timeSighted.sighting_date
-    formData['created_date'] = timeSighted.created_date
+    const requestData = {
+      ...formData, // Include the formData object as is
+      image: imageSrc,
+      lat: positionData.lat,
+      lon: positionData.lng,
+      sighting_date: timeSighted.sighting_date,
+      created_date: timeSighted.created_date
+    };
+  
 
-    console.log('Form data to be submitted:', formData);
+    console.log('Form data to be submitted:', requestData);
     try{
-      const response = await api.post("/sightings/new/", { formData })
+      const response = await api.post("/sightings/new/", { requestData })
       console.log('successfuly uploaded data', response.data);
 
     } catch (response){
-      console.log('successfuly uploaded image:', "Innapropriate content warning!")
+      console.log(response)
     }
   };
   

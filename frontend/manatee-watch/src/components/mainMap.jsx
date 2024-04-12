@@ -23,7 +23,7 @@ function MainMap() {
     const fetchData = async () => {
       const response = await api.get("/sightings/");
       const allData = response.data;
-      console.log(allData[0])
+      console.log(allData[2601])
       setData(allData);
     };
 
@@ -43,7 +43,7 @@ const sightingPoints = () => {
               <Tooltip>
                   <img
                       className="manateeImg"
-                      src={item.Image ? item.Image : "https://i.insider.com/5db6fd7ddee019532146611b?width=700"} alt="Manatee"
+                      src={item.image ? item.image : "https://i.insider.com/5db6fd7ddee019532146611b?width=700"} alt="Manatee"
                   />
               </Tooltip>
               <Popup>
@@ -51,15 +51,15 @@ const sightingPoints = () => {
                       <h4>Manatee Sighted</h4>
                       <img
                           className="manateeImg"
-                          src={item.Image ? item.Image : "https://i.insider.com/5db6fd7ddee019532146611b?width=700"} alt="Manatee"
+                          src={item.image ? item.image : "https://i.insider.com/5db6fd7ddee019532146611b?width=700"} alt="Manatee"
                       />
                       <h5>
-                          {item.Num_Adults} Adults{" "}
-                          {item.Num_Calf} Calves
+                          {item.num_Adults} Adults{" "}
+                          {item.num_Calf} Calves
                       </h5>
-                      <p>Date Sighted: {item.Sighting_date}</p>
-                      <p>Activity: {item.Activity}</p>
-                      <p>Spotted By: {item.User_ID}</p>
+                      <p>Date Sighted: {item.sighting_date}</p>
+                      <p>Activity: {item.activity}</p>
+                      <p>Spotted By: {"ADD NAME HERE"}</p>
                   </div>
               </Popup>
           </Marker>
