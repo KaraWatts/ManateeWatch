@@ -10,6 +10,7 @@ from rest_framework.status import (
 from manateewatch_proj.settings import env
 import requests
 from django.http import JsonResponse
+from user_app.views import TokenReq
 
 
 # Create your views here.
@@ -19,6 +20,21 @@ class AllSightings(APIView):
         sightings = Sighting_Data.objects.all()
         ser_sightings = SightingSerializer(sightings, many=True)
         return Response(ser_sightings.data, status=HTTP_200_OK)
+    
+class NewSighting(APIView):
+    def post(self, request):
+        data = request.data.copy()
+
+        return Response(data)
+
+
+
+
+
+
+
+
+
     
 
 class ModerateImage(APIView):

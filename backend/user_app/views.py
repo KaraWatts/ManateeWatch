@@ -28,7 +28,7 @@ class Sign_Up(APIView):
             new_user.save()
             login(request, new_user)
             token = Token.objects.create(user = new_user)
-            return Response({"user":new_user.display_name, "token":token.key}, status=HTTP_201_CREATED)
+            return Response({"user":new_user.email, "token":token.key}, status=HTTP_201_CREATED)
         except ValidationError as e:
             print(e)
             return Response(e, status=HTTP_400_BAD_REQUEST)
