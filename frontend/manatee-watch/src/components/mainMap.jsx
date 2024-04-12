@@ -23,7 +23,7 @@ function MainMap() {
     const fetchData = async () => {
       const response = await api.get("/sightings/");
       const allData = response.data;
-      console.log(allData[2601])
+      console.log(allData[0])
       setData(allData);
     };
 
@@ -96,13 +96,13 @@ const sightingPoints = () => {
       </MapContainer>
       <div className="result-container">
         {data.slice(0, 20).map((sighting) => {
-            const image_url = sighting.Image ? sighting.Image : "https://i.insider.com/5db6fd7ddee019532146611b?width=700";
+            const image_url = sighting.image ? sighting.image : "https://i.insider.com/5db6fd7ddee019532146611b?width=700";
             return (
             <ResultCards
                 key={sighting.id}
                 id={sighting.id}
-                user_ID={sighting.User_ID}
-                sighting_date={sighting.Sighting_date} 
+                user_ID={"ADD NAME HERE"}
+                sighting_date={sighting.sighting_date} 
                 image={image_url}
             />
             );
