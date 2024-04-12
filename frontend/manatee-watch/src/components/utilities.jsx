@@ -60,7 +60,7 @@ return null;
 * @return {[none]}   none
 */
 export const userLogout = async() => { 
-
+    // POST /api/users/logout/
     const response = await api.post("user/logout/")
     if (response.status === 204) {
         // delete token from axios.common.heads 
@@ -99,3 +99,5 @@ export const userConfirmation = async() => {
     }
 }
 
+
+  

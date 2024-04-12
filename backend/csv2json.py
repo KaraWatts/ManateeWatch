@@ -36,14 +36,15 @@ def import_sightings(file_path):
             Sighting_Data.objects.create(
                 lat=row['lat'],
                 lon=row['lon'],
-                User_ID=row['User_ID'],
-                Num_Adults=num_adults,
-                Num_Calf=num_calf,
-                Activity=row['ACTIVITY'],
-                Comments=row['COMMENTS'],
-                Sighting_date=row['SIGHTINGDATE'],
-                Created_date=row['DATECREATED'],
-                Image=row['Image']
+                user=None,
+                data_source=row['data_source'],
+                num_Adults=num_adults,
+                num_Calf=num_calf,
+                activity=row['ACTIVITY'],
+                comments=row['COMMENTS'],
+                sighting_date=row['SIGHTINGDATE'],
+                created_date=row['DATECREATED'],
+                image=row['Image']
             )
 
 if __name__ == '__main__':

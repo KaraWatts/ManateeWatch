@@ -5,21 +5,48 @@ from .serializers import SightingSerializer
 from rest_framework.response import Response
 from rest_framework.status import (
     HTTP_200_OK,
-    HTTP_406_NOT_ACCEPTABLE
+    HTTP_406_NOT_ACCEPTABLE,
+    HTTP_201_CREATED,
+    HTTP_400_BAD_REQUEST
 )
 from manateewatch_proj.settings import env
 import requests
 from django.http import JsonResponse
-
+from user_app.views import TokenReq
+from .serializers import NewSightingSerializer
 
 # Create your views here.
 class AllSightings(APIView):
     '''Get all sighting data'''
     def get(self, request):
-        sightings = Sighting_Data.objects.all()
+        sightings = Sighting_Data.objects.order_by('-sighting_date')
         ser_sightings = SightingSerializer(sightings, many=True)
         return Response(ser_sightings.data, status=HTTP_200_OK)
     
+class NewSighting(TokenReq):
+    def post(self, request):
+        requestData = request.data.copy()
+        data = requestData['requestData']
+        data['user'] = request.user.id
+        ser_data = NewSightingSerializer(data = data)
+        if ser_data.is_valid():
+            ser_data.save()
+            return Response(data, status=HTTP_201_CREATED)
+        print(ser_data.errors)
+        return Response(ser_data.errors, status=HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+
+
+
+    
+
+class ModerateImage(APIView):
+    '''send request to ModerateContent API'''
     def post(self, request):
         data = request.data.copy()
 

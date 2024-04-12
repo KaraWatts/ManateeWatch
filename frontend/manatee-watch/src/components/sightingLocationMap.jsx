@@ -8,61 +8,23 @@ import {
 } from "react-leaflet";
 import "../pages/stylesheets/sightingLocationData.css";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-import { useAsyncError } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Fab from "@mui/material/Fab";
+import NavigationIcon from "@mui/icons-material/Navigation";
+import LocateControl from "./locationControl";
 
 
 
-    const LocateControl = () => {
-    const [position, setPosition] = useState(null);
-  const [marker, setMarker] = useState(null);
-
-  const markerRef = useRef(null);
-  const eventHandlers = useMemo(
-    () => ({
-      dragend() {
-        const marker = markerRef.current;
-        if (marker != null) {
-          setMarker(
-            <Marker
-              draggable={true}
-              eventHandlers={eventHandlers}
-              position={marker.getLatLng()}
-              ref={markerRef}
-            ></Marker>
-          );
-          setPosition(marker.getLatLng);
-        }
-      },
-    }),
-    []
-  );
-
-  const map = useMapEvents({
-    locationfound(e) {
-      map.flyTo(e.latlng, 16);
-      setMarker(
-        <Marker
-          draggable={true}
-          eventHandlers={eventHandlers}
-          position={e.latlng}
-          ref={markerRef}
-        ></Marker>
-      );
-      setPosition(e.latlng);
-    },
-  });
-  console.log(position)
-
-  return marker;
-};
-
-const SightingLocationMap = () => {
+const SightingLocationMap = ({ onPositionChange }) => {
   const mapRef = useRef();
 
   const locateUser = () => {
     mapRef.current.locate();
   };
+
+//   const handlePositionChange = (position) => {
+//     onPositionChange(position);
+//   };
 
   return (
     <>
@@ -74,18 +36,20 @@ const SightingLocationMap = () => {
         ref={mapRef}
         className="leaflet-sighting-container"
       >
-        <LocateControl />
+        <LocateControl onPositionChange={onPositionChange}/>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
+        <div style={{ position: 'absolute', bottom: '20px', right: '10px' }}>
+      <Fab className="navigationIcon">
+        <NavigationIcon onClick={locateUser} sx={{ mr: 0 }} />
+      </Fab>
+        </div>
       </MapContainer>
-      <button onClick={locateUser}>Locate Me</button>
+      <hr />
     </>
   );
 };
-
-
-
 
 export default SightingLocationMap;
