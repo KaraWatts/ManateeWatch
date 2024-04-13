@@ -7,7 +7,8 @@ from rest_framework.status import (
     HTTP_200_OK,
     HTTP_406_NOT_ACCEPTABLE,
     HTTP_201_CREATED,
-    HTTP_400_BAD_REQUEST
+    HTTP_400_BAD_REQUEST,
+    HTTP_204_NO_CONTENT
 )
 from manateewatch_proj.settings import env
 import requests
@@ -34,6 +35,12 @@ class NewSighting(TokenReq):
             return Response(data, status=HTTP_201_CREATED)
         print(ser_data.errors)
         return Response(ser_data.errors, status=HTTP_400_BAD_REQUEST)
+    
+class A_Sighting(APIView):
+    def delete(self, request, sighting_id):
+        sighting = Sighting_Data.objects.get(sighting_id)
+        sighting.delete()
+        return Response("sighting was deleted", status=HTTP_204_NO_CONTENT)
 
     
 
