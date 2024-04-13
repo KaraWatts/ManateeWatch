@@ -1,19 +1,20 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from .models import Sighting_Data
-from .serializers import SightingSerializer
+from .serializers import SightingSerializer, NewSightingSerializer
 from rest_framework.response import Response
 from rest_framework.status import (
     HTTP_200_OK,
     HTTP_406_NOT_ACCEPTABLE,
     HTTP_201_CREATED,
-    HTTP_400_BAD_REQUEST
+    HTTP_400_BAD_REQUEST,
+    HTTP_204_NO_CONTENT
 )
 from manateewatch_proj.settings import env
 import requests
 from django.http import JsonResponse
 from user_app.views import TokenReq
-from .serializers import NewSightingSerializer
+
 
 # Create your views here.
 class AllSightings(APIView):
@@ -34,14 +35,12 @@ class NewSighting(TokenReq):
             return Response(data, status=HTTP_201_CREATED)
         print(ser_data.errors)
         return Response(ser_data.errors, status=HTTP_400_BAD_REQUEST)
-
-
-
-
-
-
-
-
+    
+class A_Sighting(APIView):
+    def delete(self, request, sighting_id):
+        sighting = Sighting_Data.objects.get(sighting_id)
+        sighting.delete()
+        return Response("sighting was deleted", status=HTTP_204_NO_CONTENT)
 
     
 
@@ -64,7 +63,7 @@ class ModerateImage(APIView):
         responseJSON = response.json()
         
         if responseJSON and responseJSON["predictions"]["everyone"] > 99:
-            return Response("GOOD TO GO!", status=HTTP_200_OK)
+            return Response("Photo Accepted", status=HTTP_200_OK)
         return Response("Innapropriate Content Warning!", status=HTTP_406_NOT_ACCEPTABLE)
     
 

@@ -12,6 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 from .models import Client
+from profile_app.models import User_Profile
 
 
 # Create your views here.
@@ -20,15 +21,27 @@ class Sign_Up(APIView):
     def post(self, request):
         data = request.data.copy()
         data['username'] = request.data.get("username", request.data.get("email"))
-        new_user = Client(**data)
+
+        #create new user instance
+        new_user = Client(email=data['email'], username=data["username"], password=data['password'])
+        #create new profile instance
+        new_profile = User_Profile(user=new_user, display_name=data.get("display_name"))
+
         try:
             new_user.full_clean()
-            new_user.save()
+            #set user password
             new_user.set_password(data.get("password"))
+            #set user data
             new_user.save()
+            #set profile data
+            new_profile.save()
+
+            #automatically login to new user
             login(request, new_user)
             token = Token.objects.create(user = new_user)
+
             return Response({"user":new_user.email, "token":token.key}, status=HTTP_201_CREATED)
+        
         except ValidationError as e:
             print(e)
             return Response(e, status=HTTP_400_BAD_REQUEST)
