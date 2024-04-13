@@ -32,7 +32,7 @@ class NewSighting(TokenReq):
         ser_data = NewSightingSerializer(data = data)
         if ser_data.is_valid():
             ser_data.save()
-            return Response(data, status=HTTP_201_CREATED)
+            return Response(f"new sighting was reported at lat:{ser_data.data['lat']} lon:{ser_data.data['lon']}", status=HTTP_201_CREATED)
         print(ser_data.errors)
         return Response(ser_data.errors, status=HTTP_400_BAD_REQUEST)
     
