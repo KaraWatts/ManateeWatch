@@ -16,12 +16,14 @@ from django.http import JsonResponse
 
 # Create your views here.
 class ViewProfile(TokenReq):
+    '''allow users to view their own profile directly'''
     def get(self, request):
         user = request.user.id
         profile = get_object_or_404(User_Profile, id=user)
         ser_profile = ProfileSerializer(profile)
         return Response(ser_profile.data, status=HTTP_200_OK)
 
+    '''allow usres to edit their profile'''
     def put(self, request):
         data = request.data.copy()
         user = request.user.id

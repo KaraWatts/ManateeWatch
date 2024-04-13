@@ -35,14 +35,6 @@ class NewSighting(TokenReq):
         print(ser_data.errors)
         return Response(ser_data.errors, status=HTTP_400_BAD_REQUEST)
 
-
-
-
-
-
-
-
-
     
 
 class ModerateImage(APIView):
