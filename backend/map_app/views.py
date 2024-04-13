@@ -63,7 +63,7 @@ class ModerateImage(APIView):
         responseJSON = response.json()
         
         if responseJSON and responseJSON["predictions"]["everyone"] > 99:
-            return Response("GOOD TO GO!", status=HTTP_200_OK)
+            return Response("Photo Accepted", status=HTTP_200_OK)
         return Response("Innapropriate Content Warning!", status=HTTP_406_NOT_ACCEPTABLE)
     
 
