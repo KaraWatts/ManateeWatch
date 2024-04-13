@@ -11,10 +11,11 @@ class Sighting_Data(models.Model):
     num_Adults = models.SmallIntegerField(default=0, null=True)
     num_Calf = models.SmallIntegerField(default=0, null=True)
     activity = models.CharField(default="Swimming")
-    comments = models.TextField(null=True, blank=True)
+    comments = models.TextField(max_length=1000, null=True, blank=True)
     sighting_date = models.DateTimeField()
     created_date = models.DateTimeField(auto_now_add=True)
     image = models.TextField(null=True)
+    #reactions - from reactions 
 
 
     

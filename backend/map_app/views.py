@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from .models import Sighting_Data
-from .serializers import SightingSerializer
+from .serializers import SightingSerializer, NewSightingSerializer
 from rest_framework.response import Response
 from rest_framework.status import (
     HTTP_200_OK,
@@ -13,7 +13,7 @@ from manateewatch_proj.settings import env
 import requests
 from django.http import JsonResponse
 from user_app.views import TokenReq
-from .serializers import NewSightingSerializer
+
 
 # Create your views here.
 class AllSightings(APIView):
