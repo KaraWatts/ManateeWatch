@@ -1,10 +1,7 @@
 from django.urls import path
-from .views import NewComment
+from .views import AllComments, A_Comment
 
 urlpatterns = [
-    path('new/', NewComment.as_view(), name="new_comment"),
-    # path('')
-    # path('submitImage/', ModerateImage.as_view(), name="moderate_image"),
-    # path('new/', NewSighting.as_view(), name="new_sighting"),
-    # path('<int:sighting_id>/', include('reactions_app.urls')),
+    path('', AllComments.as_view(), name="all_comments"),
+    path('<int:comment_id>', A_Comment.as_view(), name="comment_by_id"),
 ]
