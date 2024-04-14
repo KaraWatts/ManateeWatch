@@ -65,7 +65,7 @@ function UserMap({ sightings, profileId }) {
     <>
       <div
         className="userMapContainer flex"
-        style={{ justifyContent: "center", height: "100%", width: "100%" }}
+        style={{ justifyContent: "center", height: "100%", width: "100%"}}
       >
         <MapContainer
           center={[lastSighting.lat, lastSighting.lon]}
@@ -73,7 +73,7 @@ function UserMap({ sightings, profileId }) {
           scrollWheelZoom={true}
           maxZoom={18}
           className="leaflet-user-container"
-          style={{ height: "50vh", width: "100%" }}
+          style={{ height: "50vh", minHeight:"300px", width: "100%", marginBottom:"10px"}}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

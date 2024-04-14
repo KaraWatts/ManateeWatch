@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { api } from './utilities';
+import { Image } from 'react-bootstrap';
 
 function ImageUploadAndCrop({ profile_picture }) {
     const [image, setImage] = useState(null);
@@ -35,9 +36,10 @@ function ImageUploadAndCrop({ profile_picture }) {
     return (
       <div>
   {profilePic ? (
-    <img
+    <Image
       src={profilePic}
       alt='profile_photo'
+      fluid
     />
   ) : (
     <>

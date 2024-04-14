@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import NavBar from './components/navBar'
 import { Outlet, useLoaderData, useNavigate, useLocation } from 'react-router-dom'
+import "./App.css"
 
 function App() {
   const [user, setUser] = useState(useLoaderData())

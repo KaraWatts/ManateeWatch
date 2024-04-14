@@ -57,7 +57,7 @@ function ProfilePage() {
       <div className="profile-info-container">
         <ProfileInfo {...profileData} />
       </div>
-      <div className="profile-sightings-container">
+      <div className="profile-sightings-container" >
         <div className="image-grid-container">
         <h1 style={{textAlign:"center"}}>Sightings</h1>
           {toggle ? (

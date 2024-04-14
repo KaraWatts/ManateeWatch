@@ -84,7 +84,7 @@ const sightingPoints = () => {
       <MapContainer
         center={[26.534861, -81.008441]}
         zoom={8}
-        scrollWheelZoom={true}
+        scrollWheelZoom={false}
         maxZoom={18}
         className="leaflet-home-container"
       >
