@@ -9,6 +9,8 @@ import axios from "axios";
 
 function ProfilePage() {
   const { profileId, sightingId } = useParams();
+  const [loading, setLoading] = useState(true); // State to track loading status
+
   const images = [
     {
       url: "https://www.discovercrystalriverfl.com/imager/s3_us-east-1_amazonaws_com/crystalriver-2019/images/CCmanatee18_1059925dafc489659acd47a728e6733c.jpg",
@@ -27,16 +29,16 @@ function ProfilePage() {
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const response = await api.get("/sightings/new/", { profileId });
-        console.log('successfully uploaded data', response.data);
+        const response = await api.get("profile/" + profileId +"/");
+        console.log('successfully retrieved data', response.data);
+        
       } catch (error) {
         console.error('error while uploading data', error);
       }
     };
   
     fetchdata();
-  }, [])
-
+  }, [profileId])
 
 
   return (
@@ -53,7 +55,7 @@ function ProfilePage() {
       </div>
       {sightingId && ( // Conditionally render the sighting details if sightingId is present
         <div className="sighting-details-container">
-          <SightingDetails sightingInfo={images[sightingId]} />
+          <SightingDetails sightingInfo={images[1]} />
         </div>
       )}
     </div>

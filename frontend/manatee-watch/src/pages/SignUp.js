@@ -7,12 +7,13 @@ import { api } from "../components/utilities";
 const SignUp = () => {
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+  const [displayName, setDisplayName] = useState("")
   const { setUser } = useOutletContext();
 
   // TODO: Refactor into utilities.js
   const signupUser = async(e) => {
     e.preventDefault();
-    const response = await api.post("users/signup/", { email: emailInput, password: passwordInput})
+    const response = await api.post("user/signup/", { email: emailInput, password: passwordInput, display_name: displayName})
     if (response.status === 201) {
         console.log('successfuly signed up, user info', response.data);
         const { token, user } = response.data;
@@ -28,6 +29,12 @@ const SignUp = () => {
     <>
       <h2>Signup</h2>
       <Form onSubmit={signupUser}>
+      <Form.Group className="mb-3" controlId="formName">
+          <Form.Label>Name</Form.Label>
+          <Form.Control 
+            onChange={(e) => setDisplayName(e.target.value)}
+          type="text" placeholder="Full Name" />
+        </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
