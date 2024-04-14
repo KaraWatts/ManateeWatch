@@ -40,8 +40,8 @@ function SightingData() {
     try{
       const response = await api.post("/sightings/new/", { requestData })
       console.log('successfuly uploaded data', response.data);
-      const data = response.data
-      navigate(`/profile/${data.user}/sighting/${data.id}`)
+      const newSighting = response.data
+      navigate(`/profile/${newSighting.user}/sighting/${newSighting.id}`, {state: {newSighting}})
 
     } catch (response){
       console.log(response)

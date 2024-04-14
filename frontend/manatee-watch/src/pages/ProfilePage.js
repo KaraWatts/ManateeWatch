@@ -1,58 +1,84 @@
 import { useState, useEffect } from "react";
 import ImageGrid from "../components/ImageGrid";
 import SightingDetails from "./SightingDetailsPage";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import "./stylesheets/profilepage.css";
 import ProfileInfo from "../components/profileInfo";
 import { api } from "../components/utilities";
-import axios from "axios";
+import Switch from "@mui/material/Switch";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import UserMap from "../components/userMap";
 
 function ProfilePage() {
   const { profileId, sightingId } = useParams();
-  const [profileData, setProfileData] = useState({})
-  const [userSightings, setUserSightings] = useState([])
-  const [loading, setLoading] = useState(true)
-
+  const [profileData, setProfileData] = useState({});
+  const [userSightings, setUserSightings] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const response = await api.get("profile/" + profileId +"/");
-        console.log('successfully retrieved data', response.data);
-        setProfileData(response.data)
-        setUserSightings(response.data['sightings'])
-        setLoading(false)
+        const response = await api.get("profile/" + profileId + "/");
+        console.log("successfully retrieved data", response.data);
+        setProfileData(response.data);
+        setUserSightings(response.data["sightings"]);
+        setLoading(false);
       } catch (error) {
-        console.error('error while uploading data', error);
+        console.error("error while uploading data", error);
       }
     };
-  
-    fetchdata();
-  }, [])
 
-  if (loading){
-   return <div>Loading...</div>
+    fetchdata();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
+  const PullSightingData = () => {
+    const details = userSightings.filter(
+      (sighting) => sighting.id === parseInt(sightingId)
+    );
+    return (
+      <div className="sighting-details-container">
+        <SightingDetails {...details[0]} />
+      </div>
+    );
+  };
+
+  const handleChange = (e) => {
+    setToggle(e.target.checked);
+  };
 
   return (
     <div>
-    <div className="profile-info-container">
-    <ProfileInfo {...profileData}/>
-    </div>
-    <div className="profile-sightings-container">
-      <div className="image-grid-container">
-        <ImageGrid
-          profileId={parseInt(profileId)}
-          sightings={userSightings}
-        />
+      <div className="profile-info-container">
+        <ProfileInfo {...profileData} />
       </div>
-      {sightingId && ( // Conditionally render the sighting details if sightingId is present
-        <div className="sighting-details-container">
-          <SightingDetails sightingInfo={userSightings[0]} />
+      <div className="profile-sightings-container">
+        <div className="image-grid-container">
+        <h1 style={{textAlign:"center"}}>Sightings</h1>
+          {toggle ? (
+            <UserMap
+              profileId={parseInt(profileId)}
+              sightings={userSightings}
+            />
+          ) : (
+            <ImageGrid
+              profileId={parseInt(profileId)}
+              sightings={userSightings}
+            />
+          )}
+          <Stack direction="row" justifyContent="center">
+            <Typography>Grid</Typography>
+            <Switch checked={toggle} onChange={handleChange} />
+            <Typography>Map</Typography>
+          </Stack>
         </div>
-      )}
-    </div>
+        {sightingId && <PullSightingData />}
+      </div>
     </div>
   );
 }
