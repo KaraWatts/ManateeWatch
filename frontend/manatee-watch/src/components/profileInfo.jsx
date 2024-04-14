@@ -13,9 +13,9 @@ function ProfileInfo({ display_name, profile_picture, ranking, num_sightings, si
   return (
     <div className="profile-info" style={{display:"flex", flexDirection:"row"}}>
       <div className="profile-picture" style={{alignContent:"center", marginLeft:"10px"}}>
-      <ImageUploadAndCrop />
+      <ImageUploadAndCrop profile_picture={profile_picture}/>
       </div>
-      <div className="profile-details" style={{width:"100%", textAlign:"center"}}>
+      <div className="profile-details" style={{width:"100%", textAlign:"center", paddingTop:"10px"}}>
       <Col>
         <Row>
             <h1>{display_name}</h1>

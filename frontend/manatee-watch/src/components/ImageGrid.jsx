@@ -28,7 +28,7 @@ function ImageGrid({ sightings, profileId }) {
         />
       ))}
     </div> */}
-    <Box sx={{ width: "100%", height: "100%", overflowY: 'scroll' }}>
+    <Box sx={{ width: "100%", height: "100%", overflowY: 'scroll', paddingLeft: "10px" }}>
       <ImageList variant="masonry" cols={3} gap={8}>
         {sightings.map((data, index) => (
           <ImageListItem key={index} style={{cursor:"pointer"}}>
