@@ -7,7 +7,7 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 
 
-function ImageGrid({ images, profileId }) {
+function ImageGrid({ sightings, profileId }) {
   const navigate = useNavigate(); // Initialize navigate
 
   const handleClick = (sightingId) => {
@@ -30,11 +30,11 @@ function ImageGrid({ images, profileId }) {
     </div> */}
     <Box sx={{ width: "100%", height: "100%", overflowY: 'scroll' }}>
       <ImageList variant="masonry" cols={3} gap={8}>
-        {images.map((image, index) => (
+        {sightings.map((data, index) => (
           <ImageListItem key={index} style={{cursor:"pointer"}}>
             <img
-              srcSet={`${image.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              src={`${image.url}?w=248&fit=crop&auto=format`}
+              srcSet={`${data.image}`}
+              src={`${data.iamge}`}
               alt={'manatee'}
               loading="lazy"
               onClick={() => handleClick(index)}
@@ -48,7 +48,7 @@ function ImageGrid({ images, profileId }) {
 }
 
 ImageGrid.propTypes = {
-  images: PropTypes.array.isRequired, // Make sure images prop is provided
+  sightings: PropTypes.array.isRequired, // Make sure images prop is provided
 };
 
 export default ImageGrid;

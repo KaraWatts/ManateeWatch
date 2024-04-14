@@ -12,7 +12,7 @@ console.log(sightingInfo)
     <div className="image-details">
     <h1>Sighting Details</h1>
         <img
-          src={sightingInfo.url}
+          src={sightingInfo.image}
           alt={"manatee"}
         />
     </div>

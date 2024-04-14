@@ -9,36 +9,30 @@ import axios from "axios";
 
 function ProfilePage() {
   const { profileId, sightingId } = useParams();
-  const [loading, setLoading] = useState(true); // State to track loading status
+  const [profileData, setProfileData] = useState({})
+  const [userSightings, setUserSightings] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  const images = [
-    {
-      url: "https://www.discovercrystalriverfl.com/imager/s3_us-east-1_amazonaws_com/crystalriver-2019/images/CCmanatee18_1059925dafc489659acd47a728e6733c.jpg",
-    },
-    {
-      url: "https://www.oceanlight.com/stock-photo/florida-manatee-underwater-picture-36329-12392.jpg",
-    },
-    {
-      url: "https://i.huffpost.com/gen/1272530/thumbs/o-MANATEES-900.jpg?5",
-    },
-    {
-      url: "https://i.pinimg.com/736x/50/98/40/50984039bfc109703fc141dd6d6b90db.jpg",
-    },
-  ];
 
   useEffect(() => {
     const fetchdata = async () => {
       try {
         const response = await api.get("profile/" + profileId +"/");
         console.log('successfully retrieved data', response.data);
-        
+        setProfileData(response.data)
+        setUserSightings(response.data['sightings'])
+        setLoading(false)
       } catch (error) {
         console.error('error while uploading data', error);
       }
     };
   
     fetchdata();
-  }, [profileId])
+  }, [])
+
+  if (loading){
+   return <div>Loading...</div>
+  }
 
 
   return (
@@ -50,12 +44,12 @@ function ProfilePage() {
       <div className="image-grid-container">
         <ImageGrid
           profileId={parseInt(profileId)}
-          images={images}
+          sightings={userSightings}
         />
       </div>
       {sightingId && ( // Conditionally render the sighting details if sightingId is present
         <div className="sighting-details-container">
-          <SightingDetails sightingInfo={images[1]} />
+          <SightingDetails sightingInfo={userSightings[0]} />
         </div>
       )}
     </div>
