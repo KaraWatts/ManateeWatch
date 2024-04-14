@@ -8,7 +8,9 @@ from rest_framework.status import (
     HTTP_406_NOT_ACCEPTABLE,
     HTTP_201_CREATED,
     HTTP_400_BAD_REQUEST,
-    HTTP_204_NO_CONTENT
+    HTTP_204_NO_CONTENT,
+    HTTP_401_UNAUTHORIZED,
+    HTTP_404_NOT_FOUND
 )
 from manateewatch_proj.settings import env
 import requests
@@ -32,16 +34,20 @@ class NewSighting(TokenReq):
         ser_data = NewSightingSerializer(data = data)
         if ser_data.is_valid():
             ser_data.save()
-            return Response(f"new sighting was reported at lat:{ser_data.data['lat']} lon:{ser_data.data['lon']}", status=HTTP_201_CREATED)
+            return Response(ser_data.data, status=HTTP_201_CREATED)
         print(ser_data.errors)
         return Response(ser_data.errors, status=HTTP_400_BAD_REQUEST)
     
 class A_Sighting(APIView):
     def delete(self, request, sighting_id):
-        sighting = Sighting_Data.objects.get(sighting_id)
-        sighting.delete()
-        return Response("sighting was deleted", status=HTTP_204_NO_CONTENT)
-
+        try:
+            sighting = Sighting_Data.objects.get(id=sighting_id)
+            if sighting.user == request.user.id:
+                sighting.delete()
+                return Response(f"sighting was deleted", status=HTTP_204_NO_CONTENT)
+            return Response(f"Access Denied to user {request.user.id}", status=HTTP_401_UNAUTHORIZED)
+        except:
+            return Response("Sighting not found", status=HTTP_404_NOT_FOUND)
     
 
 class ModerateImage(APIView):

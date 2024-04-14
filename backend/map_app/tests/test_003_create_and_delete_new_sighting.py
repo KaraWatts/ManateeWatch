@@ -37,8 +37,9 @@ answer = "new sighting was reported at lat:0.000000000000000 lon:0.0000000000000
 
 
 class Test_new_sighting(APITestCase):
+    fixtures=['sighting_data.json']
 
-    def test_003_create_new_sighting(self):
+    def create_new_sighting(self):
         client = Client()
         sign_up_response = client.post(
             reverse("signup"),
