@@ -38,7 +38,7 @@ function ProfilePage() {
   return (
     <div>
     <div className="profile-info-container">
-    <ProfileInfo />
+    <ProfileInfo {...profileData}/>
     </div>
     <div className="profile-sightings-container">
       <div className="image-grid-container">
