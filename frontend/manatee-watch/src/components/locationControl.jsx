@@ -1,17 +1,12 @@
 
-import { useState, useEffect, useMemo, useRef, Button } from "react";
+import { useState, useMemo, useRef} from "react";
 import {
-  MapContainer,
-  TileLayer,
   Marker,
   useMapEvents,
-  useMap,
 } from "react-leaflet";
 import "../pages/stylesheets/sightingLocationData.css";
 import "leaflet/dist/leaflet.css";
-import Box from "@mui/material/Box";
-import Fab from "@mui/material/Fab";
-import NavigationIcon from "@mui/icons-material/Navigation";
+
 
 const LocateControl = ({ onPositionChange }) => {
     const [position, setPosition] = useState(null);

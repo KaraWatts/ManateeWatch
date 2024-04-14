@@ -23,7 +23,7 @@ function NavBar({ user, setUser }) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/sighting/">
+            <Nav.Link as={Link} to="/sightingImage/">
                 Submit a Sighting!
               </Nav.Link>
             {user ? null : (

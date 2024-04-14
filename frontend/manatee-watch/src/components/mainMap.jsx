@@ -6,7 +6,7 @@ import {api} from "./utilities.jsx"
 import ResultCards from "./resultTiles.jsx"
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
-// import {MapLibreTileLayer} from "./MapLibreTileLayer.tsx";
+
 
 delete L.Icon.Default.prototype._getIconUrl;
 
