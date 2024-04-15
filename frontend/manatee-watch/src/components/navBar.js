@@ -16,7 +16,9 @@ function NavBar({ user, setUser }) {
       setUser(null);
     }
   };
-  console.log(user)
+
+
+
   return (
 <Navbar expand="lg" className="bg-body-tertiary navBar" >
   <Container className="navContainer d-flex align-items-center justify-content-between" >
@@ -28,15 +30,16 @@ function NavBar({ user, setUser }) {
     <Navbar.Collapse id="basic-navbar-nav">
        <Nav className="me-auto links"> {/*me-auto pushes the menu all the way to the right */}
         <Nav.Link as={Link} to="/sightingImage/">Submit a Sighting!</Nav.Link>
-        {user ? null : <Nav.Link as={Link} to="/login/">Log In</Nav.Link>}
+        
       </Nav>
       <div className="d-flex align-items-center menu">
-        <NavDropdown title="Menu" id="nav-dropdown" align="end" className="dropdown-menu-end"> 
+        {user ? <NavDropdown title={<img src="path_to_your_image" alt="Menu" />} id="nav-dropdown" align="end" className="dropdown-menu-end"> 
         {/* align the dropdown menu with the right edge of the menu icon*/}
-          <NavDropdown.Item href={`profile/${user.id}`}>Profile Page</NavDropdown.Item>
+          <NavDropdown.Item href={`profile/${user}/`}>Profile Page</NavDropdown.Item>
           <NavDropdown.Divider />
-          {user && <NavDropdown.Item onClick={handleUserLogout} variant="outline-danger">Log Out</NavDropdown.Item>}
-        </NavDropdown>
+          <NavDropdown.Item onClick={handleUserLogout} variant="outline-danger">Log Out</NavDropdown.Item>
+        </NavDropdown> : <Nav.Link as={Link} to="/login/">Log In</Nav.Link>}
+        
       </div>
     </Navbar.Collapse>
   </Container>
