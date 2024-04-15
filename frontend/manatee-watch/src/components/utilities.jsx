@@ -152,4 +152,15 @@ export const calculateTimeSincePost = (postTimestamp) => {
   }
   
 
+  export const submitNewComment = async (sightingId, newComment) => {
+    try {
+      const response = await api.post(
+        "sightings/" + sightingId + "/comment/",
+        newComment
+      );
+      return response.data
   
+    } catch (error) {
+      console.error("error while uploading comment", error);
+    }
+  };

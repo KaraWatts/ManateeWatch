@@ -4,7 +4,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./stylesheets/sightingdetails.css";
 import CommentSection from "../components/commentSection";
 import { Col, Form, Row, Button, Image } from "react-bootstrap";
-import { api } from "../components/utilities";
+import { submitNewComment } from "../components/utilities";
+// import { submitNewComment } from "../components/utilities";
+// import { submitNewComment } from "../components/utilities";
+
+
 function SightingDetails({
   image,
   activity,
@@ -15,35 +19,32 @@ function SightingDetails({
   sighting_date,
   reactions,
 }) {
-  const {sightingId} = useParams()
+  const { sightingId } = useParams();
   const user = JSON.parse(localStorage.getItem("user"));
-  const [newComment, setNewComment] = useState(null)
-  const [commentBoxOpen, setCommentBoxOpen] = useState(false)
+  const [newComment, setNewComment] = useState("");
+  const [commentBoxOpen, setCommentBoxOpen] = useState(false);
+  const [commentPosts, setCommentPosts] = useState(reactions)
+
+
 
   useEffect(() => {
-    const fetchdata = async () => {
-      try {
-        const response = await api.post("sightings/" + sightingId + "/comment/", newComment);
-        console.log("successfully posted comment", response.data);
-        setNewComment(null)
-        
-      } catch (error) {
-        console.error("error while uploading comment", error);
-      }
-    };
-    if (newComment){
-      fetchdata();
-    }
-  }, [newComment]);
+    
+  },[commentPosts])
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && e.target.value) {
-      e.preventDefault()
-      setNewComment({"date": new Date(), "comment": e.target.value})
+
+  
+  const handleKeyDown = async (e) => {
+    if (e.key === "Enter" && newComment && newComment !== "") {
+      e.preventDefault();
+      const data = {date: new Date(), comment: newComment}
+      const post = await submitNewComment(sightingId, data)  
+      if(post){
+        setCommentPosts([...commentPosts, post])
+        setNewComment("")
+      }  
     }
   };
 
-  console.log(reactions)
 
   return (
     <div className="image-details">
@@ -67,24 +68,32 @@ function SightingDetails({
             <h5>45 comments</h5>
           </Col>
         </Row>
-        <CommentSection />
-        <hr/>
+        {commentPosts.map((reaction)=> (
+      <CommentSection key={reaction.id} {...reaction}/>
+     ))}
+        <hr />
         <Form className="new-comment-container">
-        <Form.Group className="new-comment-avatar">
-           <Image
-          alt="avatar"
-          src={user.profile_picture}
-          style={{width:"4rem"}}
-          roundedCircle 
-        />
-        </Form.Group>
-          <Form.Group className="comment-box-container" controlId="comment-box-container">
-            <Form.Control placeholder="Add Comment Here" 
-            as="textarea" 
-            rows={2}
-            name="new-comment"
-          // onChange={handleInputChange}
-          onKeyDown={handleKeyDown}/>
+          <Form.Group className="new-comment-avatar">
+            <Image
+              alt="avatar"
+              src={user.profile_picture}
+              style={{ width: "4rem" }}
+              roundedCircle
+            />
+          </Form.Group>
+          <Form.Group
+            className="comment-box-container"
+            controlId="comment-box-container"
+          >
+            <Form.Control
+              placeholder="Add Comment Here"
+              as="textarea"
+              rows={2}
+              name="new-comment"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
           </Form.Group>
         </Form>
       </div>

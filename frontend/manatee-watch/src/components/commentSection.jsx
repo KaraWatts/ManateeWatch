@@ -2,34 +2,37 @@ import { Avatar } from "@mui/material";
 import React from "react";
 import { Row, Col, Image } from "react-bootstrap";
 import "../pages/stylesheets/commentSection.css"
+import { calculateTimeSincePost } from "./utilities";
 
-export default function Basic() {
-  const profilePic = JSON.parse(localStorage.getItem("user"));
+export default function CommentSection({date, comment, user}) {
+
+  const {display_name, profile_picture, user_id} = user
+  const time = calculateTimeSincePost(date)
 
   return (
     <>
 
-       <Row className="comment-container">
+       <Row  className="comment-container">
       <Col
-        className="d-flex justify-content-start align-items-center"
+        className="d-flex justify-content-end align-items-start"
         style={{ maxWidth: "100px", width: "20%" }}
       >
         <Image
           alt="avatar"
-          src={profilePic.profile_picture}
+          src={profile_picture}
           sx={{ width: 80, height: 80 }}
           roundedCircle 
         />
       </Col>
       <Col style={{width:"70%"}}>
         <div className="media-body">
-          <h4 className="media-heading user_name">Baltej Singh</h4>
-          <p>Awesome test comments</p>
+          <h4 className="media-heading user_name">{display_name}</h4>
+          <p>{comment}</p>
         </div>
       </Col>
       <Col className="timestamps" >
         <p id="time">
-          5 days ago
+          {time}
         </p>
         <p>
         <a href="">Like</a>{" "}

@@ -31,7 +31,7 @@ function ProfilePage() {
     };
 
     fetchdata();
-  }, []);
+  }, [profileId]);
 
   if (loading) {
     return <div>Loading...</div>;
