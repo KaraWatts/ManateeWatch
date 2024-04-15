@@ -2,7 +2,7 @@ import ImageUpload from '../components/imageUpload';
 import './stylesheets/SightingReport.css'
 
 
-function SightingReport() {
+function SightingImage() {
 //   const { user } = useOutletContext();
 
   return (
@@ -14,4 +14,4 @@ function SightingReport() {
   );
 }
 
-export default SightingReport;
+export default SightingImage;

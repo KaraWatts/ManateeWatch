@@ -1,5 +1,5 @@
 
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ObservationForm from '../components/observationForm';
 import SightingLocationMap from '../components/sightingLocationMap';
 import { useState } from 'react';
@@ -12,6 +12,7 @@ function SightingData() {
   const { imageSrc } = location.state
   const [positionData, setPositionData] = useState({})
   const [timeSighted, setTimeSighted] = useState(null)
+  const navigate = useNavigate()
 
     // Set Position Data
     const handlePositionChange = (position) => {
@@ -39,6 +40,8 @@ function SightingData() {
     try{
       const response = await api.post("/sightings/new/", { requestData })
       console.log('successfuly uploaded data', response.data);
+      const newSighting = response.data
+      navigate(`/profile/${newSighting.user}/sighting/${newSighting.id}`, {state: {newSighting}})
 
     } catch (response){
       console.log(response)

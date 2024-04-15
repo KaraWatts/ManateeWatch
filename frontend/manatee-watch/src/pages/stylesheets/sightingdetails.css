@@ -1,0 +1,17 @@
+.image-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+
+  }
+  
+  .image-details img {
+    max-width: 80%;
+    height: auto;
+  }
+  
+  .image-details p {
+    margin: 0;
+  }

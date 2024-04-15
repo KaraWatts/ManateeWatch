@@ -34,3 +34,11 @@ class ViewProfile(TokenReq):
             return Response(data, status=HTTP_201_CREATED)
         print(edit_profile.errors)
         return Response(edit_profile.errors, status=HTTP_400_BAD_REQUEST)
+    
+class SearchProfile(TokenReq):
+    '''search for profile by id'''
+    def get(self, request, user_id):
+        print(user_id)
+        profile = get_object_or_404(User_Profile, id=user_id)
+        ser_profile = ProfileSerializer(profile)
+        return Response(ser_profile.data, status=HTTP_200_OK)

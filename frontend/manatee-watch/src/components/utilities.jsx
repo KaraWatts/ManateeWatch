@@ -1,11 +1,15 @@
 import axios from "axios";
 
+
+
 /**
 * contains baseURL to simplify api calls - api.get("/path/")
 */
 export const api = axios.create({
   baseURL: "http://127.0.0.1:8000/api/v1/",
 });
+
+
 
 
 /**
@@ -25,11 +29,13 @@ export const userRegistration = async (email, password) => {
       // Store the token securely (e.g., in localStorage or HttpOnly cookies)
       localStorage.setItem("token", token);
       api.defaults.headers.common["Authorization"] = `Token ${token}`;
-      return user;
+      return user.id;
     }
     alert(response.data);
     return null;
   };
+
+
 
 /**
 * Take user email and password input to validate as existing user in database, provide token, and save token data in local storage
@@ -39,19 +45,26 @@ export const userRegistration = async (email, password) => {
 * @return {[obj]}   user object with user data and token
 */
 export const userLogin = async (email, password) => {
-let response = await api.post("user/login/", {
+    try{
+        let response = await api.post("user/login/", {
     email: email,
     password: password,
 });
-if (response.status === 200) {
-    let { user, token } = response.data;
+    const { user, token } = response.data;
     localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user))
     api.defaults.headers.common["Authorization"] = `Token ${token}`;
-    return user;
+    return user
+    } catch (error){
+        if (error.response.status === 401){
+            return 401
+        }
+        return null
+    }
 }
-alert(response.data);
-return null;
-};
+
+
+
 
 
 /**
@@ -87,8 +100,7 @@ export const userConfirmation = async() => {
         api.defaults.headers.common["Authorization"] = `Token ${token}`
         const response = await api.get("user/")
         if (response.status === 200) {
-            console.log(response.data)
-            return { user: response.data.user, email: response.data.email }
+            return response.data
         } else {
             console.log('error userConfirmation', response)
             return null
@@ -99,5 +111,44 @@ export const userConfirmation = async() => {
     }
 }
 
+
+
+  /**
+* Calculate time since update
+* @function calculateTimeSincePost
+* @return {[none]}   none
+*/
+export const calculateTimeSincePost = (postTimestamp) => {
+    const postDate = new Date(postTimestamp); // Convert the post timestamp to a Date object
+    const currentDate = new Date(); // Get the current date and time
+  
+    // Calculate the difference in milliseconds between the current time and the post time
+    const timeDifference = currentDate - postDate;
+  
+    // Convert the time difference to seconds
+    const seconds = Math.floor(timeDifference / 1000);
+  
+    // Define time intervals in seconds and their respective human-readable labels
+    const intervals = {
+      year: 31536000,
+      month: 2592000,
+      week: 604800,
+      day: 86400,
+      hour: 3600,
+      minute: 60,
+    };
+  
+    // Calculate the time elapsed in each interval
+    for (let interval in intervals) {
+      const value = Math.floor(seconds / intervals[interval]);
+      if (value >= 1) {
+        return value + " " + interval + (value > 1 ? "s" : "") + " ago";
+      }
+    }
+  
+    // If the post was made less than a minute ago
+    return "Just now";
+  }
+  
 
   
