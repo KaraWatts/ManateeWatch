@@ -2,11 +2,13 @@ from rest_framework import serializers
 from .models import Sighting_Data
 from datetime import datetime, timedelta
 from django.utils import timezone
+from reactions_app.serializers import CommentSerializer
 
 
 class SightingSerializer(serializers.ModelSerializer):
     sighting_date = serializers.SerializerMethodField()
     created_date = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
+    reactions = CommentSerializer(many=True)
 
     class Meta:
         model = Sighting_Data
