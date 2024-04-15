@@ -5,7 +5,7 @@ import './stylesheets/sightingdetails.css';
 import CommentSection from '../components/commentSection';
 import { Col, Row } from 'react-bootstrap';
 
-function SightingDetails({ image, activity, comments, data_source, num_Adults, num_Calf, sighting_date }) {
+function SightingDetails({ image, activity, comments, data_source, num_Adults, num_Calf, sighting_date, reactions }) {
 
 
 
