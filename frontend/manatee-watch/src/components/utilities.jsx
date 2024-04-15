@@ -112,4 +112,43 @@ export const userConfirmation = async() => {
 }
 
 
+
+  /**
+* Calculate time since update
+* @function calculateTimeSincePost
+* @return {[none]}   none
+*/
+export const calculateTimeSincePost = (postTimestamp) => {
+    const postDate = new Date(postTimestamp); // Convert the post timestamp to a Date object
+    const currentDate = new Date(); // Get the current date and time
+  
+    // Calculate the difference in milliseconds between the current time and the post time
+    const timeDifference = currentDate - postDate;
+  
+    // Convert the time difference to seconds
+    const seconds = Math.floor(timeDifference / 1000);
+  
+    // Define time intervals in seconds and their respective human-readable labels
+    const intervals = {
+      year: 31536000,
+      month: 2592000,
+      week: 604800,
+      day: 86400,
+      hour: 3600,
+      minute: 60,
+    };
+  
+    // Calculate the time elapsed in each interval
+    for (let interval in intervals) {
+      const value = Math.floor(seconds / intervals[interval]);
+      if (value >= 1) {
+        return value + " " + interval + (value > 1 ? "s" : "") + " ago";
+      }
+    }
+  
+    // If the post was made less than a minute ago
+    return "Just now";
+  }
+  
+
   

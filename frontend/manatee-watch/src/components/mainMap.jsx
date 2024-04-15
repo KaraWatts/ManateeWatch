@@ -110,14 +110,12 @@ function MainMap() {
           />
           {sightingPoints()}
           <div style={{ position: "absolute", bottom: "50px", left: "50px" }}>
-            <Fab style={{cursor:"pointer"}}>
-            <IconButton onClick={handleIconClick} >
+            <Fab style={{cursor:"pointer"}} onClick={handleIconClick} >
               <img
                 src={sightingIcon}
                 alt="sighting icon"
                 style={{ height: "150px", width: "auto"}}
               />
-            </IconButton>
             </Fab>
           </div>
         </MapContainer>

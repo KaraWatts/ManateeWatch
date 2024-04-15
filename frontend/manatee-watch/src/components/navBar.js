@@ -20,7 +20,7 @@ function NavBar({ user, setUser }) {
     }
   };
 
-  console.log();
+
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary navBar">
