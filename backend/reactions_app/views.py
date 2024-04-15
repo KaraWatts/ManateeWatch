@@ -12,7 +12,7 @@ from map_app.models import Sighting_Data
 from django.shortcuts import get_object_or_404
 from profile_app.models import User_Profile
 from .models import Reactions
-from .serializers import CommentSerializer
+from .serializers import CommentSerializer, NewCommentSerializer
 
 
 # Create your views here.
@@ -22,10 +22,11 @@ class AllComments(TokenReq):
         data = request.data.copy()
         data["sighting"] = sighting_id
         data['user'] = request.user.id
-        ser_data = CommentSerializer(data=data)
+        ser_data = NewCommentSerializer(data=data)
         if ser_data.is_valid():
-            ser_data.save()
-            return Response(data, status=HTTP_201_CREATED)
+            new_comment = ser_data.save()
+            newPost = CommentSerializer(new_comment).data
+            return Response(newPost, status=HTTP_201_CREATED)
         print(ser_data.errors)
         return Response(ser_data.errors, status=HTTP_400_BAD_REQUEST)
     

@@ -20,4 +20,8 @@ class CommentSerializer(serializers.ModelSerializer):
             }
         
 
+class NewCommentSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = Reactions
+        fields = "__all__"
