@@ -1,21 +1,24 @@
 import { Avatar } from "@mui/material";
 import React from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Image } from "react-bootstrap";
 import "../pages/stylesheets/commentSection.css"
 
 export default function Basic() {
   const profilePic = JSON.parse(localStorage.getItem("user"));
 
   return (
-    <Row className="comment-container">
+    <>
+
+       <Row className="comment-container">
       <Col
         className="d-flex justify-content-start align-items-center"
         style={{ maxWidth: "100px", width: "20%" }}
       >
-        <Avatar
+        <Image
           alt="avatar"
           src={profilePic.profile_picture}
           sx={{ width: 80, height: 80 }}
+          roundedCircle 
         />
       </Col>
       <Col style={{width:"70%"}}>
@@ -30,8 +33,12 @@ export default function Basic() {
         </p>
         <p>
         <a href="">Like</a>{" "}
+        <a href="">Edit</a>{" "}
+        <a href="">Delete</a>{" "}
         </p>
       </Col>
-    </Row>
+    </Row>  
+    </>
+   
   );
 }
