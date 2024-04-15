@@ -87,6 +87,7 @@ class Info(TokenReq):
     def get(self, request):
         try:
             ruser = request.user
-            return Response({ "email": ruser.email }, status=HTTP_200_OK)
+            
+            return Response(ruser.id, status=HTTP_200_OK)
         except:
             return Response("No user matching credentials", status=HTTP_400_BAD_REQUEST)
