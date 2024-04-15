@@ -1,9 +1,9 @@
 from rest_framework import serializers
 from .models import User_Profile
-from map_app.serializers import SightingSerializer
+from map_app.serializers import ProfileSightingSerializer
 
 class ProfileSerializer(serializers.ModelSerializer):
-    sightings = SightingSerializer(many=True)
+    sightings = ProfileSightingSerializer(many=True)
     num_sightings = serializers.SerializerMethodField()
     ranking = serializers.SerializerMethodField()
 
@@ -29,4 +29,9 @@ class ProfileSerializer(serializers.ModelSerializer):
             case _:
                 return "Manatee Magnet"
 
-    
+class UserResponseSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User_Profile
+        fields = ['display_name']
+   
