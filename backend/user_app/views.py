@@ -6,13 +6,16 @@ from rest_framework.status import (
     HTTP_200_OK,
     HTTP_204_NO_CONTENT,
     HTTP_201_CREATED,
-    HTTP_400_BAD_REQUEST
+    HTTP_400_BAD_REQUEST,
+    HTTP_401_UNAUTHORIZED,
 )
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 from .models import Client
-from profile_app.models import User_Profile
+from profile_app.serializers import User_Profile, ProfileSerializer
+from .serializers import UserSerializer
+
 
 
 # Create your views here.
@@ -33,14 +36,14 @@ class Sign_Up(APIView):
             new_user.set_password(data.get("password"))
             #set user data
             new_user.save()
+
             #set profile data
             new_profile.save()
-
             #automatically login to new user
             login(request, new_user)
             token = Token.objects.create(user = new_user)
-
-            return Response({"user":new_user.email, "token":token.key}, status=HTTP_201_CREATED)
+            profileData = ProfileSerializer(new_profile)
+            return Response({"user":profileData.data, "token":token.key}, status=HTTP_201_CREATED)
         
         except ValidationError as e:
             print(e)
@@ -52,12 +55,20 @@ class Log_in(APIView):
     def post(self, request):
         data = request.data.copy()
         data['username'] = request.data.get("username", request.data.get("email"))
-        user = authenticate(username=data.get("username"), password=data.get("password"))
-        print(user)
-        if user:
-            login(request, user)
-            token, created = Token.objects.get_or_create(user = user)
-            return Response({"user":user.email, "token":token.key}, status=HTTP_200_OK)
+        #Check that user exists in database
+        if Client.objects.filter(email=request.data.get("email")).exists():
+            #authenticate credentials
+            user = authenticate(username=data.get("username"), password=data.get("password"))
+
+            if user:
+                login(request, user)
+                token, created = Token.objects.get_or_create(user = user)
+
+                profileData = User_Profile.objects.get(user=user)
+                ser_profile = ProfileSerializer(profileData)
+                return Response({"user":ser_profile.data, "token":token.key}, status=HTTP_200_OK)
+            return Response("Incorrect Password", status=HTTP_401_UNAUTHORIZED)
+        
         return Response("No user matching credentials", status=HTTP_400_BAD_REQUEST)
 
 class TokenReq(APIView):
