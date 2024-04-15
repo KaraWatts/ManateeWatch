@@ -19,7 +19,6 @@ const LogIn = () => {
       setUser(user);
       console.log(user);
     } else if (user === 401){
-      // navigate("/signup/");
       setValidPass(false)
     } else{
       setShow(true)

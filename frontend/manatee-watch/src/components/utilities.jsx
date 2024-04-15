@@ -29,7 +29,7 @@ export const userRegistration = async (email, password) => {
       // Store the token securely (e.g., in localStorage or HttpOnly cookies)
       localStorage.setItem("token", token);
       api.defaults.headers.common["Authorization"] = `Token ${token}`;
-      return user;
+      return user.id;
     }
     alert(response.data);
     return null;
@@ -50,7 +50,11 @@ export const userLogin = async (email, password) => {
     email: email,
     password: password,
 });
-    return response.data
+    const { user, token } = response.data;
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user))
+    api.defaults.headers.common["Authorization"] = `Token ${token}`;
+    return user
     } catch (error){
         if (error.response.status === 401){
             return 401
@@ -96,8 +100,7 @@ export const userConfirmation = async() => {
         api.defaults.headers.common["Authorization"] = `Token ${token}`
         const response = await api.get("user/")
         if (response.status === 200) {
-            console.log(response.data)
-            return { user: response.data.user, email: response.data.email }
+            return response.data
         } else {
             console.log('error userConfirmation', response)
             return null

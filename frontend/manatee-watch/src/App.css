@@ -39,9 +39,9 @@
   }
 }
 
-.navBar{
+/* .navContainer{
   background-color:#aee1f7
-}
+} */
 .logo {
   height: 100%;
   max-height: 100px;
@@ -54,7 +54,23 @@
   font-size: 2.3rem;
 }
 .links{
-  font-size: 1.5em;
+  font-size: 1em;
+  display: inherit;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: column;
+  flex:1;
+}
+
+.nav-row {
+  display: flex;
+  align-items: center;
+}
+
+.profile-icon {
+display: flex;
+justify-content: end;
+flex:0;
 }
 
 .menu {
