@@ -28,6 +28,7 @@ export const userRegistration = async (email, password) => {
       let { user, token } = response.data;
       // Store the token securely (e.g., in localStorage or HttpOnly cookies)
       localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user))
       api.defaults.headers.common["Authorization"] = `Token ${token}`;
       return user.id;
     }
@@ -99,7 +100,8 @@ export const userConfirmation = async() => {
     const token = localStorage.getItem("token");
     if(token) {
         api.defaults.headers.common["Authorization"] = `Token ${token}`
-        const response = await api.get("user/")
+        const response = await api.get("profile/")
+        localStorage.setItem("user", JSON.stringify(response.data))
         if (response.status === 200) {
             return response.data
         } else {
@@ -151,6 +153,8 @@ export const calculateTimeSincePost = (postTimestamp) => {
     return "Just now";
   }
   
+
+
 
   export const submitNewComment = async (sightingId, newComment) => {
     try {

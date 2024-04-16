@@ -40,8 +40,10 @@ class A_Comment(TokenReq):
         print(commentData['user'], user)
         if (user == commentData['user']):
             comment.delete()
+            
             return Response('comment was deleted', status=HTTP_204_NO_CONTENT)
         return Response("Unauthorized access", status=HTTP_401_UNAUTHORIZED)
+    
     '''allow users to edit their own comments'''
     def put(self, request, comment_id, sighting_id):
         comment = get_object_or_404(Reactions, id=comment_id)
@@ -49,7 +51,7 @@ class A_Comment(TokenReq):
         edit_comment = CommentSerializer(comment, data=data, partial=True)
         if edit_comment.is_valid():
             edit_comment.save()
-            return Response(data, status=HTTP_201_CREATED)
+            return Response(edit_comment.data, status=HTTP_201_CREATED)
         print(edit_comment.errors)
         return Response(edit_comment.errors, status=HTTP_400_BAD_REQUEST)
     

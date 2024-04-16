@@ -17,7 +17,7 @@ function ImageUpload() {
         width: '330px',
         height: '250px',
         objectFit: 'contain',
-        compressInitial: 10,
+        compressInitial: 50,
         hideDownloadBtn: true,
         hideAddBtn: true,
       };

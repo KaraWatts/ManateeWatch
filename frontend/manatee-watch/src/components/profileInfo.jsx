@@ -7,7 +7,12 @@ import ImageUploadAndCrop from "./profilePicUpload";
 
 function ProfileInfo({ display_name, profile_picture, ranking, num_sightings, sightings}) {
   
-  const lastSighting = sightings[num_sightings - 1]['sighting_date'].slice(0,10)
+  const lastSighting = () =>{
+  if (sightings.sighting_date){
+    return sightings[-1]['sighting_date'].slice(0,10)
+  }
+    return "Still Looking"
+}
   
   
   return (
@@ -31,7 +36,7 @@ function ProfileInfo({ display_name, profile_picture, ranking, num_sightings, si
         </Col>
         <Col>
         <Row>
-                <h4>{lastSighting}</h4>
+              <h4>{lastSighting()}</h4>
             </Row>
             <Row>
                <h5>Last Sighted</h5> 

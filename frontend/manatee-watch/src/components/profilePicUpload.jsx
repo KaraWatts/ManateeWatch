@@ -22,6 +22,7 @@ function ImageUploadAndCrop({ profile_picture }) {
           try {
             const response = await api.put("profile/", {profile_picture: croppedImage});
             console.log('successfully pushed picture', response.data);
+            
             setImage(null)
             setProfilePic(croppedImage)
           } catch (error) {

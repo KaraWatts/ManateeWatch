@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import NavBar from './components/navBar'
 import { Outlet, useLoaderData, useNavigate, useLocation } from 'react-router-dom'
 import "./App.css"
+import PopupAlert from './components/popupAlerts'
 
 function App() {
   const [user, setUser] = useState(useLoaderData())
   const navigate = useNavigate()
   const location = useLocation()
+  const [alert, setAlert] = useState(false)
 
 
   useEffect(() => {
@@ -26,7 +28,9 @@ function App() {
     // not logged in user tries to go anywhere BUT signup or login
     // we redirect because the user needs to log in before they do anything else
     else if (!user && !isAllowed){
-      navigate("/signup/")
+      navigate("/")
+      setAlert(true)
+      //TODO: add pop up to ask user to login or sign up
     }
 
     console.log('user updated', user);
@@ -35,6 +39,7 @@ function App() {
   return (
     <>
       <NavBar user={user} setUser={setUser} />
+      {alert && <PopupAlert setAlert={setAlert} alert={alert} />}
       <Outlet context={{user, setUser}} />
     </>
   )

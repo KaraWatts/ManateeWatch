@@ -15,7 +15,7 @@ L.Icon.Default.mergeOptions({
 });
 
 function UserMap({ sightings, profileId }) {
-  const lastSighting = sightings[sightings.length - 1];
+  const lastSighting = sightings[-1];
 
   const navigate = useNavigate(); 
 
@@ -68,7 +68,7 @@ function UserMap({ sightings, profileId }) {
         style={{ justifyContent: "center", height: "100%", width: "100%"}}
       >
         <MapContainer
-          center={[lastSighting.lat, lastSighting.lon]}
+          center={lastSighting ? [lastSighting.lat, lastSighting.lon] : [28.334861, -81.708441]}
           zoom={8}
           scrollWheelZoom={true}
           maxZoom={18}
@@ -79,7 +79,7 @@ function UserMap({ sightings, profileId }) {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {sightingPoints()}
+          {sightings.lat && sightingPoints()}
         </MapContainer>
       </div>
     </>
