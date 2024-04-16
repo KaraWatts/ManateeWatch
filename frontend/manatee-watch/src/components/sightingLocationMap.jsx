@@ -22,14 +22,12 @@ const SightingLocationMap = ({ onPositionChange }) => {
     mapRef.current.locate();
   };
 
-//   const handlePositionChange = (position) => {
-//     onPositionChange(position);
-//   };
+
 
   return (
     <>
       <MapContainer
-        center={[26.534861, -81.008441]}
+        center={[28.334861, -81.708441]}
         zoom={8}
         scrollWheelZoom={true}
         maxZoom={18}

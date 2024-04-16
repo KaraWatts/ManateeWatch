@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Tooltip, UseMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import { api, calculateTimeSincePost } from "./utilities.jsx";
@@ -13,6 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 import TurnLeftIcon from "@mui/icons-material/TurnLeft";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import LocateControl from "./locationControl";
+import MainMapController from "./MainMapController.jsx";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -23,9 +24,10 @@ L.Icon.Default.mergeOptions({
 });
 
 function MainMap() {
-  const [positionData, setPositionData] = useState({});
+  const [positionData, setPositionData] = useState(null);
   const [data, setData] = useState([]);
-  const navigate = useNavigate();
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +39,8 @@ function MainMap() {
 
     fetchData();
   }, []);
+  
+
 
   // Define the sightingPoints function to return an array of Marker components
   const sightingPoints = () => {
@@ -110,34 +114,28 @@ function MainMap() {
   };
 
   const handleIconClick = (e) => {
-    navigate("/sightingImage/");
+    console.log("PICTURE CLICKED", e)
   };
 
-  const onPositionChange = (position) => {
-    setPositionData(position);
-  };
-
-  const mapRef = useRef();
-
+  
   const locateUser = () => {
-    if (mapRef.current) {
-      mapRef.current.locate();
-    } else {
-      console.error("Map reference is not yet initialized.");
-    }
-  };
-  return (
-    <>
+        mapRef.current.locate();
+        console.log("USER LOCATED")
+    
+    };
+
+      const mapRef = useRef();
+      
+      return (
+        <>
       <div className="mapContainer">
         <MapContainer
           center={[28.334861, -81.708441]}
           zoom={8}
           scrollWheelZoom={false}
           maxZoom={18}
+          ref={mapRef}
           className="leaflet-home-container"
-          whenCreated={(mapInstance) => {
-            mapRef.current = mapInstance;
-          }}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -153,12 +151,12 @@ function MainMap() {
               />
             </Fab>
           </div>
-          {/* <LocateControl onPositionChange={onPositionChange} />
           <div style={{ position: "absolute", bottom: "20px", right: "10px" }}>
+          <MainMapController positionData={positionData}/>
             <Fab className="navigationIcon">
               <NavigationIcon onClick={locateUser} sx={{ mr: 0 }} />
             </Fab>
-          </div> */}
+          </div>
         </MapContainer>
         <div className="result-container">
           {data.slice(0, 20).map((sighting) => {
@@ -169,9 +167,10 @@ function MainMap() {
               <ResultCards
                 key={sighting.id}
                 id={sighting.id}
-                user_ID={"ADD NAME HERE"}
                 sighting_date={calculateTimeSincePost(sighting.sighting_date)}
+                coord={[parseFloat(sighting.lat), parseFloat(sighting.lon)]}
                 image={image_url}
+                setPositionData={setPositionData}
               />
             );
           })}
