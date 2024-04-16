@@ -26,7 +26,6 @@ export default function CommentSection({date, comment, user, activeUser, id, set
 
   return (
     <>
-
        <Row  className="comment-container">
       <Col
         className="d-flex justify-content-end align-items-start"
@@ -57,6 +56,7 @@ export default function CommentSection({date, comment, user, activeUser, id, set
 </button></div>}
       </Col>
     </Row>  
+    <hr/>
     </>
    
   );

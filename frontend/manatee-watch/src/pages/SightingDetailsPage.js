@@ -69,10 +69,11 @@ function SightingDetails({
             <h5>{commentPosts.length} comments</h5>
           </Col>
         </Row>
+        <hr/>
         {commentPosts.map((reaction)=> (
       <CommentSection key={reaction.id} setComments={setCommentPosts} commentPosts={commentPosts} activeUser={user['id']} {...reaction}/>
      ))}
-        <hr />
+
         <Form className="new-comment-container">
           <Form.Group className="new-comment-avatar">
             <Image
