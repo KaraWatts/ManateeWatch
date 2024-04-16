@@ -27,6 +27,7 @@ function SightingDetails({
 
 
 
+
   useEffect(() => {
     
   },[commentPosts])
@@ -52,7 +53,7 @@ function SightingDetails({
       <img src={image} alt={"manatee"} />
       <p>{sighting_date}</p>
       <p>{comments}</p>
-      <p>{activity}</p>
+      <p>Activity: {activity}</p>
       <p>Adults: {num_Adults}</p>
       <p>Calves: {num_Calf}</p>
       {data_source && <p>{data_source}</p>}
@@ -65,11 +66,11 @@ function SightingDetails({
             <h2>Comments</h2>
           </Col>
           <Col className="d-flex justify-content-end align-items-center">
-            <h5>45 comments</h5>
+            <h5>{commentPosts.length} comments</h5>
           </Col>
         </Row>
         {commentPosts.map((reaction)=> (
-      <CommentSection key={reaction.id} {...reaction}/>
+      <CommentSection key={reaction.id} setComments={setCommentPosts} commentPosts={commentPosts} activeUser={user['id']} {...reaction}/>
      ))}
         <hr />
         <Form className="new-comment-container">

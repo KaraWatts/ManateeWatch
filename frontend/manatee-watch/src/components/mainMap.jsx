@@ -26,6 +26,7 @@ L.Icon.Default.mergeOptions({
 function MainMap() {
   const [positionData, setPositionData] = useState(null);
   const [data, setData] = useState([]);
+  const navigate = useNavigate()
 
 
 
@@ -114,7 +115,7 @@ function MainMap() {
   };
 
   const handleIconClick = (e) => {
-    console.log("PICTURE CLICKED", e)
+    navigate('/sightingImage/')
   };
 
   
