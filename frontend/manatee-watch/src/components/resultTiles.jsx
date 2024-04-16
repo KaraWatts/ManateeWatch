@@ -7,16 +7,10 @@ function ResultCards({id, user_ID, sighting_date, image}) {
 
   return (
     <>
-    <Card style={{ margin: "1em", boxShadow: "-.1em 0 .4em rgb(73, 102, 102)", width: '90%', height: "40%" }}>
-      <Card.Img style={{ height: "85%", width: "100%", objectFit: "cover"}} variant="top" src={image} />
-      <Card.Body className="sighting_card">
-        <Card.Text style={{ marginTop: "0", marginLeft: "1em", marginBottom: ".1em"}}>{sighting_date}</Card.Text>
-      </Card.Body>
-      {/* <Card.Body style={{paddingBottom: ".5em"}}>
-        <Card.Link href="#">Card Link </Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
-      </Card.Body> */}
-    </Card>
+    <div style={{ margin: "1em", boxShadow: "-.1em 0 .4em rgb(73, 102, 102)", width: '90%', minHeight: "200px", height: "40%", textAlign:"center", position:"relative", color:"white", fontWeight:"bold"}}>
+      <img style={{ height: "100%", width: "100%", objectFit: "cover"}} variant="top" src={image} alt="manatee" />
+      <div style={{ position:"absolute", top:"8px", right:"16px"}}>{sighting_date}</div>
+    </div>
     </>
   );
 }

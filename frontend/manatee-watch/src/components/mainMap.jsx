@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import { api } from "./utilities.jsx";
+import { api, calculateTimeSincePost } from "./utilities.jsx";
 import ResultCards from "./resultTiles.jsx";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -10,7 +10,9 @@ import { Fab, IconButton } from "@mui/material";
 import sightingIcon from "../assets/ReportManatee.png";
 import { Image, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import TurnLeftIcon from '@mui/icons-material/TurnLeft';
+import TurnLeftIcon from "@mui/icons-material/TurnLeft";
+import NavigationIcon from "@mui/icons-material/Navigation";
+import LocateControl from "./locationControl";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -21,8 +23,9 @@ L.Icon.Default.mergeOptions({
 });
 
 function MainMap() {
+  const [positionData, setPositionData] = useState({});
   const [data, setData] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,14 +75,22 @@ function MainMap() {
               </h5>
               <p>Date Sighted: {item.sighting_date}</p>
               <p>Activity: {item.activity}</p>
-              <p>Spotted By: {"ADD NAME HERE"}</p>
+              <p>Spotted By: {item.user.display_name === "Data Source" ? `Data Source - ${item.data_source}` : item.user.display_name}</p>
               <div className="d-flex justify-content-between">
-              <Link to={`/profile/${item.user}/sighting/${item.id}`}>
-               <Button variant="info" size="sm">More Details</Button> 
-              </Link>
-              <Link to={`https://www.google.com/maps?q=${item.lat},${item.lon}`} target="_blank" rel="noopener noreferrer">
-              <Button className="ml-1" variant="secondary" size="sm">Get Directions <TurnLeftIcon /></Button>
-              </Link>
+                <Link to={`/profile/${item.user.user_id}/sighting/${item.id}`}>
+                  <Button variant="info" size="sm">
+                    More Details
+                  </Button>
+                </Link>
+                <Link
+                  to={`https://www.google.com/maps?q=${item.lat},${item.lon}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button className="ml-1" variant="secondary" size="sm">
+                    Get Directions <TurnLeftIcon />
+                  </Button>
+                </Link>
               </div>
             </div>
           </Popup>
@@ -99,19 +110,34 @@ function MainMap() {
   };
 
   const handleIconClick = (e) => {
-    navigate('/sightingImage/')
-  }
+    navigate("/sightingImage/");
+  };
 
+  const onPositionChange = (position) => {
+    setPositionData(position);
+  };
 
+  const mapRef = useRef();
+
+  const locateUser = () => {
+    if (mapRef.current) {
+      mapRef.current.locate();
+    } else {
+      console.error("Map reference is not yet initialized.");
+    }
+  };
   return (
     <>
       <div className="mapContainer">
         <MapContainer
-          center={[26.534861, -81.008441]}
+          center={[28.334861, -81.708441]}
           zoom={8}
           scrollWheelZoom={false}
           maxZoom={18}
           className="leaflet-home-container"
+          whenCreated={(mapInstance) => {
+            mapRef.current = mapInstance;
+          }}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -119,14 +145,20 @@ function MainMap() {
           />
           {sightingPoints()}
           <div style={{ position: "absolute", bottom: "50px", left: "50px" }}>
-            <Fab style={{cursor:"pointer"}} onClick={handleIconClick} >
+            <Fab style={{ cursor: "pointer" }} onClick={handleIconClick}>
               <img
                 src={sightingIcon}
                 alt="sighting icon"
-                style={{ height: "150px", width: "auto"}}
+                style={{ height: "150px", width: "auto" }}
               />
             </Fab>
           </div>
+          {/* <LocateControl onPositionChange={onPositionChange} />
+          <div style={{ position: "absolute", bottom: "20px", right: "10px" }}>
+            <Fab className="navigationIcon">
+              <NavigationIcon onClick={locateUser} sx={{ mr: 0 }} />
+            </Fab>
+          </div> */}
         </MapContainer>
         <div className="result-container">
           {data.slice(0, 20).map((sighting) => {
@@ -138,7 +170,7 @@ function MainMap() {
                 key={sighting.id}
                 id={sighting.id}
                 user_ID={"ADD NAME HERE"}
-                sighting_date={sighting.sighting_date}
+                sighting_date={calculateTimeSincePost(sighting.sighting_date)}
                 image={image_url}
               />
             );

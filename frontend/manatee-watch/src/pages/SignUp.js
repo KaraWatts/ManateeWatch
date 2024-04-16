@@ -19,6 +19,7 @@ const SignUp = () => {
         const { token, user } = response.data;
         // save auth token so it can be used
         localStorage.setItem("token", token)
+        localStorage.setItem("user", JSON.stringify(user))
         api.defaults.headers.common["Authorization"] = `Token ${token}`
         // set user info for the app
         setUser(user)
