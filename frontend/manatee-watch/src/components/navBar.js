@@ -66,10 +66,11 @@ function NavBar({ user, setUser }) {
                   id="nav-dropdown"
                   align="end"
                 >
-                  {/* align the dropdown menu with the right edge of the menu icon*/}
-                  <NavDropdown.Item href={`profile/${user}/`}>
+                  {/* aligns the dropdown menu with the right edge of the menu icon*/}
+                    <NavDropdown.Item as={Link} to={`/profile/${user}`}>
                     Profile Page
                   </NavDropdown.Item>
+                  
                   <NavDropdown.Divider />
                   <NavDropdown.Item
                     onClick={handleUserLogout}

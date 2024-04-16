@@ -54,7 +54,7 @@ export const userLogin = async (email, password) => {
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user))
     api.defaults.headers.common["Authorization"] = `Token ${token}`;
-    return user
+    return user.id
     } catch (error){
         if (error.response.status === 401){
             return 401
@@ -80,6 +80,7 @@ export const userLogout = async() => {
         delete api.defaults.headers.common["Authorization"]
         // delete token from localstorage
         localStorage.removeItem("token")
+        localStorage.removeItem("user")
         console.log('user logged out');
         return true;
     } else {
@@ -151,4 +152,15 @@ export const calculateTimeSincePost = (postTimestamp) => {
   }
   
 
+  export const submitNewComment = async (sightingId, newComment) => {
+    try {
+      const response = await api.post(
+        "sightings/" + sightingId + "/comment/",
+        newComment
+      );
+      return response.data
   
+    } catch (error) {
+      console.error("error while uploading comment", error);
+    }
+  };

@@ -70,7 +70,9 @@
 .profile-icon {
 display: flex;
 justify-content: end;
-flex:0;
+
+max-width: 100px;
+flex:1;
 }
 
 .menu {
