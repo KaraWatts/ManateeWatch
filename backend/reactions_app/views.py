@@ -5,6 +5,7 @@ from rest_framework.status import (
     HTTP_201_CREATED,
     HTTP_400_BAD_REQUEST,
     HTTP_204_NO_CONTENT,
+    HTTP_401_UNAUTHORIZED
 )
 from manateewatch_proj.settings import env
 from user_app.views import TokenReq
@@ -32,14 +33,18 @@ class AllComments(TokenReq):
     
 class A_Comment(TokenReq):
     '''allow comment author to delete their own comments and original sighting author to delete any comments on their post'''
-    def delete(self, request, id):
-        comment = get_object_or_404(Reactions, id=id)
-        comment.delete()
-        return Response('comment was deleted', status=HTTP_204_NO_CONTENT)
-    
+    def delete(self, request, comment_id, sighting_id):
+        user = request.user.id
+        comment = get_object_or_404(Reactions, id=comment_id)
+        commentData = NewCommentSerializer(comment).data
+        print(commentData['user'], user)
+        if (user == commentData['user']):
+            comment.delete()
+            return Response('comment was deleted', status=HTTP_204_NO_CONTENT)
+        return Response("Unauthorized access", status=HTTP_401_UNAUTHORIZED)
     '''allow users to edit their own comments'''
-    def put(self, request, id):
-        comment = get_object_or_404(Reactions, id=id)
+    def put(self, request, comment_id, sighting_id):
+        comment = get_object_or_404(Reactions, id=comment_id)
         data = request.data.copy()
         edit_comment = CommentSerializer(comment, data=data, partial=True)
         if edit_comment.is_valid():
