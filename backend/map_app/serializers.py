@@ -9,6 +9,7 @@ class SightingSerializer(serializers.ModelSerializer):
     sighting_date = serializers.SerializerMethodField()
     created_date = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
     reactions = CommentSerializer(many=True)
+    # user = serializers.SerializerMethodField()
 
     class Meta:
         model = Sighting_Data
@@ -21,6 +22,12 @@ class SightingSerializer(serializers.ModelSerializer):
         date_time_obj = obj.sighting_date + et_offset
         return date_time_obj.strftime("%Y-%m-%d %H:%M EST")
 
+    # def get_user(self, obj):
+    #         return {
+    #                 'user_id': obj.user.user,
+    #                 'display_name': obj.user.display_name,
+    #                 'profile_picture': obj.user.profile_picture
+    #             }
 
 
 class NewSightingSerializer(serializers.ModelSerializer):
