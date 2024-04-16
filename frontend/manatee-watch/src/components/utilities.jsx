@@ -28,6 +28,7 @@ export const userRegistration = async (email, password) => {
       let { user, token } = response.data;
       // Store the token securely (e.g., in localStorage or HttpOnly cookies)
       localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user))
       api.defaults.headers.common["Authorization"] = `Token ${token}`;
       return user.id;
     }

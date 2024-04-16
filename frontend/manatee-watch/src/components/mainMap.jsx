@@ -77,7 +77,7 @@ function MainMap() {
               <Link to={`/profile/${item.user}/sighting/${item.id}`}>
                <Button variant="info" size="sm">More Details</Button> 
               </Link>
-              <Link to={`https://www.google.com/maps?q=${item.lat},${item.lon}`}>
+              <Link to={`https://www.google.com/maps?q=${item.lat},${item.lon}`} target="_blank" rel="noopener noreferrer">
               <Button className="ml-1" variant="secondary" size="sm">Get Directions <TurnLeftIcon /></Button>
               </Link>
               </div>
