@@ -8,8 +8,9 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { Fab, IconButton } from "@mui/material";
 import sightingIcon from "../assets/ReportManatee.png";
-import { Image } from "react-bootstrap";
+import { Image, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import TurnLeftIcon from '@mui/icons-material/TurnLeft';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -72,6 +73,14 @@ function MainMap() {
               <p>Date Sighted: {item.sighting_date}</p>
               <p>Activity: {item.activity}</p>
               <p>Spotted By: {"ADD NAME HERE"}</p>
+              <div className="d-flex justify-content-between">
+              <Link to={`/profile/${item.user}/sighting/${item.id}`}>
+               <Button variant="info" size="sm">More Details</Button> 
+              </Link>
+              <Link to={`https://www.google.com/maps?q=${item.lat},${item.lon}`}>
+              <Button className="ml-1" variant="secondary" size="sm">Get Directions <TurnLeftIcon /></Button>
+              </Link>
+              </div>
             </div>
           </Popup>
         </Marker>

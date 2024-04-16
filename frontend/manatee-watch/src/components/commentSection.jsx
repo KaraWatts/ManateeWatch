@@ -3,11 +3,23 @@ import React from "react";
 import { Row, Col, Image } from "react-bootstrap";
 import "../pages/stylesheets/commentSection.css"
 import { calculateTimeSincePost } from "./utilities";
+import { api } from "./utilities";
+
 
 export default function CommentSection({date, comment, user}) {
 
   const {display_name, profile_picture, user_id} = user
   const time = calculateTimeSincePost(date)
+
+  const handleDelete = async (e) => {
+    try{
+      const response = await api.delete("sightings/2599/comment/22/")
+      console.log(response.data)
+    }catch(error){
+      console.error("access denied", error);
+    }
+    
+  }
 
   return (
     <>
@@ -35,9 +47,9 @@ export default function CommentSection({date, comment, user}) {
           {time}
         </p>
         <p>
-        <a href="">Like</a>{" "}
-        <a href="">Edit</a>{" "}
-        <a href="">Delete</a>{" "}
+        {/* <a href="">Like</a>{" "} */}
+        {/* <a href="">Edit</a>{" "} */}
+        <a href="#" onClick={handleDelete}>Delete</a>{" "}
         </p>
       </Col>
     </Row>  
