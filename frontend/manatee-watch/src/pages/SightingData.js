@@ -50,7 +50,7 @@ function SightingData() {
   
   return (
     <div className="sightingDataForm">
-      <h1>Where was the manatee?</h1>
+      <h1>Where are the manatees?</h1>
       <hr/>
       <SightingLocationMap onPositionChange={handlePositionChange}/>
       <DateTimePickerValue onDateChange={handleDateChange}/>
