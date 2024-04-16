@@ -17,6 +17,7 @@
     "dayjs": "^1.11.10",
     "leaflet": "^1.9.4",
     "leaflet.smooth_marker_bouncing": "^3.0.3",
+    "mdb-react-ui-kit": "^8.0.0",
     "react": "^18.2.0",
     "react-avatar-editor": "^13.0.2",
     "react-bootstrap": "^2.10.2",
