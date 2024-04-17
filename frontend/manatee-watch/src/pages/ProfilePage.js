@@ -43,7 +43,7 @@ function ProfilePage() {
     );
     return (
       <div className="sighting-details-container">
-        <SightingDetails {...details[0]} />
+        <SightingDetails {...details[0]} sightingData={userSightings} setSightingData={setUserSightings}/>
       </div>
     );
   };

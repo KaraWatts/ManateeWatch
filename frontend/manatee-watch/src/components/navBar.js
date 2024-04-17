@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Image from "react-bootstrap/esm/Button";
 import { userLogout } from "./utilities";
 import "bootstrap/dist/css/bootstrap.css";
@@ -13,10 +13,14 @@ import { Col, Row } from "react-bootstrap";
 // if user exists we are logged in
 function NavBar({ user, setUser }) {
   const profilePic = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate()
+
+
   const handleUserLogout = async () => {
     const loggedOut = await userLogout();
     if (loggedOut) {
       setUser(null);
+      navigate('/')
     }
   };
 

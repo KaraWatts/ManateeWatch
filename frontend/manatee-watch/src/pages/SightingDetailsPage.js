@@ -5,9 +5,8 @@ import "./stylesheets/sightingdetails.css";
 import CommentSection from "../components/commentSection";
 import { Col, Form, Row, Button, Image } from "react-bootstrap";
 import { submitNewComment } from "../components/utilities";
-// import { submitNewComment } from "../components/utilities";
-// import { submitNewComment } from "../components/utilities";
-
+import { api } from "../components/utilities";
+import EditSighting from "../components/editSighting";
 
 function SightingDetails({
   image,
@@ -18,34 +17,41 @@ function SightingDetails({
   num_Calf,
   sighting_date,
   reactions,
+  setSightingData,
+  sightingData
 }) {
-  const { sightingId } = useParams();
+  const { sightingId, profileId } = useParams();
   const user = JSON.parse(localStorage.getItem("user"));
   const [newComment, setNewComment] = useState("");
   const [commentBoxOpen, setCommentBoxOpen] = useState(false);
-  const [commentPosts, setCommentPosts] = useState(reactions)
+  const [commentPosts, setCommentPosts] = useState(reactions);
+  const navigate = useNavigate()
 
-
-
-
-  useEffect(() => {
-    
-  },[commentPosts])
-
-
-  
+  useEffect(() => {}, [commentPosts]);
+  console.log(user['id'], profileId)
   const handleKeyDown = async (e) => {
     if (e.key === "Enter" && newComment && newComment !== "") {
       e.preventDefault();
-      const data = {date: new Date(), comment: newComment}
-      const post = await submitNewComment(sightingId, data)  
-      if(post){
-        setCommentPosts([...commentPosts, post])
-        setNewComment("")
-      }  
+      const data = { date: new Date(), comment: newComment };
+      const post = await submitNewComment(sightingId, data);
+      if (post) {
+        setCommentPosts([...commentPosts, post]);
+        setNewComment("");
+      }
     }
   };
 
+  const handleDelete = async (e) => {
+    try{
+      const response = await api.delete(`/sightings/${sightingId}/`)
+      setSightingData(sightingData.filter((sighting) => sighting.id !== sightingId))
+      navigate(`/profile/${profileId}`)
+      console.log(response.data)
+    }catch(error){
+      console.error("access denied", error);
+    }
+    
+  }
 
   return (
     <div className="image-details">
@@ -57,6 +63,35 @@ function SightingDetails({
       <p>Adults: {num_Adults}</p>
       <p>Calves: {num_Calf}</p>
       {data_source && <p>{data_source}</p>}
+
+      {parseInt(profileId) === user["id"] && (
+        <div>
+          <Row>
+            <Col>
+              {/* <EditSighting
+                setSightingData={setSightingData}
+                id={sightingId}
+                sightingData={sightingData}
+              /> */}
+            </Col>
+            <Col>
+              <button
+                type="button"
+                onClick={handleDelete}
+                style={{
+                  textDecoration: "underline",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  color: "blue",
+                }}
+              >
+                Delete
+              </button>
+            </Col>
+          </Row>
+        </div>
+      )}
       <div
         className="comments mt-3"
         style={{ width: "100%", paddingLeft: "30px" }}
@@ -69,10 +104,16 @@ function SightingDetails({
             <h5>{commentPosts.length} comments</h5>
           </Col>
         </Row>
-        <hr/>
-        {commentPosts.map((reaction)=> (
-      <CommentSection key={reaction.id} setComments={setCommentPosts} commentPosts={commentPosts} activeUser={user['id']} {...reaction}/>
-     ))}
+        <hr />
+        {commentPosts.map((reaction) => (
+          <CommentSection
+            key={reaction.id}
+            setComments={setCommentPosts}
+            commentPosts={commentPosts}
+            activeUser={user["id"]}
+            {...reaction}
+          />
+        ))}
 
         <Form className="new-comment-container">
           <Form.Group className="new-comment-avatar">

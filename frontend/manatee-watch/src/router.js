@@ -8,6 +8,7 @@ import { userConfirmation } from "./components/utilities";
 import SightingData from "./pages/SightingData";
 import ProfilePage from "./pages/ProfilePage";
 import SightingDetails from "./pages/SightingDetailsPage";
+import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
         ],
       },
     ],
+    errorElement: <ErrorPage />
   },
 ]);
 

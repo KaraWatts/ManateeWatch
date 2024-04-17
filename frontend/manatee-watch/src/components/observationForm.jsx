@@ -10,18 +10,20 @@ import SendIcon from "@mui/icons-material/Send";
 
 
 function ObservationForm({ onSubmit }) {
-  const [numberOfAdults, setNumberOfAdults] = useState(0);
-  const [numberOfCalves, setNumberOfCalves] = useState(0);
+  const [num_Adults, setNumberOfAdults] = useState(0);
+  const [num_Calf, setNumberOfCalves] = useState(0);
   const [activity, setActivity] = useState("");
   const [comments, setComments] = useState("");
 
 
   const handleChangeNumberOfAdults = (event) => {
-    setNumberOfAdults(event.target.value);
+    const numAdults = parseInt(event.target.value)
+    setNumberOfAdults(numAdults);
   };
 
   const handleChangeNumberOfCalves = (event) => {
-    setNumberOfCalves(event.target.value);
+    const numCalves = parseInt(event.target.value)
+    setNumberOfCalves(numCalves);
   };
 
   const handleChangeActivity = (event) => {
@@ -35,14 +37,14 @@ function ObservationForm({ onSubmit }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log({
-      numberOfAdults,
-      numberOfCalves,
+      num_Adults,
+      num_Calf,
       activity,
       comments,
     });
     const formData = {
-      numberOfAdults,
-      numberOfCalves,
+      num_Adults,
+      num_Calf,
       activity,
       comments,
     };
@@ -63,18 +65,18 @@ function ObservationForm({ onSubmit }) {
         <div>
           <TextField
             required
-            id="numberOfAdults"
+            id="num_Adults"
             label="Number of Adults"
             type="number"
-            value={numberOfAdults}
+            value={num_Adults}
             onChange={handleChangeNumberOfAdults}
           />
           <TextField
             required
-            id="numberOfCalves"
+            id="num_Calf"
             label="Number of Calves"
             type="number"
-            value={numberOfCalves}
+            value={num_Calf}
             onChange={handleChangeNumberOfCalves}
           />
         </div>
