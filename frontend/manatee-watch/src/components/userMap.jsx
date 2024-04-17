@@ -14,8 +14,8 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 
-function UserMap({ sightings, profileId }) {
-  const lastSighting = sightings[-1];
+function UserMap({ sightings, profileId, num_sightings }) {
+  const lastSighting = sightings[num_sightings-1];
 
   const navigate = useNavigate(); 
 
@@ -79,7 +79,7 @@ function UserMap({ sightings, profileId }) {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {sightings.lat && sightingPoints()}
+          {lastSighting.lat && sightingPoints()}
         </MapContainer>
       </div>
     </>

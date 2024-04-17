@@ -67,7 +67,7 @@ function NavBar({ user, setUser }) {
                   align="end"
                 >
                   {/* aligns the dropdown menu with the right edge of the menu icon*/}
-                    <NavDropdown.Item as={Link} to={`/profile/${user}`}>
+                    <NavDropdown.Item as={Link} to={`/profile/${user.id}`}>
                     Profile Page
                   </NavDropdown.Item>
                   
