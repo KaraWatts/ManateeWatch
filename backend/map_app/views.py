@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from .models import Sighting_Data
 from .serializers import SightingSerializer, NewSightingSerializer
@@ -41,7 +41,7 @@ class NewSighting(TokenReq):
 class A_Sighting(TokenReq):
     def delete(self, request, sighting_id):
 
-        sighting = Sighting_Data.objects.get(id=sighting_id)
+        sighting = get_object_or_404(Sighting_Data, id=sighting_id)
         sightingData = SightingSerializer(sighting).data
  
         if sightingData["user"]['user_id'] == request.user.id:
@@ -49,7 +49,16 @@ class A_Sighting(TokenReq):
             return Response(f"sighting was deleted", status=HTTP_204_NO_CONTENT)
         return Response(f"Access Denied to user {request.user.id}", status=HTTP_401_UNAUTHORIZED)
 
-    
+    def put(self, request, sighting_id):
+        sighting = get_object_or_404(id=sighting_id)
+        data = request.data.copy()
+        edit_sighting = SightingSerializer(sighting, data=data, partial=True)
+        if edit_sighting.is_valid():
+            edit_sighting.save()
+            return Response(edit_sighting.data, status=HTTP_201_CREATED)
+        print(edit_sighting.errors)
+        return Response(edit_sighting.errors, status=HTTP_400_BAD_REQUEST)
+
 
 class ModerateImage(TokenReq):
     '''send request to ModerateContent API'''
