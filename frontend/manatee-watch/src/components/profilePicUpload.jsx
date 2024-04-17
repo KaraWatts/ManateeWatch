@@ -2,11 +2,15 @@ import React, { useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { api } from './utilities';
 import { Image } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+
 
 function ImageUploadAndCrop({ profile_picture }) {
     const [image, setImage] = useState(null);
     const [profilePic, setProfilePic] = useState(profile_picture)
     const editorRef = useRef();
+    const user = JSON.parse(localStorage.getItem("user"));
+    const {profileId} = useParams()
   
     const onSelectFile = (e) => {
       if (e.target.files && e.target.files.length > 0) {
@@ -33,7 +37,7 @@ function ImageUploadAndCrop({ profile_picture }) {
         postImage();
       }
     };
-  
+    console.log("IMAGE UPLOAD:", user.id, profileId)
     return (
       <div>
   {profilePic ? (
@@ -42,7 +46,7 @@ function ImageUploadAndCrop({ profile_picture }) {
       alt='profile_photo'
       fluid
     />
-  ) : (
+  ) : (user.id === parseInt(profileId)) && (
     <>
       <input type="file" onChange={onSelectFile} />
       {image && (

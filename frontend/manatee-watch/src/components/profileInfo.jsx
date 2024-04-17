@@ -5,10 +5,10 @@ import "../pages/stylesheets/imagegrid.css";
 import { Col, Row, Image } from "react-bootstrap";
 import ImageUploadAndCrop from "./profilePicUpload";
 
-function ProfileInfo({ display_name, profile_picture, ranking, num_sightings, sightings}) {
+function ProfileInfo({ id, display_name, profile_picture, ranking, num_sightings, sightings}) {
   
   const lastSighting = () =>{
-  if (sightings[num_sightings-1]['sighting_date']){
+  if (sightings.length>0 && sightings[num_sightings-1]['sighting_date']){
     return sightings[num_sightings-1]['sighting_date'].slice(0,10)
   }
     return "Still Looking"
