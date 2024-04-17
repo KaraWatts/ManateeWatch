@@ -60,10 +60,16 @@ function ProfilePage() {
       <div className="profile-sightings-container" >
         <div className="image-grid-container">
         <h1 style={{textAlign:"center"}}>Sightings</h1>
+          <Stack direction="row" justifyContent="center">
+            <Typography>Grid</Typography>
+            <Switch checked={toggle} onChange={handleChange} />
+            <Typography>Map</Typography>
+          </Stack>
           {toggle ? (
             <UserMap
               profileId={parseInt(profileId)}
               sightings={userSightings}
+              num_sightings={profileData.num_sightings}
             />
           ) : (
             <ImageGrid
@@ -71,11 +77,6 @@ function ProfilePage() {
               sightings={userSightings}
             />
           )}
-          <Stack direction="row" justifyContent="center">
-            <Typography>Grid</Typography>
-            <Switch checked={toggle} onChange={handleChange} />
-            <Typography>Map</Typography>
-          </Stack>
         </div>
         {sightingId && <PullSightingData />}
       </div>

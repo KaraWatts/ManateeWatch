@@ -22,12 +22,20 @@
     min-height: 300px;
     height: 50vh;
     align-self: center;
+    position: relative;
 }
 
 .map-button {
     width: 80%;
     align-self: center;
     background-color: rgb(206, 206, 252);
+}
+
+.loader-wheel {
+    position: absolute;
+    z-index: 1000;
+    bottom: 18px;
+    right: 12px
 }
 .formbox {
     margin-left: 2rem;

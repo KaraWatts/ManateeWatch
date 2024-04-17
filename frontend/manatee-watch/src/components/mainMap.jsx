@@ -14,6 +14,9 @@ import TurnLeftIcon from "@mui/icons-material/TurnLeft";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import LocateControl from "./locationControl";
 import MainMapController from "./MainMapController.jsx";
+import CircularProgress from '@mui/material/CircularProgress';
+import { green } from '@mui/material/colors';
+
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -26,6 +29,10 @@ L.Icon.Default.mergeOptions({
 function MainMap() {
   const [positionData, setPositionData] = useState(null);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const mapRef = useRef();
+  const timer = useRef();
   const navigate = useNavigate()
 
 
@@ -41,7 +48,21 @@ function MainMap() {
     fetchData();
   }, []);
   
+ //temporary styling for successful user locate
+ const buttonSx = {
+  ...(success && {
+    bgcolor: green[500],
+    '&:hover': {
+      bgcolor: green[700],
+    },
+  }),
+};
 
+  useEffect(()=>{
+    timer.current = setTimeout(() => {
+      setSuccess(false)
+    }, 500);
+  },[success])
 
   // Define the sightingPoints function to return an array of Marker components
   const sightingPoints = () => {
@@ -110,6 +131,7 @@ function MainMap() {
         spiderfyOnMaxZoom={false}
       >
         {markers}
+        
       </MarkerClusterGroup>
     );
   };
@@ -121,11 +143,10 @@ function MainMap() {
   
   const locateUser = () => {
         mapRef.current.locate();
-        console.log("USER LOCATED")
-    
+        setLoading(true);
     };
 
-      const mapRef = useRef();
+      
       
       return (
         <>
@@ -153,11 +174,21 @@ function MainMap() {
             </Fab>
           </div>
           <div style={{ position: "absolute", bottom: "20px", right: "10px" }}>
-          <MainMapController positionData={positionData}/>
-            <Fab className="navigationIcon">
+          <MainMapController positionData={positionData} setSuccess={setSuccess} setLoading={setLoading} />
+            <Fab className="navigationIcon" sx={buttonSx}>
               <NavigationIcon onClick={locateUser} sx={{ mr: 0 }} />
             </Fab>
           </div>
+          {loading && (
+        <div className="loader-wheel" style={{bottom:"9px", right:"4px"}}>
+        <CircularProgress
+          size={68}
+          sx={{
+            color: green[800],
+            }}
+        />
+        </div>
+      )}
         </MapContainer>
         <div className="result-container">
           {data.slice(0, 20).map((sighting) => {
