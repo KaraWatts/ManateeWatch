@@ -38,19 +38,20 @@ class NewSighting(TokenReq):
         print(ser_data.errors)
         return Response(ser_data.errors, status=HTTP_400_BAD_REQUEST)
     
-class A_Sighting(APIView):
+class A_Sighting(TokenReq):
     def delete(self, request, sighting_id):
-        try:
-            sighting = Sighting_Data.objects.get(id=sighting_id)
-            if sighting.user == request.user.id:
-                sighting.delete()
-                return Response(f"sighting was deleted", status=HTTP_204_NO_CONTENT)
-            return Response(f"Access Denied to user {request.user.id}", status=HTTP_401_UNAUTHORIZED)
-        except:
-            return Response("Sighting not found", status=HTTP_404_NOT_FOUND)
+
+        sighting = Sighting_Data.objects.get(id=sighting_id)
+        sightingData = SightingSerializer(sighting).data
+ 
+        if sightingData["user"]['user_id'] == request.user.id:
+            sighting.delete()
+            return Response(f"sighting was deleted", status=HTTP_204_NO_CONTENT)
+        return Response(f"Access Denied to user {request.user.id}", status=HTTP_401_UNAUTHORIZED)
+
     
 
-class ModerateImage(APIView):
+class ModerateImage(TokenReq):
     '''send request to ModerateContent API'''
     def post(self, request):
         data = request.data.copy()
