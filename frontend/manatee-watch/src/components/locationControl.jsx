@@ -8,7 +8,7 @@ import "../pages/stylesheets/sightingLocationData.css";
 import "leaflet/dist/leaflet.css";
 
 // 
-const LocateControl = ({ onPositionChange }) => {
+const LocateControl = ({ onPositionChange, setSuccess, setLoading }) => {
     const [position, setPosition] = useState(null);
     const [marker, setMarker] = useState(null);
   
@@ -37,6 +37,8 @@ const LocateControl = ({ onPositionChange }) => {
     const map = useMapEvents({
       locationfound(e) {
         map.flyTo(e.latlng, 15, {animate: true, duration:1.5});
+        setSuccess(true);
+        setLoading(false);
         setMarker(
           <Marker
             draggable={true}

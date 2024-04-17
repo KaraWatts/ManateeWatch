@@ -11,8 +11,8 @@ import { green, lightBlue } from '@mui/material/colors';
 
 
 function ImageUpload() {
-  const [loading, setLoading] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const buttonSx = {
     ...(success && {
@@ -70,7 +70,7 @@ function ImageUpload() {
       <Box sx={{ m: 1, position: 'relative' }}>
         <Button
           // variant="contained"
-          sx={{color: lightBlue}}
+          sx={buttonSx}
           disabled={loading}
           onClick={submitImage}
         >
