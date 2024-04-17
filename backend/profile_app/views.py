@@ -23,7 +23,7 @@ class ViewProfile(TokenReq):
         ser_profile = ProfileSerializer(profile)
         return Response(ser_profile.data, status=HTTP_200_OK)
 
-    '''allow usres to edit their profile'''
+    '''allow users to edit their profile'''
     def put(self, request):
         data = request.data.copy()
         user = request.user.id
@@ -31,7 +31,7 @@ class ViewProfile(TokenReq):
         edit_profile = ProfileSerializer(profile, data=data, partial=True)
         if edit_profile.is_valid():
             edit_profile.save()
-            return Response(data, status=HTTP_201_CREATED)
+            return Response(edit_profile.data, status=HTTP_201_CREATED)
         print(edit_profile.errors)
         return Response(edit_profile.errors, status=HTTP_400_BAD_REQUEST)
     
