@@ -12,7 +12,7 @@ import { Col, Row } from "react-bootstrap";
 
 // if user exists we are logged in
 function NavBar({ user, setUser }) {
-  const profilePic = JSON.parse(localStorage.getItem("user"));
+  // const profilePic = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate()
 
 
@@ -61,7 +61,7 @@ function NavBar({ user, setUser }) {
                 <NavDropdown
                   title={
                     <Avatar
-                      src={profilePic.profile_picture}
+                      src={user.profile_picture}
                       alt="Menu"
                       sx={{ width: 60, height: 60 }}
                     />

@@ -55,7 +55,7 @@ export const userLogin = async (email, password) => {
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user))
     api.defaults.headers.common["Authorization"] = `Token ${token}`;
-    return user.id
+    return user
     } catch (error){
         if (error.response.status === 401){
             return 401
