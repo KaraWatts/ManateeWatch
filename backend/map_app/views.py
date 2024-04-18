@@ -27,6 +27,7 @@ class AllSightings(APIView):
         return Response(ser_sightings.data, status=HTTP_200_OK)
     
 class NewSighting(TokenReq):
+    '''create new sighting'''
     def post(self, request):
         requestData = request.data.copy()
         data = requestData['requestData']
@@ -39,6 +40,7 @@ class NewSighting(TokenReq):
         return Response(ser_data.errors, status=HTTP_400_BAD_REQUEST)
     
 class A_Sighting(TokenReq):
+    '''users can delete sighting by id if associated with their own account'''
     def delete(self, request, sighting_id):
 
         sighting = get_object_or_404(Sighting_Data, id=sighting_id)
@@ -49,6 +51,7 @@ class A_Sighting(TokenReq):
             return Response(f"sighting was deleted", status=HTTP_204_NO_CONTENT)
         return Response(f"Access Denied to user {request.user.id}", status=HTTP_401_UNAUTHORIZED)
 
+    '''users can edit sighting by id if associated with their own account'''
     def put(self, request, sighting_id):
         sighting = get_object_or_404(id=sighting_id)
         data = request.data.copy()
