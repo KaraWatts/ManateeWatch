@@ -1,17 +1,14 @@
 from django.shortcuts import get_object_or_404
 from user_app.views import TokenReq
-from rest_framework.views import APIView
 from .models import User_Profile
 from .serializers import ProfileSerializer
 from rest_framework.response import Response
 from rest_framework.status import (
     HTTP_200_OK,
-    HTTP_406_NOT_ACCEPTABLE,
     HTTP_201_CREATED,
     HTTP_400_BAD_REQUEST
 )
 from manateewatch_proj.settings import env
-import requests
 from django.http import JsonResponse
 
 # Create your views here.

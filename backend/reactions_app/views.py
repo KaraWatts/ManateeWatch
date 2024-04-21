@@ -9,9 +9,7 @@ from rest_framework.status import (
 )
 from manateewatch_proj.settings import env
 from user_app.views import TokenReq
-from map_app.models import Sighting_Data
 from django.shortcuts import get_object_or_404
-from profile_app.models import User_Profile
 from .models import Reactions
 from .serializers import CommentSerializer, NewCommentSerializer
 

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import PopupModerator from "./popupModerator";
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-import { green, lightBlue } from '@mui/material/colors';
+import { green } from '@mui/material/colors';
 
 
 function ImageUpload() {

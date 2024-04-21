@@ -1,8 +1,6 @@
 import csv
 from datetime import datetime
-from django.utils import timezone
 import os
-import sys
 import django
 
 # Set the DJANGO_SETTINGS_MODULE environment variable

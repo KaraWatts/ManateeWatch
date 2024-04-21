@@ -7,9 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
-import { TextField } from '@mui/material';
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { api } from './utilities';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({

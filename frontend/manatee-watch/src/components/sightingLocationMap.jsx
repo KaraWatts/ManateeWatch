@@ -1,10 +1,7 @@
-import { useState, useEffect, useMemo, useRef, Button } from "react";
+import { useState, useEffect, useRef} from "react";
 import {
   MapContainer,
   TileLayer,
-  Marker,
-  useMapEvents,
-  useMap,
 } from "react-leaflet";
 import "../pages/stylesheets/sightingLocationData.css";
 import "leaflet/dist/leaflet.css";

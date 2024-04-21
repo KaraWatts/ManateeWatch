@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { useNavigate, useParams } from "react-router-dom";
 import "./stylesheets/sightingdetails.css";
 import CommentSection from "../components/commentSection";
 import { Col, Form, Row, Button, Image } from "react-bootstrap";
 import { submitNewComment } from "../components/utilities";
 import { api } from "../components/utilities";
-import EditSighting from "../components/editSighting";
 
 function SightingDetails({
   image,

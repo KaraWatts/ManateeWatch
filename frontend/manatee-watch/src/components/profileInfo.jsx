@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "../pages/stylesheets/imagegrid.css";
 import { Col, Row, Image } from "react-bootstrap";
 import ImageUploadAndCrop from "./profilePicUpload";

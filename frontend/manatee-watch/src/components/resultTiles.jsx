@@ -1,8 +1,4 @@
-import { Card, Col, ListGroup } from "react-bootstrap/";
-// import { useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
-
-function ResultCards({id, user_ID, sighting_date, image, setPositionData, coord}) {
+function ResultCards({sighting_date, image, setPositionData, coord}) {
   // const {data, setData} = useOutletContext();
 
 

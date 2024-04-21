@@ -3,7 +3,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useNavigate } from "react-router-dom";
-import Image from "react-bootstrap/esm/Button";
 import { userLogout } from "./utilities";
 import "bootstrap/dist/css/bootstrap.css";
 import logo from "../assets/manateeLogo.png";

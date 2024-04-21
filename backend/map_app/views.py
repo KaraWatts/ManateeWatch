@@ -10,7 +10,6 @@ from rest_framework.status import (
     HTTP_400_BAD_REQUEST,
     HTTP_204_NO_CONTENT,
     HTTP_401_UNAUTHORIZED,
-    HTTP_404_NOT_FOUND
 )
 from manateewatch_proj.settings import env
 import requests

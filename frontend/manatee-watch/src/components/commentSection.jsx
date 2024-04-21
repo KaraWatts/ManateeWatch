@@ -1,9 +1,8 @@
-import { Avatar } from "@mui/material";
 import React from "react";
 import { Row, Col, Image } from "react-bootstrap";
 import "../pages/stylesheets/commentSection.css"
 import { calculateTimeSincePost } from "./utilities";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { api } from "./utilities";
 import EditComment from "./editComment";
 

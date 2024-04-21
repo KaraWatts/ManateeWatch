@@ -1,6 +1,5 @@
-import React, { FC, useEffect } from "react";
+import { useEffect } from "react";
 import { useMap, useMapEvents } from "react-leaflet";
-import L from "leaflet";
 import 'leaflet.smooth_marker_bouncing';
 
 // TODO: Refactor sighting report map to incorpate this component - will need to map zoom an input variable
