@@ -1,10 +1,10 @@
 # Contributing to ChangeMate
 
-Welcome to ChangeMate! We appreciate your interest in contributing to our project. Before you start contributing, please take a moment to read through these guidelines.
+Welcome to ManateeWatch! We appreciate your interest in contributing to our project. Before you start contributing, please take a moment to read through these guidelines.
 
 ## Getting Started
 
-To contribute to ChangeMate, you'll need to set up the project environment on your local machine. Follow these steps:
+To contribute to ManateeWatch, you'll need to set up the project environment on your local machine. Follow these steps:
 
 ### Prerequisites
 
