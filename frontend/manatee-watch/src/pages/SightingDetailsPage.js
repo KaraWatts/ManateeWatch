@@ -26,6 +26,7 @@ function SightingDetails({
   const navigate = useNavigate()
 
   useEffect(() => {}, [commentPosts]);
+  
   console.log(user['id'], profileId)
   const handleKeyDown = async (e) => {
     if (e.key === "Enter" && newComment && newComment !== "") {

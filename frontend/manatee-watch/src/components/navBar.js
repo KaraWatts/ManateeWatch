@@ -53,7 +53,6 @@ function NavBar({ user, setUser }) {
         <Navbar.Collapse id="basic-navbar-nav" className="menu">
           <Row className="nav-row" style={{width:"100%"}}>
             <Col className="links">
-              {/* SPACE FOR LINKS */}
             </Col>
             <Col className="profile-icon">
               {user ? (

@@ -1,8 +1,71 @@
-# Manatee Watch
+# ManateeWatch
+
+![ManateeWatch](ManateeWatch_screens.png)
 
 ## Summary
 
-Florida is well known for being home to manatees. Being the adorable sea cows that they are I constantly have friends and family visit looking to see manatees in person. While it’s not uncommon to see a manatee floating by in your local water way, they can be tricky to track down and aren’t always where you expect them to be. With little to no resources online to help tourists and locals alike, I was inspired to develop an app to help people find up to date manatee sighting locations in their area. A one stop map to show where they are, where they have been, and help you figure out where they might be next.
+The ManateeWatch app is designed to help people find up-to-date manatee sighting locations in their area. Florida is well known for being home to manatees, but spotting them can be tricky. This app serves as a one-stop map to show where manatees are, where they have been, and helps users predict where they might be next.
 
-Users will be able to upload manatee sighting information - photos, coordinates, manatee info. That info will be used to populate the manatee sighting map that all users can view. Sightings associated with and accessible in individual users accounts so that data can be edited or deleted by the creator.
+## Features
+
+- **Manatee Sighting Information**: Users can upload photos, coordinates, and information about manatees they have spotted.
+- **Sighting Map**: A shared map populated with user-uploaded sightings.
+- **User Accounts**: Sightings are associated with user accounts for easy editing or deletion.
+- **Future Features**: Implementation of a k-nearest neighbor algorithm to predict manatee locations based on recorded sightings.
+
+## Purpose
+
+ManateeWatch aims to help locals and tourists alike find manatees in their natural habitat. By providing a platform for users to share sightings and track manatee locations, the app contributes to the appreciation and conservation of these gentle sea creatures. Users can discover, join, and organize manatee sighting events, and track their contributions to manatee conservation efforts.
+
+## Basic MVP (Minimum Viable Product)
+
+The basic MVP includes:
+
+- **User Authentication**: Secure login and access to the platform's features.
+- **User Profile CRUD Methods**: Create, read, update, and delete profile information.
+- **Manatee Sighting CRUD Methods**: Create, manage, and search for manatee sightings.
+- **Integration with Mapbox**: Location-based features for tracking and displaying manatee sightings.
+- **Monthly/Weekly Sighting Challenges**: Encourage user participation in recording sightings.
+- **Manatee Tracker Component**: Track and display users' contributions to manatee sighting efforts.
+
+## Additional App Goals/Functionality
+
+Additional functionalities include:
+
+- **Gamification**: Assign badges based on completed challenges.
+- **Social Media Integration**: Share manatee sighting events and locations.
+- **Local Event API Integration**: Import events related to manatee conservation from various platforms.
+- **AI Integration**: Enhance features for predicting manatee sightings.
+
+
+## Contributing to ManateeWatch
+
+We welcome contributions from the community! If you'd like to contribute to this project, please follow these guidelines:
+
+1. Fork the repository and clone it to your local machine.
+2. Create a new branch for your feature or bug fix: `git checkout -b feature/my-feature` or `git checkout -b bugfix/my-bug-fix`.
+3. Make your changes and commit them: `git commit -m 'Add some feature'`.
+4. Push to the branch: `git push origin feature/my-feature`.
+5. Submit a pull request against the `main` branch.
+
+Please ensure that your pull request adheres to the following guidelines:
+
+- Describe your changes in detail and provide a clear explanation of the problem your PR is solving.
+- Ensure that your code follows the project's coding standards and conventions.
+- Include tests if applicable.
+- Update the README if your changes introduce new functionality or affect existing features.
+- Review and adhere to the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+For detailed instructions on installation prerequisites and setting up the Django backend and React frontend to contribute, please refer to the [Contributor Setup Guide](CONTRIBUTING.md).
+
+Thank you for your contribution!
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+If you have any questions, feel free to reach out to me at [kdwwatts@gmail.com](mailto:kdwwatts@gmail.com).
+
 
