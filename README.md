@@ -1,6 +1,6 @@
 # ManateeWatch
 
-![ManateeWatch](ManateeWatch_screens.png)
+![ManateeWatch](assets/ManateeWatch_screens.png)
 
 ## Summary
 
@@ -17,9 +17,9 @@ The ManateeWatch app is designed to help people find up-to-date manatee sighting
 
 ManateeWatch aims to help locals and tourists alike find manatees in their natural habitat. By providing a platform for users to share sightings and track manatee locations, the app contributes to the appreciation and conservation of these gentle sea creatures. Users can discover, join, and organize manatee sighting events, and track their contributions to manatee conservation efforts.
 
-## Basic MVP (Minimum Viable Product)
+## MVP (Minimum Viable Product)
 
-The basic MVP includes:
+The MVP includes:
 
 - **User Authentication**: Secure login and access to the platform's features.
 - **User Profile CRUD Methods**: Create, read, update, and delete profile information.
@@ -36,6 +36,17 @@ Additional functionalities include:
 - **Social Media Integration**: Share manatee sighting events and locations.
 - **Local Event API Integration**: Import events related to manatee conservation from various platforms.
 - **AI Integration**: Enhance features for predicting manatee sightings.
+
+## Database Schema
+
+The ManateeWatch database is built using PostgreSQL. Below is a visual representation of the schema, followed by a description of the key tables:
+
+![PostgreSQL Schema](assets/postgresql_schema.png)
+
+- **Users Table**: Stores user information such as username, password, and email.
+- **Profiles Table**: Contains additional user profile details like observer stats and profile picture.
+- **Sightings Table**: Records details of each manatee sighting including observer ID, sighting data and links to observation reactions.
+- **Reactions Table**: Records comments, likes, and species validation flags for each reported sighting.
 
 
 ## Contributing to ManateeWatch
