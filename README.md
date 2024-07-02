@@ -67,7 +67,7 @@ Please ensure that your pull request adheres to the following guidelines:
 - Update the README if your changes introduce new functionality or affect existing features.
 - Review and adhere to the [Code of Conduct](CODE_OF_CONDUCT.md).
 
-For detailed instructions on installation prerequisites and setting up the Django backend and React frontend to contribute, please refer to the [Contributor Setup Guide](CONTRIBUTING.md).
+For detailed instructions on installation prerequisites and setting up the Django backend and React frontend to contribute, please refer to the [Contributor Setup Guide](CONTRIBUTE.md).
 
 Thank you for your contribution!
 
