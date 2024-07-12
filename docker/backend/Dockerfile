@@ -1,7 +1,7 @@
-FROM python:3.8.3-alpine
+FROM python:3.8
 
-WORKDIR /app
-ADD ./backend/requirements.txt /manateewatch/backend/
+WORKDIR /manateewatch
+ADD ./backend/requirements.txt  /manateewatch/backend/
 
 RUN pip install --upgrade pip
 RUN pip install gunicorn
