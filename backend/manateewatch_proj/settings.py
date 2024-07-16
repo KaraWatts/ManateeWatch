@@ -26,7 +26,9 @@ SECRET_KEY = env.get("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["localhost",
+                 '127.0.0.1',
+                 ]
 
 
 # Application definition
@@ -85,7 +87,11 @@ WSGI_APPLICATION = 'manateewatch_proj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'manatee_db',
+        'NAME': env.get('DB_NAME'),
+        'USER': env.get('DB_USER'),
+        'PASSWORD': env.get('DB_PASSWORD'),
+        'HOST': env.get('DB_HOST', 'localhost'),
+        'PORT': env.get('DB_PORT', '5432'),
     }
 }
 

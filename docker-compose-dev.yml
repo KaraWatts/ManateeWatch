@@ -1,28 +1,38 @@
-version: '2'
 
 services:
-  nginx:
-    restart: unless-stopped
-    build: 
-      context: .
-      dockerfile: ./docker/nginx/Dockerfile
-    ports:
-      - 80:80
+  db:
+    image: postgres:15
     volumes:
-      - static_volume:/manateewatch/backend/server/django_static
-      - ./docker/nginx/development:/etc/nginx/conf.d
-    depends_on:
-      - backend
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
   backend:
-    restart: unless-stopped
     build:
       context: .
-      dockerfile: ./docker/backend/Dockerfile
-    entrypoint: /manateewatch/docker/backend/wsgi-entrypoint.sh
+      dockerfile: ./backend/docker/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - static_volume:/manateewatch/backend/server/django_static
-    expose:
-      - 8000
+      - ./backend:/manateewatch/backend
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+    env_file:
+      - ./backend/.env
+  frontend:
+    build: 
+      context: .
+      dockerfile: ./frontend/manatee-watch/docker/development/Dockerfile
+    container_name: React
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend/manatee-watch/:/manateewatch/frontend/manatee-watch
+    depends_on:
+      - backend
+  
 
 volumes:
-  static_volume: {}
+  postgres_data:
