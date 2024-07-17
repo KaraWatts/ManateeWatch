@@ -1,0 +1,37 @@
+
+services:
+  backend:
+    container_name: maanteewatch-backend
+    build:
+      context: .
+      dockerfile: ./backend/docker/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/manateewatch/backend
+    ports:
+      - 8000:8000
+    env_file:
+      - ./backend/.env
+  frontend:
+    container_name: manateewatch-frontend
+    restart: unless-stopped
+    build: 
+      context: .
+      dockerfile: ./frontend/manatee-watch/docker/production/Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+  proxy:
+    image: nginx:alpine
+    container_name: manateewatch-nginx
+    build: 
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    ports:
+      - 80:80
+    restart: always
+    depends_on:
+      - frontend
