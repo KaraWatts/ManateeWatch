@@ -15,7 +15,9 @@ RUN pip install gunicorn
 RUN pip install -r /manateewatch/backend/requirements.txt
 
 # add project files
-ADD . /manateewatch/backend
+ADD ./backend /manateewatch/backend
+
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
 
 # # Make entrypoint script executable
 # RUN chmod +x backend/docker/wsgi-entrypoint.sh
