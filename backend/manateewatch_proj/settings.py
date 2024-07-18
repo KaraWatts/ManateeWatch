@@ -24,7 +24,7 @@ env = dotenv_values(".env")
 SECRET_KEY = env.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["localhost",
                  '127.0.0.1',
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -59,7 +60,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'manateewatch_proj.urls'
@@ -148,6 +148,20 @@ STATIC_ROOT = BASE_DIR / 'django_static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    "http://manateewatch.com",
+    "https://manateewatch.com",
+    "http://www.manateewatch.com",
+    "https://www.manateewatch.com",
+    "http://localhost",
+    "http://127.0.0.1",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://manateewatch.com",
+    "https://manateewatch.com",
+    "http://www.manateewatch.com",
+    "https://www.manateewatch.com",
+]
 
 AUTH_USER_MODEL = 'user_app.Client'
