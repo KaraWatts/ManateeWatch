@@ -31,7 +31,7 @@ jobs:
       - name: Build and push BE
         uses: docker/build-push-action@v3
         with:
-          context: ./backend
+          context: .
           file: ./backend/docker/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/kdwatts:latest
