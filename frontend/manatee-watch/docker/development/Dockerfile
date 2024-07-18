@@ -13,7 +13,7 @@ COPY ./frontend/manatee-watch/package.json ./frontend/manatee-watch/package-lock
 RUN npm install --legacy-peer-deps
 
 # Copy the rest of the frontend files
-COPY . .
+COPY ./frontend /manateewatch/frontend
 
 
 # Expose port 5173 for React development server
