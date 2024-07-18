@@ -82,13 +82,24 @@ For detailed instructions on installation prerequisites and setting up the Djang
 
 Thank you for your contribution!
 
-## License
+## Want to support ManateeWatch?
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+We are accepting donations to help cover the maintenance costs of keeping [ManateeWatch](manateewatch.com) online. If you'd like to be one of our first supporters please follow the below link to buy me a coffee!
+
+<a href="https://www.buymeacoffee.com/manateewatch" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
+
 
 ## Contact
 
 If you have any questions, feel free to reach out to me at [kdwwatts@gmail.com](mailto:kdwwatts@gmail.com).
+
 Make sure to check out the site at [manateewatch.com](http://manateewatch.com)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
 
 
