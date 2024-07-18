@@ -30,7 +30,11 @@ jobs:
           cache: "npm"
           cache-dependency-path: "./frontend/package-lock.json"
 
-      - run: npm install -g npm@latest --legacy-peer-deps
+      - name: Install Dependencies
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install --legacy-peer-deps --verbose
+        working-directory: ./frontend
 
       - name: Check ./frontend files
         run: ls -R /home/runner/work/ManateeWatch/ManateeWatch/frontend
