@@ -2,12 +2,12 @@
 FROM node:alpine as builder
 
 # Set working Directory
-WORKDIR /manateewatch/frontend/manatee-watch
+WORKDIR /manateewatch/frontend
 
-ENV PATH /manateewatch/frontend/manatee-watch/node_modules/.bin:$PATH
+ENV PATH /manateewatch/frontend/node_modules/.bin:$PATH
 
 # Copy package.json and package-lock.json
-COPY ./frontend/manatee-watch/package.json ./frontend/manatee-watch/package-lock.json ./
+COPY ./frontend/package.json ./frontend/package-lock.json ./
 
 # Install dependencies
 RUN npm install --legacy-peer-deps

@@ -24,12 +24,12 @@ services:
   frontend:
     build: 
       context: .
-      dockerfile: ./frontend/manatee-watch/docker/development/Dockerfile
+      dockerfile: ./frontend/docker/development/Dockerfile
     container_name: React
     ports:
       - 3000:3000
     volumes:
-      - ./frontend/manatee-watch/:/manateewatch/frontend/manatee-watch
+      - ./frontend/:/manateewatch/frontend
     depends_on:
       - backend
   

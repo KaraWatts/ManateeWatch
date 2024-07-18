@@ -15,7 +15,7 @@ services:
     restart: unless-stopped
     build: 
       context: .
-      dockerfile: ./frontend/manatee-watch/docker/production/Dockerfile
+      dockerfile: ./frontend/docker/production/Dockerfile
     ports:
       - 3000:3000
     depends_on:
