@@ -29,6 +29,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./backend
-          file: ./backend/Dockerfile
+          file: ./backend/docker/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/kdwatts:latest
