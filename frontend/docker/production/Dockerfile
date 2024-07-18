@@ -4,8 +4,7 @@ FROM node:18-alpine as builder
 WORKDIR /manateewatch/frontend
 ADD ./frontend/package.json ./
 ADD ./frontend/package-lock.json ./
-RUN npm cache clean --force && \
-    npm install -g npm@latest --legacy-peer-deps
+RUN npm install --force
 ADD ./frontend /manateewatch/frontend
 RUN npm run build
 
