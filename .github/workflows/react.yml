@@ -33,11 +33,7 @@ jobs:
       - run: npm install -g npm@latest --legacy-peer-deps
         working-directory: ./frontend
 
-      - name: List frontend directory files
-        run: ls -la
-        working-directory: ./frontend
-
-      - run: npm run build --if-present
+      - run: npm run build --if-present --verbose
         working-directory: ./frontend
 
   docker:
