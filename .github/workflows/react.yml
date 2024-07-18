@@ -37,14 +37,6 @@ jobs:
           npm install --legacy-peer-deps
         working-directory: ./frontend
 
-      - name: Check ./frontend files
-        run: ls -R /home/runner/work/ManateeWatch/ManateeWatch/frontend/node_modules/.bin
-
-
-      - run: npm list react-scripts
-        working-directory: ./frontend
-        name: Verify react-scripts Installation
-
       - run: npm run build --if-present
         working-directory: ./frontend
 
