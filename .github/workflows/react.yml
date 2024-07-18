@@ -56,7 +56,7 @@ jobs:
       - name: Build and push FE
         uses: docker/build-push-action@v2
         with:
-          context: ./frontend
+          context: .
           file: ./frontend/docker/production/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/manateewatch-fe:latest
