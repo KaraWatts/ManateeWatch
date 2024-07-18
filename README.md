@@ -1,10 +1,10 @@
-# ManateeWatch
+# [ManateeWatch](manateewatch.com)
 
 ![ManateeWatch](assets/ManateeWatch_screens.png)
 
 ## Summary
 
-The ManateeWatch app is designed to help people find up-to-date manatee sighting locations in their area. Florida is well known for being home to manatees, but spotting them can be tricky. This app serves as a one-stop map to show where manatees are, where they have been, and helps users predict where they might be next.
+[ManateeWatch](manateewatch.com) is designed to help people find up-to-date manatee sighting locations in their area. Florida is well known for being home to manatees, but spotting them can be tricky. This app serves as a one-stop map to show where manatees are, where they have been, and helps users predict where they might be next.
 
 ## Features
 
@@ -15,7 +15,7 @@ The ManateeWatch app is designed to help people find up-to-date manatee sighting
 
 ## Purpose
 
-ManateeWatch aims to help locals and tourists alike find manatees in their natural habitat. By providing a platform for users to share sightings and track manatee locations, the app contributes to the appreciation and conservation of these gentle sea creatures. Users can discover, join, and organize manatee sighting events, and track their contributions to manatee conservation efforts.
+[ManateeWatch](manateewatch.com) aims to help locals and tourists alike find manatees in their natural habitat. By providing a platform for users to share sightings and track manatee locations, the app contributes to the appreciation and conservation of these gentle sea creatures. Users can discover, join, and organize manatee sighting events, and track their contributions to manatee conservation efforts.
 
 ## MVP (Minimum Viable Product)
 
@@ -49,7 +49,7 @@ The ManateeWatch database is built using PostgreSQL. Below is a visual represent
 - **Reactions Table**: Records comments, likes, and species validation flags for each reported sighting.
 
 
-## Contributing to ManateeWatch
+## Contributing to [ManateeWatch](manateewatch.com)
 
 We welcome contributions from the community! If you'd like to contribute to this project, please follow these guidelines:
 
@@ -78,5 +78,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 
 If you have any questions, feel free to reach out to me at [kdwwatts@gmail.com](mailto:kdwwatts@gmail.com).
+Make sure to check out the site at [manateewatch.com](manateewatch.com)
 
 
