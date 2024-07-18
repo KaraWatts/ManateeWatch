@@ -32,6 +32,10 @@ jobs:
 
       - run: npm install -g npm@latest --legacy-peer-deps
 
+      - name: Check ./frontend files
+        run: ls -R ./frontend
+        
+
       - run: npm list react-scripts
         working-directory: ./frontend
         name: Verify react-scripts Installation
