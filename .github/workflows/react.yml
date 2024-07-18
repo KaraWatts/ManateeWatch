@@ -32,8 +32,9 @@ jobs:
 
       - run: npm install -g npm@latest --legacy-peer-deps
 
-      - run: ls -la node_modules/.bin
-        working-directory: ./frontend
+      - run: npm list react-scripts
+          working-directory: ./frontend
+          name: Verify react-scripts Installation
 
       - run: npm run build --if-present
         working-directory: ./frontend
