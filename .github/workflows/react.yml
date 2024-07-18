@@ -33,7 +33,7 @@ jobs:
       - run: npm install -g npm@latest --legacy-peer-deps
 
       - name: Check ./frontend files
-        working-directory: ./frontend
+        working-directory: /home/runner/work/ManateeWatch/ManateeWatch
         run: ls -R .
 
 
