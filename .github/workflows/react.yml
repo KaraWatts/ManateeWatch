@@ -69,7 +69,7 @@ jobs:
       - name: Build and push Nginx
         uses: docker/build-push-action@v3
         with:
-          context: ./nginx
+          context: .
           file: ./nginx/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/manateewatch-nginx:latest
