@@ -25,6 +25,9 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
+      - name: List files
+        run: ls -R
+
       - name: Build and push BE
         uses: docker/build-push-action@v3
         with:
