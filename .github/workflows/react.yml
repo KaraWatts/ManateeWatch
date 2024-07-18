@@ -30,14 +30,15 @@ jobs:
           cache: "npm"
           cache-dependency-path: "./frontend/package-lock.json"
 
-      - name: Install Dependencies
+      - name: Clean and Install Dependencies
         run: |
-          rm -rf node_modules package-lock.json
-          npm install --legacy-peer-deps --verbose
+          rm -rf ./frontend/node_modules ./frontend/package-lock.json
+          npm cache clean --force
+          npm install --legacy-peer-deps
         working-directory: ./frontend
 
       - name: Check ./frontend files
-        run: ls -R /home/runner/work/ManateeWatch/ManateeWatch/frontend
+        run: ls -R /home/runner/work/ManateeWatch/ManateeWatch/frontend/node_modules/.bin
 
 
       - run: npm list react-scripts
