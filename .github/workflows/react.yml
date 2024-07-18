@@ -33,8 +33,7 @@ jobs:
       - run: npm install -g npm@latest --legacy-peer-deps
 
       - name: Check ./frontend files
-        working-directory: /home/runner/work/ManateeWatch/ManateeWatch
-        run: ls -R .
+        run: ls -R /home/runner/work/ManateeWatch/ManateeWatch/frontend
 
 
       - run: npm list react-scripts
