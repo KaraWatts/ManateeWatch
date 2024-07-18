@@ -37,6 +37,7 @@ jobs:
 
 
       - run: npm list react-scripts
+        working-directory: ./frontend
         name: Verify react-scripts Installation
 
       - run: npm run build --if-present
