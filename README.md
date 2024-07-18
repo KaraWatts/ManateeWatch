@@ -4,7 +4,7 @@
 
 ## Summary
 
-[ManateeWatch](http://manateewatch.com) is designed to help people find up-to-date manatee sighting locations in their area. Florida is well known for being home to manatees, but spotting them can be tricky. This app serves as a one-stop map to show where manatees are, where they have been, and helps users predict where they might be next.
+[ManateeWatch](http://manateewatch.com) is a progressive web application designed to help people find up-to-date manatee sighting locations in their area. Florida is well known for being home to manatees, but spotting them can be tricky. This app serves as a one-stop map to show where manatees are, where they have been, and helps users predict where they might be next.
 
 ## Features
 
@@ -36,6 +36,17 @@ Additional functionalities include:
 - **Social Media Integration**: Share manatee sighting events and locations.
 - **Local Event API Integration**: Import events related to manatee conservation from various platforms.
 - **AI Integration**: Enhance features for predicting manatee sightings.
+
+## Installing ManateeWatch on iOS
+- Open Safari and navigate to [manateewatch.com](http://manateewatch.com)
+- Once the site loads, tap the Share button at the bottom center of the screen.
+- In the Share menu, locate the “Add to Home Screen” option.
+
+## Installing ManateeWatch on Android
+- Open Chrome and navigate to [manateewatch.com](http://manateewatch.com)
+- Tap the menu button, usually three vertical dots, in the top right corner
+- Select Add to Home screen
+- Tap Add in the pop-up
 
 ## Database Schema
 
