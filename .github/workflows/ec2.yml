@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
+
+      - name: Test Network Connectivity
+        run: |
+          curl https://ssm.${{ secrets.AWS_REGION }}.amazonaws.com
+          
       - name: AWS SSM Send-Command
         uses: peterkimzz/aws-ssm-send-command@v1.1.1
         with:
