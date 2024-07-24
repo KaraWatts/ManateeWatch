@@ -14,7 +14,7 @@ jobs:
       - name: Test Network Connectivity
         run: |
           curl https://ssm.${{ secrets.AWS_REGION }}.amazonaws.com
-          
+
       - name: AWS SSM Send-Command
         uses: peterkimzz/aws-ssm-send-command@v1.1.1
         with:
@@ -36,4 +36,4 @@ jobs:
             sudo docker-compose up -d
             sudo docker image prune -af
           # Comment for Send-Command
-          comment: docker-compose.yml file re-pulls newer versions of manateewatch images and runs them on the instance.
+          comment: pull manateewatch images and runs on ec2
