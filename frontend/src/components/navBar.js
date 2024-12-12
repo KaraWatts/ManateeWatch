@@ -46,7 +46,7 @@ function NavBar({ user, setUser }) {
                 width: "auto",
               }}
             />
-            ManateeWatch
+            Manatee Watch
           </Navbar.Brand>
         </div>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
