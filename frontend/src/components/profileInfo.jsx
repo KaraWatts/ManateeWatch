@@ -1,6 +1,6 @@
 import React from "react";
 import "../pages/stylesheets/imagegrid.css";
-import { Col, Row, Image } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import ImageUploadAndCrop from "./profilePicUpload";
 
 function ProfileInfo({ id, display_name, profile_picture, ranking, num_sightings, sightings}) {
