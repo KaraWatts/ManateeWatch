@@ -27,7 +27,7 @@ services:
       - manateewatch-network
   backend:
     image: kdwwatts/manateewatch-be:latest
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn manateewatch_proj.wsgi:application --bind 0.0.0.0:8000
     ports:
       - 8000:8000
     env_file:
