@@ -34,4 +34,4 @@ jobs:
           context: .
           file: ./backend/docker/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/kdwatts:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/manateewatch-be:latest
