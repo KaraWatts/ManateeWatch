@@ -41,6 +41,7 @@ function App() {
       <NavBar user={user} setUser={setUser} />
       {alert && <PopupAlert setAlert={setAlert} alert={alert} />}
       <Outlet context={{user, setUser}} />
+      <footer>v. 2024-04-01</footer>
     </>
   )
 }
