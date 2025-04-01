@@ -6,7 +6,7 @@ import axios from "axios";
 * contains baseURL to simplify api calls - api.get("/path/")
 */
 export const api = axios.create({
-  baseURL: "http://manateewatch.com/api/v1/",
+  baseURL: "/api/v1/",
 });
 
 
