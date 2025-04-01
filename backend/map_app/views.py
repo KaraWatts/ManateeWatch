@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from .models import Sighting_Data
@@ -11,7 +12,6 @@ from rest_framework.status import (
     HTTP_204_NO_CONTENT,
     HTTP_401_UNAUTHORIZED,
 )
-from manateewatch_proj.settings import env
 import requests
 from django.http import JsonResponse
 from user_app.views import TokenReq
@@ -69,7 +69,7 @@ class ModerateImage(TokenReq):
 
         encoded_image = data.get("url")
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-        key = env.get("MODERATOR_KEY")
+        key = os.environ.get("MODERATOR_KEY")
         data = {"base64": "true",
                   "key": key,
                   "url": encoded_image

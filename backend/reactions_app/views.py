@@ -7,7 +7,6 @@ from rest_framework.status import (
     HTTP_204_NO_CONTENT,
     HTTP_401_UNAUTHORIZED
 )
-from manateewatch_proj.settings import env
 from user_app.views import TokenReq
 from django.shortcuts import get_object_or_404
 from .models import Reactions

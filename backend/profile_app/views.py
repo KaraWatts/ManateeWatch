@@ -8,7 +8,6 @@ from rest_framework.status import (
     HTTP_201_CREATED,
     HTTP_400_BAD_REQUEST
 )
-from manateewatch_proj.settings import env
 from django.http import JsonResponse
 
 # Create your views here.
