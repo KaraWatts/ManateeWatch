@@ -33,7 +33,14 @@ function App() {
     }
 
     console.log('user updated', user);
-  }, [user, location.pathname])
+  }, [user, location.pathname, navigate])
+
+  useEffect(() => {
+    navigator.serviceWorker?.addEventListener('controllerchange', () => {
+      window.location.reload();
+    });
+  }, []);
+
 
   return (
     <>
