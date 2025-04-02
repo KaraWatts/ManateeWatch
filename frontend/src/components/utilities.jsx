@@ -144,6 +144,7 @@ export const calculateTimeSincePost = (postTimestamp) => {
     // Calculate the time elapsed in each interval
     for (let interval in intervals) {
       const value = Math.floor(seconds / intervals[interval]);
+      console.log(interval, value)
       if (value >= 1) {
         return value + " " + interval + (value > 1 ? "s" : "") + " ago";
       }

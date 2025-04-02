@@ -58,6 +58,7 @@ function ProfilePage() {
         <ProfileInfo {...profileData} />
       </div>
       <div className="profile-sightings-container" >
+        {sightingId && <PullSightingData />}
         <div className="image-grid-container">
         <h1 style={{textAlign:"center"}}>Sightings</h1>
           <Stack direction="row" justifyContent="center">
@@ -78,7 +79,6 @@ function ProfilePage() {
             />
           )}
         </div>
-        {sightingId && <PullSightingData />}
       </div>
     </div>
   );

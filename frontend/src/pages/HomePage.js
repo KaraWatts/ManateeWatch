@@ -1,11 +1,9 @@
 import MainMap from "../components/mainMap";
-import '../App.css'
+import "../App.css";
 
 function HomePage() {
-
   return (
     <>
-    
       <MainMap />
     </>
   );
