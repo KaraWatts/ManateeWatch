@@ -30,7 +30,6 @@ function App() {
     else if (!user && !isAllowed){
       navigate("/")
       setAlert(true)
-      //TODO: add pop up to ask user to login or sign up
     }
 
     console.log('user updated', user);
