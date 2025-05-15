@@ -1,4 +1,5 @@
 import { Col, Row } from "react-bootstrap";
+// @ts-expect-error TS(2307): Cannot find module '../assets/manateeLogo.png' or ... Remove this comment to see the full error message
 import logo from "../assets/manateeLogo.png";
 function ErrorPage() {
   return (

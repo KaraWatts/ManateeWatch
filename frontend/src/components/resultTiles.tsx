@@ -1,4 +1,9 @@
-function ResultCards({sighting_date, image, setPositionData, coord}) {
+function ResultCards({
+  sighting_date,
+  image,
+  setPositionData,
+  coord
+}: any) {
   // const {data, setData} = useOutletContext();
 
 

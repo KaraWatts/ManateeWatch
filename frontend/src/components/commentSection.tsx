@@ -7,15 +7,23 @@ import { api } from "./utilities";
 import EditComment from "./editComment";
 
 
-export default function CommentSection({date, comment, user, activeUser, id, setComments, commentPosts}) {
+export default function CommentSection({
+  date,
+  comment,
+  user,
+  activeUser,
+  id,
+  setComments,
+  commentPosts
+}: any) {
   const { sightingId } = useParams();
   const {display_name, profile_picture, user_id} = user
   const time = calculateTimeSincePost(date)
 
-  const handleDelete = async (e) => {
+  const handleDelete = async (e: any) => {
     try{
       const response = await api.delete(`sightings/${sightingId}/comment/${id}/`)
-      setComments(commentPosts.filter((comment) => comment.id !== id))
+      setComments(commentPosts.filter((comment: any) => comment.id !== id))
       console.log(response.data)
     }catch(error){
       console.error("access denied", error);
@@ -33,6 +41,7 @@ export default function CommentSection({date, comment, user, activeUser, id, set
         <Image
           alt="avatar"
           src={profile_picture}
+          // @ts-expect-error TS(2322): Type '{ alt: string; src: any; sx: { width: number... Remove this comment to see the full error message
           sx={{ width: 80, height: 80 }}
           roundedCircle 
         />

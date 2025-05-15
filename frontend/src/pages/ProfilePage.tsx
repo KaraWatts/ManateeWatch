@@ -39,16 +39,18 @@ function ProfilePage() {
 
   const PullSightingData = () => {
     const details = userSightings.filter(
+      // @ts-expect-error TS(2339): Property 'id' does not exist on type 'never'.
       (sighting) => sighting.id === parseInt(sightingId)
     );
     return (
       <div className="sighting-details-container">
+        // @ts-expect-error TS(2698): Spread types may only be created from object types... Remove this comment to see the full error message
         <SightingDetails {...details[0]} sightingData={userSightings} setSightingData={setUserSightings}/>
       </div>
     );
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setToggle(e.target.checked);
   };
 
@@ -68,12 +70,15 @@ function ProfilePage() {
           </Stack>
           {toggle ? (
             <UserMap
+              // @ts-expect-error TS(2345): Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
               profileId={parseInt(profileId)}
               sightings={userSightings}
+              // @ts-expect-error TS(2339): Property 'num_sightings' does not exist on type '{... Remove this comment to see the full error message
               num_sightings={profileData.num_sightings}
             />
           ) : (
             <ImageGrid
+              // @ts-expect-error TS(2345): Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
               profileId={parseInt(profileId)}
               sightings={userSightings}
             />

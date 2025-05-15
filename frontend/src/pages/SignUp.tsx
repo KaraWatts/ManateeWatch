@@ -8,10 +8,11 @@ const SignUp = () => {
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [displayName, setDisplayName] = useState("")
+  // @ts-expect-error TS(2339): Property 'setUser' does not exist on type 'unknown... Remove this comment to see the full error message
   const { setUser } = useOutletContext();
 
 
-  const signupUser = async(e) => {
+  const signupUser = async (e: any) => {
     e.preventDefault();
     const response = await api.post("user/signup/", { email: emailInput, password: passwordInput, display_name: displayName})
     if (response.status === 201) {

@@ -8,7 +8,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 
-export default function PopupModerator({setAlert, alert}) {
+export default function PopupModerator({
+  setAlert,
+  alert
+}: any) {
 
   const handleClose = () => {
     setAlert(false);

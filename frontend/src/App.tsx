@@ -21,7 +21,6 @@ function App() {
     // redirect to homepage when
     // logged user tries to go to signup, etc
     if(user && isAllowed) {
-      console.log('redirect to homepage')
       navigate("/")
     }
 
@@ -32,7 +31,6 @@ function App() {
       setAlert(true)
     }
 
-    console.log('user updated', user);
   }, [user, location.pathname, navigate])
 
   useEffect(() => {

@@ -5,12 +5,16 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useNavigate } from "react-router-dom";
 import { userLogout } from "./utilities";
 import "bootstrap/dist/css/bootstrap.css";
+// @ts-expect-error TS(2307): Cannot find module '../assets/manateeLogo.png' or ... Remove this comment to see the full error message
 import logo from "../assets/manateeLogo.png";
 import { Avatar } from "@mui/material";
 import { Col, Row } from "react-bootstrap";
 
 // if user exists we are logged in
-function NavBar({ user, setUser }) {
+function NavBar({
+  user,
+  setUser
+}: any) {
   // const profilePic = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate()
 
@@ -76,6 +80,7 @@ function NavBar({ user, setUser }) {
                   <NavDropdown.Divider />
                   <NavDropdown.Item
                     onClick={handleUserLogout}
+                    // @ts-expect-error TS(2322): Type '{ children: string; onClick: () => Promise<v... Remove this comment to see the full error message
                     variant="outline-danger"
                   >
                     Log Out

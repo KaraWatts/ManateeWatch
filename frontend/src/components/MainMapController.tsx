@@ -4,11 +4,15 @@ import 'leaflet.smooth_marker_bouncing';
 
 // TODO: Refactor sighting report map to incorpate this component - will need to map zoom an input variable
 
-const MainMapController = ({positionData, setLoading, setSuccess}) => {
+const MainMapController = ({
+  positionData,
+  setLoading,
+  setSuccess
+}: any) => {
   const map = useMap();
  
 
-  const flyTo = (location) => {
+  const flyTo = (location: any) => {
     map.flyTo(location, 13, {
       animate: true,
       duration: 2,
@@ -24,7 +28,7 @@ const MainMapController = ({positionData, setLoading, setSuccess}) => {
 
 
 const mapLocate = useMapEvents({
-    locationfound(e) {
+    locationfound(e: any) {
       setLoading(false)
       setSuccess(true)
       mapLocate.flyTo(e.latlng, 11, {animate: true, duration:1.5});

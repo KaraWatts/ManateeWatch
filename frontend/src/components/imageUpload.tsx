@@ -41,12 +41,13 @@ function ImageUpload() {
 
       const initialImage = '';
       
-    const submitImage = async(e) => {
+    const submitImage = async (e: any) => {
         e.preventDefault();
         setSuccess(false);
         setLoading(true);
         try{
           const response = await api.post("/sightings/submitImage/", { url: imageSrc})
+          // @ts-expect-error TS(2339): Property 'content' does not exist on type 'AxiosRe... Remove this comment to see the full error message
           console.log('successfuly uploaded image', response.content);
           navigate('/sightingData/', {state: { imageSrc }})
 
@@ -58,41 +59,40 @@ function ImageUpload() {
         setLoading(false);
       }; 
 
-  return (
-    <>
-      <div className="imageUpload">
-      <PopupModerator setAlert={setImageOK} alert={imageOK}/>
-      <ReactImagePickerEditor
-            config={config2}
-            imageSrcProp={initialImage}
-            imageChanged={(newDataUri) => { setImageSrc(newDataUri) }} />
-    </div>
-      <Box sx={{ m: 1, position: 'relative' }}>
-        <Button
-          // variant="contained"
-          sx={buttonSx}
-          disabled={loading}
-          onClick={submitImage}
-        >
-          Submit Photo
-        </Button>
-        {loading && (
-          <CircularProgress
-            size={24}
-            sx={{
-              color: green[800],
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              marginTop: '-12px',
-              marginLeft: '-12px',
-            }}
-          />
-        )}
-      </Box>
-    </>
-    
-  );
+  return <>
+    <div className="imageUpload">
+    <PopupModerator setAlert={setImageOK} alert={imageOK}/>
+    <ReactImagePickerEditor
+          // @ts-expect-error TS(2322): Type '{ borderRadius: string; language: string; wi... Remove this comment to see the full error message
+          config={config2}
+          imageSrcProp={initialImage}
+          imageChanged={(newDataUri: any) => { setImageSrc(newDataUri) }} />
+  </div>
+    <Box sx={{ m: 1, position: 'relative' }}>
+      <Button
+        // variant="contained"
+        // @ts-expect-error TS(2322): Type '{ children: string; sx: { color?: string | u... Remove this comment to see the full error message
+        sx={buttonSx}
+        disabled={loading}
+        onClick={submitImage}
+      >
+        Submit Photo
+      </Button>
+      {loading && (
+        <CircularProgress
+          size={24}
+          sx={{
+            color: green[800],
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            marginTop: '-12px',
+            marginLeft: '-12px',
+          }}
+        />
+      )}
+    </Box>
+  </>;
 }
 
 export default ImageUpload;

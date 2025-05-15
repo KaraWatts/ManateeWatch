@@ -3,11 +3,13 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 
-export default function BasicDateTimePicker({ onDateChange }) {
+export default function BasicDateTimePicker({
+  onDateChange
+}: any) {
   const [value, setValue] = useState(new Date()); 
   const currentTime = new Date()
 
-  const handleDateChange = (newValue) => {
+  const handleDateChange = (newValue: any) => {
     setValue(newValue.toDate()); // Update the local state with the new value
   };
   useEffect(() => {

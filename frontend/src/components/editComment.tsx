@@ -20,10 +20,14 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function EditComment({setComments, commentPosts, id}) {
+export default function EditComment({
+  setComments,
+  commentPosts,
+  id
+}: any) {
     const [commentValue, setCommentValue] = useState(commentPosts[commentPosts.length - 1]['comment']);
 
-const handleCommentChange = (e) => {
+const handleCommentChange = (e: any) => {
   setCommentValue(e.target.value);
 };
 
@@ -31,7 +35,7 @@ const handleSave = async () => {
   try {
     console.log(commentValue)
     const response = await api.put(`sightings/${sightingId}/comment/${id}/`, { comment: commentValue });
-    const updatedComments = commentPosts.filter(comment => comment.id !== id);
+    const updatedComments = commentPosts.filter((comment: any) => comment.id !== id);
 
     setComments([...updatedComments, response.data])
 

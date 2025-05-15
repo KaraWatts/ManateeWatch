@@ -14,10 +14,14 @@ import { Box } from "@mui/material";
 import { green } from '@mui/material/colors';
 
 
-const SightingLocationMap = ({ onPositionChange }) => {
+const SightingLocationMap = ({
+  onPositionChange
+}: any) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  // @ts-expect-error TS(2554): Expected 1 arguments, but got 0.
   const mapRef = useRef();
+  // @ts-expect-error TS(2554): Expected 1 arguments, but got 0.
   const timer = useRef();
 
   useEffect(()=>{
@@ -27,6 +31,7 @@ const SightingLocationMap = ({ onPositionChange }) => {
   },[success])
 
   const locateUser = () => {
+    // @ts-expect-error TS(2571): Object is of type 'unknown'.
     mapRef.current.locate();
     setLoading(true);
   };
@@ -43,6 +48,7 @@ const SightingLocationMap = ({ onPositionChange }) => {
   return (
     <>
       <MapContainer
+        // @ts-expect-error TS(2322): Type '{ children: (false | Element)[]; center: num... Remove this comment to see the full error message
         center={[28.334861, -81.708441]}
         zoom={8}
         scrollWheelZoom={true}
@@ -53,6 +59,7 @@ const SightingLocationMap = ({ onPositionChange }) => {
         <LocateControl onPositionChange={onPositionChange} setLoading={setLoading} setSuccess={setSuccess}/>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          // @ts-expect-error TS(2322): Type '{ url: string; attribution: string; }' is no... Remove this comment to see the full error message
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
         <div style={{ position: 'absolute', bottom: '20px', right: '10px' }}>

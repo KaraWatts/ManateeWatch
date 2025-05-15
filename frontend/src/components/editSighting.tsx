@@ -19,10 +19,14 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function EditSighting({setSightingData, sightingData, id}) {
+export default function EditSighting({
+  setSightingData,
+  sightingData,
+  id
+}: any) {
     const [commentValue, setCommentValue] = useState(sightingData[sightingData.length - 1]['comment']);
 
-const handleCommentChange = (e) => {
+const handleCommentChange = (e: any) => {
   setCommentValue(e.target.value);
 };
 
@@ -30,7 +34,7 @@ const handleSave = async () => {
   try {
     console.log(commentValue)
     const response = await api.put(`sightings/${sightingId}/comment/${id}/`, { comment: commentValue });
-    const updatedComments = sightingData.filter(comment => comment.id !== id);
+    const updatedComments = sightingData.filter((comment: any) => comment.id !== id);
 
     setSightingData([...updatedComments, response.data])
 
@@ -81,6 +85,7 @@ const handleSave = async () => {
       <CloseIcon />
     </IconButton>
     <DialogContent dividers>
+      // @ts-expect-error TS(2304): Cannot find name 'TextField'.
       <TextField
         fullWidth
         multiline

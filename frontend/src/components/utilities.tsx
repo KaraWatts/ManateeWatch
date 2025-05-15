@@ -19,7 +19,7 @@ export const api = axios.create({
 * @param {[str]} password secret password for user account
 * @return {[obj]}   user object with user data and token
 */
-export const userRegistration = async (email, password) => {
+export const userRegistration = async (email: any, password: any) => {
     let response = await api.post("/user/signup/", {
       email: email,
       password: password,
@@ -45,7 +45,7 @@ export const userRegistration = async (email, password) => {
 * @param {[str]} password secret password for user account
 * @return {[obj]}   user object with user data and token
 */
-export const userLogin = async (email, password) => {
+export const userLogin = async (email: any, password: any) => {
     try{
         let response = await api.post("user/login/", {
     email: email,
@@ -57,6 +57,7 @@ export const userLogin = async (email, password) => {
     api.defaults.headers.common["Authorization"] = `Token ${token}`;
     return user
     } catch (error){
+        // @ts-expect-error TS(2571): Object is of type 'unknown'.
         if (error.response.status === 401){
             return 401
         }
@@ -121,11 +122,12 @@ export const userConfirmation = async() => {
 * @function calculateTimeSincePost
 * @return {[none]}   none
 */
-export const calculateTimeSincePost = (postTimestamp) => {
+export const calculateTimeSincePost = (postTimestamp: any) => {
     const postDate = new Date(postTimestamp); // Convert the post timestamp to a Date object
     const currentDate = new Date(); // Get the current date and time
   
     // Calculate the difference in milliseconds between the current time and the post time
+    // @ts-expect-error TS(2362): The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
     const timeDifference = currentDate - postDate;
   
     // Convert the time difference to seconds
@@ -143,6 +145,7 @@ export const calculateTimeSincePost = (postTimestamp) => {
   
     // Calculate the time elapsed in each interval
     for (let interval in intervals) {
+      // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       const value = Math.floor(seconds / intervals[interval]);
       console.log(interval, value)
       if (value >= 1) {
@@ -157,7 +160,7 @@ export const calculateTimeSincePost = (postTimestamp) => {
 
 
 
-  export const submitNewComment = async (sightingId, newComment) => {
+  export const submitNewComment = async (sightingId: any, newComment: any) => {
     try {
       const response = await api.post(
         "sightings/" + sightingId + "/comment/",

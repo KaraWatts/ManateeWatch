@@ -8,24 +8,26 @@ const LogIn = () => {
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+  // @ts-expect-error TS(2339): Property 'setUser' does not exist on type 'unknown... Remove this comment to see the full error message
   const { setUser } = useOutletContext();
   const [validPass, setValidPass] = useState(null)
   const [show, setShow] = useState(false);
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: any) => {
     e.preventDefault();
     const user = await userLogin(emailInput, passwordInput);
     if (user && user !== 401) {
       setUser(user);
       console.log(user);
     } else if (user === 401){
+      // @ts-expect-error TS(2345): Argument of type 'false' is not assignable to para... Remove this comment to see the full error message
       setValidPass(false)
     } else{
       setShow(true)
     }
   };
 
-  const handleSignUp = (e) => {
+  const handleSignUp = (e: any) => {
     e.preventDefault();
     navigate("/signup/");
   };

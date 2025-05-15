@@ -15,23 +15,27 @@ function SightingData() {
   const navigate = useNavigate()
 
     // Set Position Data
-    const handlePositionChange = (position) => {
+    const handlePositionChange = (position: any) => {
       setPositionData(position);
     };
 
     console.log(positionData)
 
-  const handleDateChange = (dateTime) => {
+  const handleDateChange = (dateTime: any) => {
     setTimeSighted(dateTime)
     console.log(dateTime)
   }
-  const handleFormSubmit = async(formData) => {
+  const handleFormSubmit = async (formData: any) => {
     const requestData = {
       ...formData, // Include the formData object as is
       image: imageSrc,
+      // @ts-expect-error TS(2339): Property 'lat' does not exist on type '{}'.
       lat: positionData.lat,
+      // @ts-expect-error TS(2339): Property 'lng' does not exist on type '{}'.
       lon: positionData.lng,
+      // @ts-expect-error TS(2531): Object is possibly 'null'.
       sighting_date: timeSighted.sighting_date,
+      // @ts-expect-error TS(2531): Object is possibly 'null'.
       created_date: timeSighted.created_date
     };
   

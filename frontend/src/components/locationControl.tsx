@@ -8,7 +8,11 @@ import "../pages/stylesheets/sightingLocationData.css";
 import "leaflet/dist/leaflet.css";
 
 // 
-const LocateControl = ({ onPositionChange, setSuccess, setLoading }) => {
+const LocateControl = ({
+  onPositionChange,
+  setSuccess,
+  setLoading
+}: any) => {
     const [position, setPosition] = useState(null);
     const [marker, setMarker] = useState(null);
   
@@ -19,14 +23,19 @@ const LocateControl = ({ onPositionChange, setSuccess, setLoading }) => {
           const marker = markerRef.current;
           if (marker != null) {
             setMarker(
+              // @ts-expect-error TS(2345): Argument of type 'Element' is not assignable to pa... Remove this comment to see the full error message
               <Marker
+                // @ts-expect-error TS(2322): Type '{ draggable: boolean; eventHandlers: { drage... Remove this comment to see the full error message
                 draggable={true}
                 eventHandlers={eventHandlers}
+                // @ts-expect-error TS(2339): Property 'getLatLng' does not exist on type 'never... Remove this comment to see the full error message
                 position={marker.getLatLng()}
                 ref={markerRef}
               ></Marker>
             );
+            // @ts-expect-error TS(2339): Property 'getLatLng' does not exist on type 'never... Remove this comment to see the full error message
             setPosition(marker.getLatLng());
+            // @ts-expect-error TS(2339): Property 'getLatLng' does not exist on type 'never... Remove this comment to see the full error message
             onPositionChange(marker.getLatLng());
           }
         },
@@ -35,12 +44,14 @@ const LocateControl = ({ onPositionChange, setSuccess, setLoading }) => {
     );
   
     const map = useMapEvents({
-      locationfound(e) {
+      locationfound(e: any) {
         map.flyTo(e.latlng, 15, {animate: true, duration:1.5});
         setSuccess(true);
         setLoading(false);
         setMarker(
+          // @ts-expect-error TS(2345): Argument of type 'Element' is not assignable to pa... Remove this comment to see the full error message
           <Marker
+            // @ts-expect-error TS(2322): Type '{ draggable: boolean; eventHandlers: { drage... Remove this comment to see the full error message
             draggable={true}
             eventHandlers={eventHandlers}
             position={e.latlng}

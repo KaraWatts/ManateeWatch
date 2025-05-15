@@ -17,8 +17,9 @@ function SightingDetails({
   reactions,
   setSightingData,
   sightingData
-}) {
+}: any) {
   const { sightingId, profileId } = useParams();
+  // @ts-expect-error TS(2345): Argument of type 'string | null' is not assignable... Remove this comment to see the full error message
   const user = JSON.parse(localStorage.getItem("user"));
   const [newComment, setNewComment] = useState("");
   const [commentBoxOpen, setCommentBoxOpen] = useState(false);
@@ -28,7 +29,7 @@ function SightingDetails({
   useEffect(() => {}, [commentPosts]);
   
   console.log(user['id'], profileId)
-  const handleKeyDown = async (e) => {
+  const handleKeyDown = async (e: any) => {
     if (e.key === "Enter" && newComment && newComment !== "") {
       e.preventDefault();
       const data = { date: new Date(), comment: newComment };
@@ -40,10 +41,10 @@ function SightingDetails({
     }
   };
 
-  const handleDelete = async (e) => {
+  const handleDelete = async (e: any) => {
     try{
       const response = await api.delete(`/sightings/${sightingId}/`)
-      setSightingData(sightingData.filter((sighting) => sighting.id !== sightingId))
+      setSightingData(sightingData.filter((sighting: any) => sighting.id !== sightingId))
       navigate(`/profile/${profileId}`)
       console.log(response.data)
     }catch(error){
@@ -63,6 +64,7 @@ function SightingDetails({
       <p>Calves: {num_Calf}</p>
       {data_source && <p>{data_source}</p>}
 
+      // @ts-expect-error TS(2345): Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
       {parseInt(profileId) === user["id"] && (
         <div>
           <Row>
@@ -104,15 +106,13 @@ function SightingDetails({
           </Col>
         </Row>
         <hr />
-        {commentPosts.map((reaction) => (
-          <CommentSection
-            key={reaction.id}
-            setComments={setCommentPosts}
-            commentPosts={commentPosts}
-            activeUser={user["id"]}
-            {...reaction}
-          />
-        ))}
+        {commentPosts.map((reaction: any) => <CommentSection
+          key={reaction.id}
+          setComments={setCommentPosts}
+          commentPosts={commentPosts}
+          activeUser={user["id"]}
+          {...reaction}
+        />)}
 
         <Form className="new-comment-container">
           <Form.Group className="new-comment-avatar">

@@ -9,7 +9,10 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
 
-export default function PopupAlert({setAlert, alert}) {
+export default function PopupAlert({
+  setAlert,
+  alert
+}: any) {
     const navigate = useNavigate()
 
   const handleSignup = () => {

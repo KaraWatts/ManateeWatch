@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import router from './router';
 import { RouterProvider } from 'react-router-dom';
+// @ts-expect-error TS(2307): Cannot find module 'virtual:pwa-register' or its c... Remove this comment to see the full error message
 import { registerSW } from 'virtual:pwa-register';
 
 

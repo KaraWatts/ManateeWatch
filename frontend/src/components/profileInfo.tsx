@@ -3,7 +3,14 @@ import "../pages/stylesheets/imagegrid.css";
 import { Col, Row } from "react-bootstrap";
 import ImageUploadAndCrop from "./profilePicUpload";
 
-function ProfileInfo({ id, display_name, profile_picture, ranking, num_sightings, sightings}) {
+function ProfileInfo({
+  id,
+  display_name,
+  profile_picture,
+  ranking,
+  num_sightings,
+  sightings
+}: any) {
   
   const lastSighting = () =>{
   if (sightings.length>0 && sightings[num_sightings-1]['sighting_date']){

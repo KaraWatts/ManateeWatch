@@ -9,32 +9,34 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 
 
-function ObservationForm({ onSubmit }) {
+function ObservationForm({
+  onSubmit
+}: any) {
   const [num_Adults, setNumberOfAdults] = useState(0);
   const [num_Calf, setNumberOfCalves] = useState(0);
   const [activity, setActivity] = useState("");
   const [comments, setComments] = useState("");
 
 
-  const handleChangeNumberOfAdults = (event) => {
+  const handleChangeNumberOfAdults = (event: any) => {
     const numAdults = parseInt(event.target.value)
     setNumberOfAdults(numAdults);
   };
 
-  const handleChangeNumberOfCalves = (event) => {
+  const handleChangeNumberOfCalves = (event: any) => {
     const numCalves = parseInt(event.target.value)
     setNumberOfCalves(numCalves);
   };
 
-  const handleChangeActivity = (event) => {
+  const handleChangeActivity = (event: any) => {
     setActivity(event.target.value);
   };
 
-  const handleChangeComments = (event) => {
+  const handleChangeComments = (event: any) => {
     setComments(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     console.log({
       num_Adults,

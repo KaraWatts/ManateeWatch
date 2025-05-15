@@ -154,6 +154,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://www.manateewatch.com",
     "https://www.manateewatch.com",
     "http://localhost:3000",
+    "http://localhost:5173",
     "http://127.0.0.1",
 ]
 
@@ -162,7 +163,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://manateewatch.com",
     "http://www.manateewatch.com",
     "https://www.manateewatch.com",
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "http://localhost:5173"
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
