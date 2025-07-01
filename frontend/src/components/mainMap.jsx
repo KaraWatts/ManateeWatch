@@ -112,7 +112,7 @@ function MainMap() {
                   rel="noopener noreferrer"
                 >
                   <Button className="ml-1" variant="secondary" size="sm">
-                    Get Directions <TurnLeftIcon />
+                    Get Directions<TurnLeftIcon />
                   </Button>
                 </Link>
               </div>
