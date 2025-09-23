@@ -8,7 +8,6 @@ services:
       - ./nginx/ssl_cert.pem:/etc/nginx/ssl/ssl_cert.pem:ro
       - ./nginx/ssl_cert_key.key:/etc/nginx/ssl/ssl_cert_key.key:ro
       - django-static:/manateewatch/backend/django_static/
-      - ./frontend/build:/manateewatch/frontend/build:ro
     ports:
       - 80:80
       - 443:443
