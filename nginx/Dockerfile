@@ -3,6 +3,9 @@ FROM nginx:latest
 # Remove the default Nginx config
 RUN rm /etc/nginx/nginx.conf
 
+# Create the static files directory path
+RUN mkdir -p /manateewatch/backend/django_static/
+
 # Copy the main Nginx config
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
