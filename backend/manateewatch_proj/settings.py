@@ -16,6 +16,17 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
  
+# Load environment variables from .env.local if present, otherwise from .env
+try:
+    from dotenv import load_dotenv
+    env_local = BASE_DIR / ".env.local"
+    env_default = BASE_DIR / ".env"
+    if env_local.exists():
+        load_dotenv(dotenv_path=env_local, override=True)
+    elif env_default.exists():
+        load_dotenv(dotenv_path=env_default, override=True)
+except ImportError:
+    pass  # python-dotenv not installed; skip loading .env files
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -24,7 +35,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ["localhost",
                  '127.0.0.1',

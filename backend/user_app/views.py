@@ -26,7 +26,7 @@ class Sign_Up(APIView):
         data['username'] = request.data.get("username", request.data.get("email"))
 
         #create new user instance
-        new_user = Client(email=data['email'], username=data["username"], password=data['password'])
+        new_user = Client(email=data['email'], password=data['password'])
         #create new profile instance
         new_profile = User_Profile(user=new_user, display_name=data.get("display_name"))
 
