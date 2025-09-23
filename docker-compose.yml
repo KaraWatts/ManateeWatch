@@ -18,6 +18,8 @@ services:
       - manateewatch-network
   frontend:
     restart: unless-stopped
+    environment:
+      - REACT_APP_API_URL=https://manateewatch.com
     image: kdwwatts/manateewatch-fe:latest
     ports:
       - 3000:3000

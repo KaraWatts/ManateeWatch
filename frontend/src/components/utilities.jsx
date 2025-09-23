@@ -6,7 +6,7 @@ import axios from "axios";
 * contains baseURL to simplify api calls - api.get("/path/")
 */
 export const api = axios.create({
-  baseURL: "/api/v1/",
+  baseURL: (process.env.REACT_APP_API_URL || "") + "/api/v1/",
 });
 
 
