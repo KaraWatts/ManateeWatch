@@ -17,10 +17,10 @@ RUN pip install -r /manateewatch/backend/requirements.txt
 # add project files
 ADD ./backend /manateewatch/backend
 
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+# CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
 
 # # Make entrypoint script executable
-# RUN chmod +x backend/docker/wsgi-entrypoint.sh
+RUN chmod +x docker/wsgi-entrypoint.sh
 
 # # Set entrypoint
-# ENTRYPOINT ["backend/docker/wsgi-entrypoint.sh"]
+ENTRYPOINT ["docker/wsgi-entrypoint.sh"]
