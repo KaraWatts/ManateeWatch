@@ -37,9 +37,17 @@ def main():
         run("python manage.py migrate")
 
 
-        # Load sighting data fixture
-        print("\nLoading data fixture...")
-        run(f"python manage.py loaddata all_data.json")
+        # Check if database exists by trying to query the User model
+        check_db_cmd = 'python manage.py shell -c "from django.contrib.auth import get_user_model; print(get_user_model().objects.exists())"'
+        result = subprocess.run(check_db_cmd, shell=True)
+        if result.returncode != 0:
+            print("\nDatabase does not exist or is not initialized. Loading data fixture...")
+            run(f"python manage.py loaddata all_data.json")
+        else:
+            print("\nDatabase exists. Starting fresh! Flushing all data and loading data fixture...")
+            # Flush all data from the database (including users)
+            run('python manage.py flush --noinput')
+            run(f"python manage.py loaddata all_data.json")
 
         # Prompt to create superuser
         create_super = input("Do you want to create a Django superuser? (y/n): ").strip().lower()
