@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import { api, calculateTimeSincePost } from "./utilities";
-import ResultCards from "./resultTiles";
+import { api, calculateTimeSincePost } from "./utilities.jsx";
+import ResultCards from "./resultTiles.jsx";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { Fab} from "@mui/material";
@@ -12,25 +12,10 @@ import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import TurnLeftIcon from "@mui/icons-material/TurnLeft";
 import NavigationIcon from "@mui/icons-material/Navigation";
-import MainMapController from "./MainMapController";
+import MainMapController from "./MainMapController.jsx";
 import CircularProgress from '@mui/material/CircularProgress';
 import { green } from '@mui/material/colors';
 
-interface Sighting {
-  id: number;
-  lat: string;
-  lon: string;
-  image: string | null;
-  sighting_date: string;
-  activity: string;
-  num_Adults: number;
-  num_Calf: number;
-  user: {
-    display_name: string;
-    user_id: number;
-  };
-  data_source?: string;
-}
 
 delete L.Icon.Default.prototype._getIconUrl;
 

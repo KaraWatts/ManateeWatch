@@ -26,15 +26,28 @@
     "react-leaflet": "^4.2.1",
     "react-leaflet-cluster": "^2.1.0",
     "react-router-dom": "^6.22.3",
+    "react-scripts": "5.0.1",
     "styled-components": "^6.1.8",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "workbox-background-sync": "^6.6.0",
+    "workbox-broadcast-update": "^6.6.0",
+    "workbox-cacheable-response": "^6.6.0",
+    "workbox-core": "^6.6.0",
+    "workbox-expiration": "^6.6.0",
+    "workbox-google-analytics": "^6.6.1",
+    "workbox-navigation-preload": "^6.6.0",
+    "workbox-precaching": "^6.6.0",
+    "workbox-range-requests": "^6.6.0",
+    "workbox-routing": "^6.6.0",
+    "workbox-strategies": "^6.6.0",
+    "workbox-streams": "^6.6.0"
   },
-"scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview",
-  "test": "jest" 
-},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "jest",
+    "eject": "react-scripts eject"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -54,17 +67,19 @@
     ]
   },
   "devDependencies": {
+    "react-scripts": "5.0.1",
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
-    "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.1",
-    "@vitejs/plugin-react": "^4.3.4",
+    "babel-jest": "^29.7.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
-    "node-fetch": "^3.3.2",
-    "typescript": "^5.8.2",
-    "vite": "^6.2.4",
-    "vite-plugin-pwa": "^1.0.0"
+    "jest-css-modules": "^2.1.0",
+    "jest-transform-stub": "^2.0.0",
+    "node-fetch": "^3.3.2"
   },
   "jest": {
     "preset": "./jest.preset.json"

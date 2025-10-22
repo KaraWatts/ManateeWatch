@@ -1,0 +1,19 @@
+{
+    "testEnvironment": "jsdom",
+    "preset": "babel-jest",
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest",
+      "^.+\\.css$": "jest-transform-stub"
+    },
+    "moduleNameMapper": {
+      "^axios$": "./src/__mocks__/axios.js",
+      "\\.(css|less|scss|sss|styl|png|jpg|jpeg|gif|svg)$": "identity-obj-proxy"
+    },
+    "setupFilesAfterEnv": [
+      "./src/setupTests.js"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(@babel|react-leaflet|leaflet|react-leaflet-cluster)/)"
+    ]
+  }
+  
