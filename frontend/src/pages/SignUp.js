@@ -38,7 +38,6 @@ const SignUp = () => {
       } else if (errorData?.[0]?.[0] === 'email') {
         alert("A user with that email already exists. Please try again.");
       } else {
-        console.log("Signup error:", error);
         alert("An unexpected error occurred during signup. Please try again.");
       }
 

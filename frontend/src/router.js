@@ -9,6 +9,8 @@ import SightingData from "./pages/SightingData";
 import ProfilePage from "./pages/ProfilePage";
 import SightingDetails from "./pages/SightingDetailsPage";
 import ErrorPage from "./pages/ErrorPage";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
       {
         path: "/login/",
         element: <LogIn />,
+      },
+      {
+        path: "/forgot-password/",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "/reset-password/:token",
+        element: <ResetPassword />,
       },
       {
         path: "/sightingData/",

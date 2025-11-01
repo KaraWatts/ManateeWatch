@@ -12,10 +12,10 @@ function App() {
 
 
   useEffect(() => {
-    let nullUserUrls = ["/login/", "/signup/", "/"] // should redirect to homepage if logged in
+    let nullUserUrls = ["/login/", "/signup/", "/", '/forgot-password/'] // should redirect to homepage if logged in
 
     // check if current url is one that might need to redirect
-    let isAllowed = nullUserUrls.includes(location.pathname)
+    let isAllowed = nullUserUrls.includes(location.pathname) || location.pathname.startsWith('/reset-password/')
     console.log('isallowed ', isAllowed)
 
     // redirect to homepage when
