@@ -30,6 +30,10 @@ class Sign_Up(APIView):
         #create new profile instance
         new_profile = User_Profile(user=new_user, display_name=data.get("display_name"))
 
+        #password match validation
+        if data.get("password") != data.get("confirm_password"):
+            return Response("Passwords do not match", status=HTTP_400_BAD_REQUEST)
+    
         try:
             new_user.full_clean()
             #set user password
@@ -91,3 +95,18 @@ class Info(TokenReq):
             return Response(ruser.id, status=HTTP_200_OK)
         except:
             return Response("No user matching credentials", status=HTTP_400_BAD_REQUEST)
+        
+class Reset_Password(TokenReq):
+
+    def post(self, request):
+        data = request.data.copy()
+        new_password = data.get("new_password")
+        confirm_password = data.get("confirm_password")
+
+        if new_password != confirm_password:
+            return Response("Passwords do not match", status=HTTP_400_BAD_REQUEST)
+        
+        user = request.user
+        user.set_password(new_password)
+        user.save()
+        return Response("Password successfully changed", status=HTTP_200_OK)
