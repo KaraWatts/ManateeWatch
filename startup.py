@@ -1,6 +1,7 @@
 import os
 import subprocess
 import sys
+import tempfile
 
 def run(cmd, check=True):
     print(f"\n>>> {cmd}")
@@ -37,44 +38,86 @@ def main():
         run("python manage.py migrate")
 
 
-        # Check if database exists by trying to query the User model
-        check_db_cmd = 'python manage.py shell -c "from django.contrib.auth import get_user_model; print(get_user_model().objects.exists())"'
-        result = subprocess.run(check_db_cmd, shell=True)
-        if result.returncode != 0:
-            print("\nDatabase does not exist or is not initialized. Loading data fixture...")
-            run(f"python manage.py loaddata all_data.json")
+        # Check if database has data
+        check_db_cmd = 'python manage.py shell -c "from map_app.models import Sighting_Data; print(Sighting_Data.objects.exists())"'
+        result = subprocess.run(check_db_cmd, shell=True, capture_output=True, text=True)
+        
+        if result.returncode == 0 and "True" in result.stdout:
+            print("\nDatabase has data. Do you want to reset and create fresh test data?")
+            reset_choice = input("Enter y to reset, or n to keep existing data: ").strip().lower()
+            if reset_choice == "y":
+                print("Flushing existing data...")
+                run('python manage.py flush --noinput')
+                print("Creating fresh test data...")
+                run('python manage.py create_test_data --users 5 --sightings 20')
         else:
-            print("\nDatabase exists. Starting fresh! Flushing all data and loading data fixture...")
-            # Flush all data from the database (including users)
-            run('python manage.py flush --noinput')
-            run(f"python manage.py loaddata all_data.json")
+            print("\nDatabase is empty. Creating test data...")
+            run('python manage.py create_test_data --users 5 --sightings 20')
 
-        # Prompt to create superuser
-        create_super = input("Do you want to create a Django superuser? (y/n): ").strip().lower()
+        # Prompt to create additional superuser
+        create_super = input("Do you want to create an additional Django superuser? (y/n): ").strip().lower()
         if create_super == "y":
             run("python manage.py createsuperuser", check=False)
 
         # Start the server (in a new terminal tab)
         print("\nOpening a new terminal window/tab to run the Django backend server...")
         backend_dir = os.path.join(os.path.dirname(__file__), 'backend')
-        backend_command = f'cd \"{backend_dir}\" && python manage.py runserver'
-        backend_command_escaped = backend_command.replace('"', '\\"')
-        osa_backend = f'osascript -e \'tell application "Terminal" to do script "{backend_command_escaped}"\''
-        subprocess.Popen(osa_backend, shell=True)
-        print("\nBackend should be starting in a new Terminal window/tab.")
+        
+        # Create a temporary script file to avoid escaping issues
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.sh', delete=False) as f:
+            f.write(f"""#!/bin/bash
+cd "{backend_dir}"
+python manage.py runserver
+""")
+            backend_script = f.name
+        
+        # Make script executable
+        os.chmod(backend_script, 0o755)
+        
+        # Use a different approach - execute the script directly in a new terminal
+        applescript = f'''
+        tell application "Terminal"
+            do script "/bin/bash {backend_script}"
+        end tell
+        '''
+        
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.scpt', delete=False) as f:
+            f.write(applescript)
+            applescript_file = f.name
+        
+        subprocess.Popen(['osascript', applescript_file])
+        print(f"\nBackend starting in new terminal (script: {backend_script})")
 
     # Path to frontend directory
     frontend_dir = os.path.join(os.path.dirname(__file__), 'frontend')
-    # Command to run in new terminal
-    command = f'cd \"{frontend_dir}\" && REACT_APP_API_URL=\"{api_url}\" npm start'
-    command_escaped = command.replace('"', '\\"')
-
+    
     print(f"\nOpening a new terminal window/tab to run the frontend with REACT_APP_API_URL={api_url} ...")
-
-    # macOS: open new Terminal tab and run the command
-    osa_command = f'osascript -e \'tell application "Terminal" to do script "{command_escaped}"\''
-    subprocess.Popen(osa_command, shell=True)
-    print("\nFrontend should be starting in a new Terminal window/tab.")
+    
+    # Create a temporary script file to avoid escaping issues
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.sh', delete=False) as f:
+        f.write(f"""#!/bin/bash
+cd "{frontend_dir}"
+export REACT_APP_API_URL="{api_url}"
+npm start
+""")
+        frontend_script = f.name
+    
+    # Make script executable
+    os.chmod(frontend_script, 0o755)
+    
+    # Use the same approach for frontend
+    applescript = f'''
+    tell application "Terminal"
+        do script "/bin/bash {frontend_script}"
+    end tell
+    '''
+    
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.scpt', delete=False) as f:
+        f.write(applescript)
+        applescript_file = f.name
+    
+    subprocess.Popen(['osascript', applescript_file])
+    print(f"\nFrontend starting in new terminal (script: {frontend_script})")
 
 if __name__ == '__main__':
     main()
