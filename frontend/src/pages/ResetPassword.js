@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../components/utilities";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 
 const ResetPassword = () => {
   const { token } = useParams();
@@ -76,24 +79,46 @@ const ResetPassword = () => {
 
   if (!isValidToken) {
     return (
-      <div className="reset-password-container">
-        <h2>Invalid Reset Link</h2>
-        <p>This password reset link is invalid or has expired.</p>
-        <button onClick={() => navigate("/forgot-password")}>
-          Request New Reset Link
-        </button>
-      </div>
+      <>
+        <h2 style={{ textAlign: "center" }}>Invalid Reset Link</h2>
+        <div style={{ padding: "10px", textAlign: "center" }}>
+          <Alert variant="danger">
+            This password reset link is invalid or has expired.
+          </Alert>
+          <Button 
+            variant="primary" 
+            onClick={() => navigate("/forgot-password")}
+          >
+            Request New Reset Link
+          </Button>
+        </div>
+      </>
     );
   }
 
   return (
-    <div className="reset-password-container">
-      <h2>Reset Your Password</h2>
-      <p>Enter your new password below.</p>
-      
-      <form onSubmit={handleResetPassword}>
-        <div className="form-group">
-          <input
+    <>
+      <h2 style={{ textAlign: "center" }}>Reset Your Password</h2>
+      <Form onSubmit={handleResetPassword} style={{ padding: "10px" }}>
+        <p style={{ textAlign: "center", marginBottom: "20px" }}>
+          Enter your new password below.
+        </p>
+        
+        {message && (
+          <Alert variant="success">
+            {message}
+          </Alert>
+        )}
+
+        {error && (
+          <Alert variant="danger">
+            {error}
+          </Alert>
+        )}
+
+        <Form.Group className="mb-3" controlId="formNewPassword">
+          <Form.Label>New Password</Form.Label>
+          <Form.Control
             type="password"
             name="new_password"
             placeholder="New Password"
@@ -103,10 +128,11 @@ const ResetPassword = () => {
             required
             minLength="8"
           />
-        </div>
+        </Form.Group>
         
-        <div className="form-group">
-          <input
+        <Form.Group className="mb-3" controlId="formConfirmPassword">
+          <Form.Label>Confirm New Password</Form.Label>
+          <Form.Control
             type="password"
             name="confirm_password"
             placeholder="Confirm New Password"
@@ -116,25 +142,20 @@ const ResetPassword = () => {
             required
             minLength="8"
           />
-        </div>
+        </Form.Group>
         
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "Resetting..." : "Reset Password"}
-        </button>
-      </form>
-
-      {message && (
-        <div className="success-message">
-          {message}
-        </div>
-      )}
-
-      {error && (
-        <div className="error-message">
-          {error}
-        </div>
-      )}
-    </div>
+        <Form.Group className="d-flex justify-content-center">
+          <Button 
+            className="btn btn-primary" 
+            variant="primary" 
+            type="submit"
+            disabled={isLoading}
+          >
+            {isLoading ? "Resetting..." : "Reset Password"}
+          </Button>
+        </Form.Group>
+      </Form>
+    </>
   );
 };
 

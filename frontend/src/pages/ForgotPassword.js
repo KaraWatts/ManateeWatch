@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { api } from "../components/utilities";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 
 const ForgotPassword = () => {
   const [emailInput, setEmailInput] = useState("");
@@ -35,13 +38,28 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="forgot-password-container">
-      <h2>Forgot Password</h2>
-      <p>Enter your email address and we'll send you a link to reset your password.</p>
-      
-      <form onSubmit={handleForgotPassword}>
-        <div className="form-group">
-          <input
+    <>
+      <h2 style={{ textAlign: "center" }}>Forgot Password</h2>
+      <Form onSubmit={handleForgotPassword} style={{ padding: "10px" }}>
+        <p style={{ textAlign: "center", marginBottom: "20px" }}>
+          Enter your email address and we'll send you a link to reset your password.
+        </p>
+        
+        {message && (
+          <Alert variant="success">
+            {message}
+          </Alert>
+        )}
+
+        {error && (
+          <Alert variant="danger">
+            {error}
+          </Alert>
+        )}
+
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
             type="email"
             placeholder="Enter your email address"
             value={emailInput}
@@ -49,25 +67,20 @@ const ForgotPassword = () => {
             disabled={isLoading}
             required
           />
-        </div>
+        </Form.Group>
         
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "Sending..." : "Send Reset Link"}
-        </button>
-      </form>
-
-      {message && (
-        <div className="success-message">
-          {message}
-        </div>
-      )}
-
-      {error && (
-        <div className="error-message">
-          {error}
-        </div>
-      )}
-    </div>
+        <Form.Group className="d-flex justify-content-center">
+          <Button 
+            className="btn btn-primary" 
+            variant="primary" 
+            type="submit"
+            disabled={isLoading}
+          >
+            {isLoading ? "Sending..." : "Send Reset Link"}
+          </Button>
+        </Form.Group>
+      </Form>
+    </>
   );
 };
 
