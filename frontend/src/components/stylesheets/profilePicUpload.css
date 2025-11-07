@@ -1,0 +1,236 @@
+/* Profile Picture Upload Styles */
+.profile-pic-upload-container {
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+/* Profile Picture Display */
+.profile-pic-display {
+  text-align: center;
+}
+
+.profile-pic-wrapper {
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-pic-wrapper:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.18);
+}
+
+.profile-picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-pic-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.profile-pic-wrapper:hover .profile-pic-overlay {
+  opacity: 1;
+}
+
+.overlay-content {
+  color: white;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.upload-icon {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.upload-hint {
+  display: none; /* Hide the hint text to reduce height */
+}
+
+/* Upload Placeholder */
+.upload-placeholder {
+  border: 2px dashed #dee2e6;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: #f8f9fa;
+}
+
+.upload-placeholder:hover {
+  border-color: #007bff;
+  background: #e3f2fd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+}
+
+.upload-placeholder-content {
+  padding: 1rem 0.5rem;
+}
+
+.upload-icon-large {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  opacity: 0.7;
+}
+
+.upload-placeholder h5 {
+  color: #495057;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.upload-placeholder .text-muted {
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+/* No Profile Picture State */
+.no-profile-pic {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.default-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  margin: 0 auto 0.5rem;
+  color: #6c757d;
+}
+
+/* Editor Modal */
+.editor-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.editor-content {
+  width: 100%;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.editor-content .card {
+  border: none;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+}
+
+.editor-content .card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px 12px 0 0 !important;
+  border: none;
+}
+
+.avatar-editor {
+  margin: 0 auto;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.editor-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.editor-buttons .btn {
+  min-width: 100px;
+  font-weight: 500;
+}
+
+/* Error Alert */
+.alert {
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .profile-pic-wrapper {
+    width: 100px;
+    height: 100px;
+  }
+
+  .upload-placeholder-content {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .upload-icon-large {
+    font-size: 1.75rem;
+  }
+
+  .editor-content {
+    margin: 1rem;
+    max-width: calc(100% - 2rem);
+  }
+
+  .avatar-editor {
+    width: 200px !important;
+    height: 200px !important;
+  }
+
+  .editor-buttons {
+    flex-direction: column;
+  }
+
+  .editor-buttons .btn {
+    width: 100%;
+  }
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.2s ease;
+}
+
+/* Focus styles for accessibility */
+.upload-placeholder:focus,
+.profile-pic-wrapper:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}

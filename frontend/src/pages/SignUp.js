@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { api } from "../components/utilities";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -29,6 +30,8 @@ const SignUp = () => {
         api.defaults.headers.common["Authorization"] = `Token ${token}`;
         // set user info for the app
         setUser(user);
+        // redirect to getting started page
+        navigate("/getting-started/");
       }
     } catch (error) {
       const errorData = error?.response?.data;

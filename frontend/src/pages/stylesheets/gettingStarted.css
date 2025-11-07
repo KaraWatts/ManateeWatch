@@ -1,0 +1,257 @@
+/* Getting Started Page Styles */
+.getting-started-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.getting-started-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.getting-started-header h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #6c757d;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+/* Protection Alert */
+.protection-alert {
+  margin-bottom: 2rem;
+  border-left: 5px solid #dc3545;
+  background: linear-gradient(135deg, #fff5f5 0%, #fef2f2 100%);
+  border-color: #dc3545;
+}
+
+.protection-alert .alert-heading {
+  color: #721c24;
+  font-weight: 600;
+}
+
+/* Step Cards */
+.step-card {
+  height: 100%;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 1.5rem;
+}
+
+
+.step-card .card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-bottom: none;
+  color: white;
+  padding: 1.25rem;
+}
+
+.step-card .card-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.step-card .card-body {
+  padding: 1.5rem;
+}
+
+.step-card ol {
+  padding-left: 1.25rem;
+}
+
+.step-card ol li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.step-card ul {
+  padding-left: 1.25rem;
+}
+
+.step-card ul li {
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+}
+
+/* Tip Boxes */
+.tip-box, .navigation-tip, .community-note {
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f9f0 100%);
+  border: 1px solid #d4edda;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  color: #155724;
+  font-size: 0.95rem;
+}
+
+.navigation-tip {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+  border-color: #bbdefb;
+  color: #0d47a1;
+}
+
+.community-note {
+  background: linear-gradient(135deg, #fff3e0 0%, #fef7ed 100%);
+  border-color: #ffcc02;
+  color: #e65100;
+}
+
+/* Conservation Card */
+.conservation-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px solid #28a745;
+  margin: 2rem 0;
+}
+
+.conservation-card h3 {
+  color: #155724;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.conservation-card h5 {
+  color: #495057;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.do-list li {
+  color: #155724;
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.do-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #28a745;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.dont-list li {
+  color: #721c24;
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.dont-list li::before {
+  content: "✗";
+  position: absolute;
+  left: 0;
+  color: #dc3545;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Get Started Action */
+.get-started-action {
+  text-align: center;
+  padding: 2rem;
+  margin: 2rem 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.get-started-action h3 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.get-started-action p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.get-started-action .btn {
+  background-color: white;
+  border-color: white;
+  color: #667eea;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.get-started-action .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: #667eea;
+  background-color: #f8f9fa;
+}
+
+/* Links */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .getting-started-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .getting-started-header h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .step-card {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .getting-started-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .step-card .card-header {
+    padding: 1rem;
+  }
+
+  .step-card .card-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .step-card .card-body {
+    padding: 1rem;
+  }
+
+  .get-started-action {
+    padding: 1.5rem;
+  }
+
+  .conservation-card .card-body {
+    padding: 1rem;
+  }
+}
