@@ -1,0 +1,198 @@
+/* FAQ Page Styles */
+.faq-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.faq-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.faq-header h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.faq-subtitle {
+  color: #6c757d;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* Accordion Styles */
+.faq-accordion {
+  margin-bottom: 3rem;
+}
+
+.faq-accordion .accordion-button {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  color: #495057;
+  font-size: 1.1rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.faq-accordion .accordion-button:not(.collapsed) {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+  color: #1976d2;
+  box-shadow: 0 0 0 0.125rem rgba(33, 150, 243, 0.25);
+}
+
+.faq-accordion .accordion-button::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236c757d'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.faq-accordion .accordion-body {
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-top: 1px solid #e9ecef;
+}
+
+/* Install Steps */
+.install-steps {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.install-steps li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  color: #495057;
+}
+
+.install-steps strong {
+  color: #2c3e50;
+}
+
+/* Tip Box */
+.tip-box {
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f9f0 100%);
+  border: 1px solid #d4edda;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  color: #155724;
+}
+
+/* Benefits List */
+.benefits-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.benefits-list li {
+  padding: 0.5rem 0;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #f1f3f4;
+  color: #495057;
+}
+
+.benefits-list li:last-child {
+  border-bottom: none;
+}
+
+/* Troubleshooting */
+.troubleshooting-content ul {
+  margin-bottom: 1.5rem;
+}
+
+.troubleshooting-content li {
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+
+.help-note {
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 6px;
+  padding: 1rem;
+  color: #856404;
+  font-style: italic;
+}
+
+/* Get Started Card */
+.get-started-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+.get-started-card .card-body {
+  padding: 2.5rem;
+  color: white;
+}
+
+.get-started-card h4 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.get-started-card p {
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.get-started-card .btn {
+  background-color: white;
+  border-color: white;
+  color: #667eea;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.get-started-card .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: #667eea;
+  background-color: #f8f9fa;
+}
+
+/* Links */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .faq-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .faq-header h1 {
+    font-size: 2rem;
+  }
+
+  .faq-subtitle {
+    font-size: 1rem;
+  }
+
+  .faq-accordion .accordion-button {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .faq-accordion .accordion-body {
+    padding: 1rem;
+  }
+
+  .get-started-card .card-body {
+    padding: 1.5rem;
+  }
+}

@@ -15,7 +15,7 @@ function App() {
     let nullUserUrls = ["/login/", "/signup/", "/", '/forgot-password/'] // should redirect to homepage if logged in
 
     // check if current url is one that might need to redirect
-    let isAllowed = nullUserUrls.includes(location.pathname) || location.pathname.startsWith('/reset-password/')
+    let isAllowed = nullUserUrls.includes(location.pathname) || location.pathname.startsWith('/reset-password/');
     console.log('isallowed ', isAllowed)
 
     // redirect to homepage when
@@ -28,6 +28,9 @@ function App() {
     // not logged in user tries to go anywhere BUT signup or login
     // we redirect because the user needs to log in before they do anything else
     else if (!user && !isAllowed){
+      if (location.pathname.includes('/faq/') || location.pathname.includes('/getting-started/')){
+        return;
+      }
       navigate("/")
       setAlert(true)
     }

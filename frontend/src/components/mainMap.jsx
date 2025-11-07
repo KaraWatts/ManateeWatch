@@ -30,9 +30,23 @@ function MainMap() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const mapRef = useRef();
   const timer = useRef();
   const navigate = useNavigate()
+
+  // Check if user is on mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      setIsMobile(mobile);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
 
 
@@ -188,23 +202,25 @@ function MainMap() {
         </div>
       )}
         </MapContainer>
-        <div className="result-container">
-          {data.slice(0, 20).map((sighting) => {
-            const image_url = sighting.image
-              ? sighting.image
-              : "https://i.insider.com/5db6fd7ddee019532146611b?width=700";
-            return (
-              <ResultCards
-                key={sighting.id}
-                id={sighting.id}
-                sighting_date={calculateTimeSincePost(sighting.sighting_date)}
-                coord={[parseFloat(sighting.lat), parseFloat(sighting.lon)]}
-                image={image_url}
-                setPositionData={setPositionData}
-              />
-            );
-          })}
-        </div>
+        {!isMobile && (
+          <div className="result-container">
+            {data.slice(0, 20).map((sighting) => {
+              const image_url = sighting.image
+                ? sighting.image
+                : "https://i.insider.com/5db6fd7ddee019532146611b?width=700";
+              return (
+                <ResultCards
+                  key={sighting.id}
+                  id={sighting.id}
+                  sighting_date={calculateTimeSincePost(sighting.sighting_date)}
+                  coord={[parseFloat(sighting.lat), parseFloat(sighting.lon)]}
+                  image={image_url}
+                  setPositionData={setPositionData}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
     </>
   );

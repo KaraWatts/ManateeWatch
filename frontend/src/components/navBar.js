@@ -54,6 +54,11 @@ function NavBar({ user, setUser }) {
           <Row className="nav-row" style={{width:"100%"}}>
             <Col className="links">
             </Col>
+            {!user && <Col className="faq-link">
+              <Nav.Link as={Link} to="/faq/">
+                FAQs
+              </Nav.Link>
+            </Col>}
             <Col className="profile-icon">
               {user ? (
                 <NavDropdown
@@ -72,7 +77,9 @@ function NavBar({ user, setUser }) {
                     <NavDropdown.Item as={Link} to={`/profile/${user.id}`}>
                     Profile Page
                   </NavDropdown.Item>
-                  
+                  <NavDropdown.Item as={Link} to="/faq/">
+                    FAQs
+                  </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item
                     onClick={handleUserLogout}

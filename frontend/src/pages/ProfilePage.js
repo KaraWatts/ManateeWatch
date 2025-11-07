@@ -15,7 +15,7 @@ function ProfilePage() {
   const [profileData, setProfileData] = useState({});
   const [userSightings, setUserSightings] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   useEffect(() => {
     const fetchdata = async () => {

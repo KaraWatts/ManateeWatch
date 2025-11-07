@@ -11,6 +11,8 @@ import SightingDetails from "./pages/SightingDetailsPage";
 import ErrorPage from "./pages/ErrorPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import FAQs from "./pages/FAQ";
+import GettingStarted from "./pages/GettingStarted";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
       {
         path: "/sightingImage/",
         element: <SightingImage />,
+      },
+      {
+        path: "/faq/",
+        element: <FAQs />,
+      },
+      {
+        path: "/getting-started/",
+        element: <GettingStarted />,
       },
       {
         path: "/profile/:profileId",

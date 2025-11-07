@@ -67,6 +67,11 @@
   align-items: center;
 }
 
+.faq-link {
+  margin-right: 0;
+  max-width: fit-content;
+}
+
 .profile-icon {
 display: flex;
 justify-content: end;
