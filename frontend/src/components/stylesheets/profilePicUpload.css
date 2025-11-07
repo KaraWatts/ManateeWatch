@@ -1,7 +1,7 @@
 /* Profile Picture Upload Styles */
 .profile-pic-upload-container {
   width: 100%;
-  max-width: 160px;
+  max-width: 200px;
   margin: 0 auto;
 }
 
@@ -15,8 +15,8 @@
   display: inline-block;
   border-radius: 50%;
   overflow: hidden;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
   cursor: pointer;
