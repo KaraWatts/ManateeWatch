@@ -6,6 +6,8 @@ Welcome to ManateeWatch! We appreciate your interest in contributing to our proj
 
 To contribute to ManateeWatch, you'll need to set up the project environment on your local machine. Follow these steps:
 
+For the current local setup, run commands, and test commands, see [docs/local-development.md](docs/local-development.md).
+
 ### Prerequisites
 
 Make sure you have the following installed on your system:

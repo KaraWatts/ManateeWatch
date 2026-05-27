@@ -15,6 +15,8 @@
 - [Installing ManateeWatch on iOS](#installing-manateewatch-on-ios)
 - [Installing ManateeWatch on Android](#installing-manateewatch-on-android)
 - [Database Schema](#database-schema)
+- [Architecture](#architecture)
+- [Local Development And Testing](#local-development-and-testing)
 - [Contributing to ManateeWatch](#contributing-to-manateewatch)
 - [Want to support ManateeWatch?](#want-to-support-manateewatch)
 - [Contact](#contact)
@@ -74,6 +76,16 @@ The ManateeWatch database is built using PostgreSQL. Below is a visual represent
 - **Reactions Table**: Records comments, likes, and species validation flags for each reported sighting.
 
 
+## Architecture
+
+Production architecture and deployment notes are documented in [docs/architecture.md](docs/architecture.md).
+
+
+## Local Development And Testing
+
+Local setup, run commands, and test commands are documented in [docs/local-development.md](docs/local-development.md).
+
+
 ## Contributing to [ManateeWatch](manateewatch.com)
 
 We welcome contributions from the community! If you'd like to contribute to this project, please follow these guidelines:
@@ -113,7 +125,5 @@ Make sure to check out the site at [manateewatch.com](http://manateewatch.com)
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
 
 
