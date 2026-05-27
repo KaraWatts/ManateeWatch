@@ -83,6 +83,7 @@ The backend is a Django app served by Gunicorn on `0.0.0.0:8000`. Django uses Po
 Production deployment is driven by GitHub Actions and AWS Systems Manager.
 
 ```mermaid
+%%{init: {"sequence": {"mirrorActors": false}}}%%
 sequenceDiagram
     participant Dev as Developer
     participant GH as GitHub Actions
